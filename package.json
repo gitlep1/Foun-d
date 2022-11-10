@@ -1,0 +1,20 @@
+{
+  "name": "foun-d",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "cd back-end && npm i && npm start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/capstone4-TheFinderz/Foun-d.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/capstone4-TheFinderz/Foun-d/issues"
+  },
+  "homepage": "https://github.com/capstone4-TheFinderz/Foun-d#readme"
+}
