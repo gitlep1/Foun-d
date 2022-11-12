@@ -47,7 +47,7 @@ placeholder description of app.
 - open a new terminal in the same directory
 - terminal 1 (front end): cd front-end then npm start
 - terminal 2 (back end): npm start
-- CONGRADULATIONS you have started found'd!!!!
+- CONGRADULATIONS you have started foun'd!!!!
 
 <hr />
 
