@@ -43,7 +43,7 @@ placeholder description of app.
 - select code and copy to clipboard
 - open your terminal and create a new directory
 - type: "git clone" along with the url that you copied
-- cd into the found-d directory
+- cd into the foun-d directory
 - open a new terminal in the same directory
 - terminal 1 (front end): cd front-end then npm start
 - terminal 2 (back end): npm start
