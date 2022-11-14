@@ -2,9 +2,10 @@
 
 ## HELPFUL LINKS:
 
-- [Trello](placeholder)
+- [Trello](https://trello.com/b/nqrgccKB/finderz)
 - [ERD](https://miro.com/app/board/uXjVPErkfoE=/?share_link_id=822578901927)
-- [Wireframe](placeholder)
+- [Wireframe 1](https://prnt.sc/kcmdz4zkK0Vc)
+- [Wireframe 2](https://prnt.sc/UioV2Yvwq3ch)
 
 <hr />
 
