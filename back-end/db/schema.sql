@@ -20,17 +20,25 @@ CREATE TABLE users (
 DROP TABLE IF EXISTS items;
 CREATE TABLE items (
     id SERIAL UNIQUE NOT NULL PRIMARY KEY,
+    userId INT REFERENCES users(id) NOT NULL,
     itemName TEXT NOT NULL,
     itemImg TEXT,
     category TEXT,
     description TEXT,
-    found BOOLEAN,
-    lost BOOLEAN,
-    request BOOLEAN,
-    giveaway BOOLEAN,
+    isFound BOOLEAN DEFAULT false,
+    request BOOLEAN DEFAULT false,
+    giveaway BOOLEAN DEFAULT false,
     pinLocation TEXT,
     neighborhood TEXT,
     borough TEXT,
     zipcode INT,
     itemDate TIMESTAMP DEFAULT NOW()
+);
+
+DROP TABLE IF EXISTS found_items;
+CREATE TABLE found_items (
+    id SERIAL UNIQUE NOT NULL PRIMARY KEY,
+    foundUserId INT REFERENCES users(id) NOT NULL,
+    itemsId INT REFERENCES items(id) NOT NULL,
+    status TEXT NOT NULL
 );

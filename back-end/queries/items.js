@@ -18,13 +18,13 @@ const getItemsByID = async (id) => {
   }
 };
 
-const createItems = async (    
+const createItems = async ( 
+    userId,
     itemName,
     itemImg,
     category,
     description,
-    found,
-    lost,
+    isFound,
     request,
     giveaway,
     pinLocation,
@@ -33,14 +33,14 @@ const createItems = async (
     zipcode) => {
   try {
     const newItems = await db.one(
-      "INSERT INTO items (itemName, itemImg, category, description, found, lost, request, giveaway, pinLocation, neighborhood, borough, zipcode) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING *",
+      "INSERT INTO items (userId, itemName, itemImg, category, description, isFound, request, giveaway, pinLocation, neighborhood, borough, zipcode) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING *",
     [
+       userId,
        itemName,
        itemImg,
        category,
        description,
-       found,
-       lost,
+       isFound,
        request,
        giveaway,
        pinLocation,
@@ -57,12 +57,12 @@ const createItems = async (
 
 const updateItems = async (
     id,
+    userId,
     itemName,
     itemImg,
     category,
     description,
-    found,
-    lost,
+    isFound,
     request,
     giveaway,
     pinLocation,
@@ -72,14 +72,14 @@ const updateItems = async (
 ) => {
   try {
     const updateItem = await db.one(
-      "UPDATE items SET itemName = $1, itemImg = $2, category = $3, description = $4, found = $5, lost = $6, request = $7, giveaway = $8, pinLocation = $9, neighborhood = $10, borough = $11, zipcode = $12 where id=$13 RETURNING *",
+      "UPDATE items SET userId = $1, itemName = $2, itemImg = $3, category = $4, description = $5, isFound = $6, request = $7, giveaway = $8, pinLocation = $9, neighborhood = $10, borough = $11, zipcode = $12 where id=$13 RETURNING *",
       [
+        userId,
         itemName,
         itemImg,
         category,
         description,
-        found,
-        lost,
+        isFound,
         request,
         giveaway,
         pinLocation,

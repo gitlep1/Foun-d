@@ -34,12 +34,12 @@ items.get("/:id", async (req, res) => {
 
 items.post("/", async (req, res) => {
   const newItems = {
+    userId: req.body.userId,
     itemName: req.body.itemName,
     itemImg: req.body.itemImg,
     category: req.body.category,
     description: req.body.description,
-    found: req.body.found,
-    lost: req.body.lost,
+    isFound: req.body.isFound,
     request: req.body.request,
     giveaway: req.body.giveaway,
     pinLocation: req.body.pinLocation,
@@ -49,12 +49,12 @@ items.post("/", async (req, res) => {
   };
 
     const createdItems = await createItems(
+      newItems.userId,
       newItems.itemName,
       newItems.itemImg,
       newItems.category,
       newItems.description,
-      newItems.found,
-      newItems.lost,
+      newItems.isFound,
       newItems.request,
       newItems.giveaway,
       newItems.pinLocation,
@@ -75,12 +75,12 @@ items.put("/:id", async (req, res) => {
   const { id } = req.params;
 
   const updatedItemsData = {
+    userId: req.body.userId,
     itemName: req.body.itemName,
     itemImg: req.body.itemImg,
     category: req.body.category,
     description: req.body.description,
-    found: req.body.found,
-    lost: req.body.lost,
+    isFound: req.body.isFound,
     request: req.body.request,
     giveaway: req.body.giveaway,
     pinLocation: req.body.pinLocation,
@@ -91,12 +91,12 @@ items.put("/:id", async (req, res) => {
 
   const updatedItems = await updateItems(
     id,
+    updatedItemsData.userId,
     updatedItemsData.itemName,
     updatedItemsData.itemImg,
     updatedItemsData.category,
     updatedItemsData.description,
-    updatedItemsData.found,
-    updatedItemsData.lost,
+    updatedItemsData.isFound,
     updatedItemsData.request,
     updatedItemsData.giveaway,
     updatedItemsData.pinLocation,
