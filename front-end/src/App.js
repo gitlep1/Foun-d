@@ -1,11 +1,18 @@
-import "./App.scss";
+import NavBar from "./Components/NavBar";
+import { Routes, Route } from "react-router-dom";
 
-const App = () => {
+// IMPORTS
+import Home from "./Pages/Home";
+
+export default function App() {
   return (
-    <section>
-      <h1>Foun'd App</h1>
-    </section>
+    <div className="App">
+      <NavBar />
+      <main>
+        <Routes>
+          <Route path="/" element={<Home />} />
+        </Routes>
+      </main>
+    </div>
   );
-};
-
-export default App;
+}
