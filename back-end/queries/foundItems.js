@@ -22,8 +22,6 @@ const getFoundItemByID = async (id) => {
   }
 };
 
-
-
 module.exports = {
   getAllFoundItems,
   getFoundItemByID
