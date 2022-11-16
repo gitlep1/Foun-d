@@ -20,11 +20,6 @@ const NavBar = () => {
           <Link to="/about">About</Link>{" "}
         </h3>
       </section>
-      <section id="welcome"></section>
-      <section id="report"></section>
-      <section id="find"></section>
-      <section id="signup"></section>
-      <footer></footer>
     </div>
   );
 };
