@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
+import Signup from "../Signup/Signup";
 import "./NavBar.css";
 
-const NavBar = () => {
+const NavBar = ({ user, users, handleUser, authenticated, handleLogout }) => {
   return (
     <div className="navbar">
       <section id="paths">
@@ -23,7 +24,15 @@ const NavBar = () => {
       <section id="welcome"></section>
       <section id="report"></section>
       <section id="find"></section>
-      <section id="signup"></section>
+      <section id="signup">
+        <Signup
+          user={user}
+          users={users}
+          handleUser={handleUser}
+          authenticated={authenticated}
+          handleLogout={handleLogout}
+        />
+      </section>
       <footer></footer>
     </div>
   );
