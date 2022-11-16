@@ -7,6 +7,7 @@ import axios from "axios";
 import Home from "./Pages/Home";
 import New from "./Pages/New";
 import About from "./Pages/About";
+import Index from "./Pages/Index";
 
 export default function App() {
   const navigate = useNavigate();
@@ -73,6 +74,7 @@ export default function App() {
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="found" element={<Index />} />
           <Route path="/new" element={<New user={user}/>}/>
           <Route path="/about" element={<About />} />
         </Routes>
