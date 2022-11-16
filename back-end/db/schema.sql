@@ -9,7 +9,7 @@ CREATE TABLE users (
     username TEXT UNIQUE NOT NULL,
     password TEXT NOT NULL,
     email TEXT UNIQUE NOT NULL,
-    profileImg TEXT UNIQUE,
+    profileImg TEXT,
     address TEXT,
     zipcode INT,
     rating INT,
