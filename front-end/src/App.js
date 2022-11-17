@@ -1,13 +1,15 @@
-import NavBar from "./Components/NavBar/NavBar";
 import { useState, useEffect } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 // IMPORTS
+import NavBar from "./Components/NavBar/NavBar";
 import Home from "./Pages/Home";
 import New from "./Pages/New";
 import About from "./Pages/About";
 import Index from "./Pages/Index";
+import SideBar from "./Components/NavBar/SideBar"
+import "./App.scss"
 
 export default function App() {
   const navigate = useNavigate();
@@ -71,6 +73,7 @@ export default function App() {
         authenticated={authenticated}
         handleLogout={handleLogout}
       />
+      <SideBar/>
       <main>
         <Routes>
           <Route path="/" element={<Home />} />

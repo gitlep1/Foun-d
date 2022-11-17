@@ -2,7 +2,7 @@ import axios from "axios";
 import Found from "./Found";
 import React, { useState, useEffect } from "react";
 
-const API = "http://localhost:4000";
+const API = process.env.REACT_APP_API_URL;
 
 export default function FoundItems() {
   const [foundItems, setFoundItems] = useState([]);
