@@ -30,7 +30,7 @@ export default function App() {
 
     const UsersInterval = setInterval(() => {
       getUsers();
-    }, 1000);
+    }, 5000);
 
     return () => clearInterval(UsersInterval);
   }, []); // eslint-disable-line
