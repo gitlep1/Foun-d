@@ -59,7 +59,7 @@ export default function App() {
       window.localStorage.setItem("Current_User", JSON.stringify({}));
       window.localStorage.setItem("Authenticated", JSON.stringify(false));
     }
-    navigate("/");
+    navigate(`/`);
   };
 
   return (
