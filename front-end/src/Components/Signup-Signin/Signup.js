@@ -141,7 +141,7 @@ const Signup = ({ user, users, handleUser, authenticated, handleLogout }) => {
               {user.username}
             </>
           ) : clickHere ? (
-            <>SIGN IN</>
+            <>LOG IN</>
           ) : (
             <>SIGN UP</>
           )}
@@ -157,12 +157,12 @@ const Signup = ({ user, users, handleUser, authenticated, handleLogout }) => {
               />
 
               <Button
-                variant="primary"
+                variant="success"
                 onClick={() => {
                   handleLogout();
                 }}
               >
-                Sign Out
+                Log Out
               </Button>
             </section>
           ) : (

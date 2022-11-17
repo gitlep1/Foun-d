@@ -104,7 +104,7 @@ const SignIn = ({ clickHere, setClickHere, users, handleUser }) => {
         Go Back
       </Button>{" "}
       <Button variant="success" type="submit">
-        Sign in
+        Log In
       </Button>
     </Form>
   );
