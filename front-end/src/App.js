@@ -6,7 +6,7 @@ import axios from "axios";
 // IMPORTS
 import Home from "./Pages/Home";
 import New from "./Pages/New";
-import About from "./Pages/About";
+import About from "./Pages/About/About";
 import Index from "./Pages/Index";
 
 export default function App() {
@@ -75,7 +75,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="found" element={<Index />} />
-          <Route path="/new" element={<New user={user}/>}/>
+          <Route path="/new" element={<New user={user} />} />
           <Route path="/about" element={<About />} />
         </Routes>
       </main>
