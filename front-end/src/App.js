@@ -1,9 +1,9 @@
-import NavBar from "./Components/NavBar/NavBar";
 import { useState, useEffect } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 // IMPORTS
+import NavBar from "./Components/NavBar/NavBar";
 import Home from "./Pages/Home";
 import New from "./Pages/New";
 import About from "./Pages/About/About";

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import Signup from "../Signup-Signin/Signup";
+import Profile from "../Profile/Profile";
 import "./NavBar.scss";
 
 const NavBar = ({ user, users, handleUser, authenticated, handleLogout }) => {
@@ -24,8 +24,8 @@ const NavBar = ({ user, users, handleUser, authenticated, handleLogout }) => {
       <section id="welcome"></section>
       <section id="report"></section>
       <section id="find"></section>
-      <section id="signup">
-        <Signup
+      <section id="profile">
+        <Profile
           user={user}
           users={users}
           handleUser={handleUser}

@@ -45,7 +45,7 @@ export default function About() {
           <p className="bioText"></p>
         </div>
         <div id="dev-div">
-          <h4 id="name-headings">Antonio Bowers</h4>
+          <h4 id="name-headings">Antonio Shivers</h4>
           <img
             scr="https://avatars.githubusercontent.com/u/98069665?v=4"
             alt="Antonio"
