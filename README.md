@@ -4,8 +4,8 @@
 
 - [Trello](https://trello.com/b/nqrgccKB/finderz)
 - [ERD](https://miro.com/app/board/uXjVPErkfoE=/?share_link_id=822578901927)
-- [Wireframe 1](https://prnt.sc/kcmdz4zkK0Vc)
-- [Wireframe 2](https://prnt.sc/UioV2Yvwq3ch)
+- [Wireframe 1](https://prnt.sc/Da3HRjNdTl6N)
+- [Wireframe 2](https://prnt.sc/wcgCfZjHnKhs)
 
 <hr />
 
@@ -54,5 +54,5 @@ placeholder description of app.
 
 ### DEPLOYED LINKS:
 
-- [front-end](placeholder)
+- [front-end](https://foun-d.netlify.app/)
 - [back-end](https://found.onrender.com)

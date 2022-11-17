@@ -6,7 +6,7 @@ import axios from "axios";
 // IMPORTS
 import Home from "./Pages/Home";
 import New from "./Pages/New";
-import About from "./Pages/About";
+import About from "./Pages/About/About";
 import Index from "./Pages/Index";
 
 export default function App() {
@@ -30,7 +30,7 @@ export default function App() {
 
     const UsersInterval = setInterval(() => {
       getUsers();
-    }, 1000);
+    }, 5000);
 
     return () => clearInterval(UsersInterval);
   }, []); // eslint-disable-line
@@ -59,7 +59,7 @@ export default function App() {
       window.localStorage.setItem("Current_User", JSON.stringify({}));
       window.localStorage.setItem("Authenticated", JSON.stringify(false));
     }
-    navigate("/");
+    navigate(`/`);
   };
 
   return (
@@ -75,7 +75,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="found" element={<Index />} />
-          <Route path="/new" element={<New user={user}/>}/>
+          <Route path="/new" element={<New user={user} />} />
           <Route path="/about" element={<About />} />
         </Routes>
       </main>
