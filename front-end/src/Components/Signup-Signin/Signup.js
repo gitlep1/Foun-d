@@ -1,12 +1,13 @@
-import "./Signup.scss";
 import { useState } from "react";
 import { Button, Form, Dropdown } from "react-bootstrap";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import Signin from "./Signin";
 
 const Signup = ({ user, users, handleUser, authenticated, handleLogout }) => {
+  const navigate = useNavigate();
   const API = process.env.REACT_APP_API_URL;
 
   const [username, setUsername] = useState("");
@@ -129,120 +130,52 @@ const Signup = ({ user, users, handleUser, authenticated, handleLogout }) => {
   return (
     <section className="signupSection">
       {error && <p className="error">{error}</p>}
-      <Dropdown className="signInDropdwon">
-        <Dropdown.Toggle variant="success" id="dropdown-basic">
-          {authenticated ? (
-            <>
-              <img
-                className="profileImgSmall"
-                src={user.profileimg}
-                alt="profile"
-              />
-              {user.username}
-            </>
-          ) : clickHere ? (
-            <>LOG IN</>
-          ) : (
-            <>SIGN UP</>
-          )}
-        </Dropdown.Toggle>
-
-        <Dropdown.Menu>
-          {authenticated ? (
-            <section className="authenticatedUser">
-              <img
-                src={user.profileimg}
-                className="profileImgBig"
-                alt="profile"
-              />
-
-              <Button
-                variant="success"
-                onClick={() => {
-                  handleLogout();
-                }}
-              >
-                Log Out
-              </Button>
-            </section>
-          ) : (
-            <section className="unauthenticatedUser">
-              {clickHere ? (
-                <Signin
-                  clickHere={clickHere}
-                  setClickHere={setClickHere}
-                  user={user}
-                  users={users}
-                  handleUser={handleUser}
-                  authenticated={authenticated}
-                  clearForms={clearForms}
-                />
-              ) : (
-                <Form onSubmit={handleSubmit} className="signupForm">
-                  <Form.Group controlId="formBasicUsername">
-                    <Form.Label>Username</Form.Label>
-                    <Form.Control
-                      type="text"
-                      name="username"
-                      placeholder="Username"
-                      onChange={handleChange}
-                      value={username}
-                    />
-                  </Form.Group>
-                  <Form.Group controlId="formBasicPassword">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control
-                      type="password"
-                      name="password"
-                      placeholder="Password"
-                      onChange={handleChange}
-                      value={password}
-                    />
-                  </Form.Group>
-                  <Form.Group controlId="formBasicEmail">
-                    <Form.Label>Email</Form.Label>
-                    <Form.Control
-                      type="email"
-                      name="email"
-                      placeholder="Email"
-                      onChange={handleChange}
-                      value={email}
-                    />
-                  </Form.Group>
-                  <Form.Group controlId="formProfileImg">
-                    <Form.Label>Profile Image</Form.Label>
-                    <Form.Control
-                      type="url"
-                      name="profileImg"
-                      placeholder="Profile Image URL"
-                      onChange={handleChange}
-                      value={profImg}
-                    />
-                  </Form.Group>
-
-                  <br />
-
-                  <div className="alreadyHasAccount">
-                    Already have an account with us?{" "}
-                    <p
-                      className="clickHere"
-                      onClick={() => {
-                        setClickHere(!clickHere);
-                      }}
-                    >
-                      CLICK HERE
-                    </p>
-                  </div>
-                  <Button variant="success" type="submit">
-                    Sign up
-                  </Button>
-                </Form>
-              )}
-            </section>
-          )}
-        </Dropdown.Menu>
-      </Dropdown>
-      <ToastContainer autoClose={3000} theme="dark" />
+      <Form onSubmit={handleSubmit}>
+        <Form.Group controlId="formBasicUsername">
+          <Form.Label>Username</Form.Label>
+          <Form.Control
+            type="text"
+            name="username"
+            placeholder="Username"
+            onChange={handleChange}
+            value={username}
+          />
+        </Form.Group>
+        <Form.Group controlId="formBasicPassword">
+          <Form.Label>Password</Form.Label>
+          <Form.Control
+            type="password"
+            name="password"
+            placeholder="Password"
+            onChange={handleChange}
+            value={password}
+          />
+        </Form.Group>
+        <Form.Group controlId="formBasicEmail">
+          <Form.Label>Email</Form.Label>
+          <Form.Control
+            type="email"
+            name="email"
+            placeholder="Email"
+            onChange={handleChange}
+            value={email}
+          />
+        </Form.Group>
+        <Form.Group controlId="formProfileImg">
+          <Form.Label>Profile Image</Form.Label>
+          <Form.Control
+            type="url"
+            name="profileImg"
+            placeholder="Profile Image URL"
+            onChange={handleChange}
+            value={profImg}
+          />
+        </Form.Group>
+        <br />
+        <Button variant="success" type="submit">
+          Sign up
+        </Button>
+      </Form>
     </section>
   );
 };

@@ -1,4 +1,4 @@
-.signupSection {
+.profileSection {
   .profileImgSmall {
     width: 30px;
   }
@@ -7,7 +7,7 @@
     width: 100px;
   }
 
-  .signupForm {
+  Form {
     text-align: center;
     width: 16em;
   }
@@ -30,9 +30,7 @@
     }
   }
 
-  .authenticatedUser {
+  .profileStats {
     display: flex;
-    flex-direction: column;
-    align-items: center;
   }
 }
