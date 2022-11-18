@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 
 import MyItems from "./Components/NavBar/MyItems";
@@ -11,7 +12,9 @@ import Home from "./Pages/Home";
 import New from "./Pages/New";
 import About from "./Pages/About/About";
 import Index from "./Pages/Index";
+import SideBar from "./Components/NavBar/SideBar"
 import Found from "./Pages/Found";
+import "./App.scss"
 
 export default function App() {
   const navigate = useNavigate();
@@ -75,6 +78,7 @@ export default function App() {
         authenticated={authenticated}
         handleLogout={handleLogout}
       />
+      <SideBar/>
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
