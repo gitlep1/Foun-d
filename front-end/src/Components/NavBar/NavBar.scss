@@ -10,6 +10,19 @@
   margin: 0px 25px;
   grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
+
+  .logoLink {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: green;
+
+    .logo {
+      width: 200px;
+      height: 200px;
+      text-align: center;
+    }
+  }
 }
 
 #paths #logo {

@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import Profile from "../Profile/Profile";
 import "./NavBar.scss";
 
+import foundLogo from "../../Images/Foun'dLogo.png";
+
 const NavBar = ({ user, users, handleUser, authenticated, handleLogout }) => {
   return (
     <div className="navbar">
@@ -9,13 +11,14 @@ const NavBar = ({ user, users, handleUser, authenticated, handleLogout }) => {
         <h3>
           <Link to="/">Home</Link>
         </h3>
-        <Link to="/">
+        <Link to="/" className="logoLink">
           <img
             className="logo"
-            src="/logo.png"
+            src={foundLogo}
             height="150px"
             alt="foundLogo"
           />
+          <span id="logoTitle">Foun'd</span>
         </Link>
         <h3>
           <Link to="/about">About</Link>{" "}
