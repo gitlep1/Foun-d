@@ -39,11 +39,11 @@
   padding: 10px;
   text-align: center;
   text-decoration: none;
+}
 
-  &:hover {
-    background: var(--white);
-    color: var(--black);
-  }
+#paths h3 a:hover {
+  background: var(--white);
+  color: var(--black);
 }
 
 img.logo {

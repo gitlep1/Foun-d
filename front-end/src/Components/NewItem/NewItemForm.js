@@ -3,14 +3,12 @@ import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import './NewItemForm.scss'
 
-const API = process.env.REACT_APP_API_URL
+const API = process.env.REACT_APP_API_URL;
 
 export default function NewItemForm({user}) {
     const navigate = useNavigate()
 
     const [item, setItem] = useState({
-        // TODO: TALK TO TEAM ABOUT 
-        // GETTING USER ID TO THIS COMPONENT
         userId: user,
         itemName: "",
         itemImg: "",
