@@ -1,17 +1,17 @@
 import { useState, useEffect } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 
-import MyItems from "./Components/NavBar/MyItems";
+import MyItems from "./Components/NavBar/MyItems/MyItems";
 import axios from "axios";
 
 // IMPORTS
 import NavBar from "./Components/NavBar/NavBar";
-import Home from "./Pages/Home";
-import New from "./Pages/New";
+import Home from "./Pages/Home/Home";
+import New from "./Pages/New/New";
 import About from "./Pages/About/About";
-import Index from "./Pages/Index";
-import SideBar from "./Components/NavBar/SideBar";
-import Found from "./Pages/Found";
+import Index from "./Pages/Index/Index";
+import SideBar from "./Components/NavBar/Sidebar/SideBar";
+import Found from "./Pages/Found/Found";
 import "./App.scss";
 
 export default function App() {
