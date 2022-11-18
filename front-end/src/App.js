@@ -8,12 +8,15 @@ import Home from "./Pages/Home";
 import New from "./Pages/New";
 import About from "./Pages/About";
 import Index from "./Pages/Index";
+import socket from "./Components/Socket.IO/socket";
 import SideBar from "./Components/NavBar/SideBar"
 import "./App.scss"
 
 export default function App() {
   const navigate = useNavigate();
   const API = process.env.REACT_APP_API_URL;
+  socket.auth = 'jan'
+  socket.connect()
 
   const [user, setUser] = useState({});
   const [users, setUsers] = useState([]);
