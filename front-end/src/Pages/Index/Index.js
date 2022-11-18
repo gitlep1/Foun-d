@@ -1,5 +1,5 @@
-import FoundItems from "../Components/Found/FoundItems";
-import "./Index.scss"
+import FoundItems from "../../Components/Found/FoundItems";
+import "./Index.scss";
 
 const Index = () => {
   return (

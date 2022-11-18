@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
-import axios from 'axios';
-import './MyItems.scss';
+import { useState, useEffect } from "react";
+import axios from "axios";
+import "./MyItems.scss";
 
 const API = process.env.REACT_APP_API_URL;
 
@@ -24,7 +24,7 @@ const MyItems = () => {
   const myItemsList = userItems.map((item, index) => {
     if (Object.values(item).includes(1)) {
       return (
-        <li key={index}>
+        <li key={index} className="myitems-list">
           {/* <p>{find.userid}</p> */}
           <p>Title: {item.itemname}</p>
           <p>{item.itemimg}</p>
@@ -35,7 +35,7 @@ const MyItems = () => {
     }
   });
 
-const total = myItemsList.length
+  const total = myItemsList.length;
 
   return (
     <>
@@ -44,9 +44,7 @@ const total = myItemsList.length
         <h3 id="myitems-heading">Total: {total} </h3>
       </div>
       <div id="container">
-        <ul>
-            <li id="myitems-list">{myItemsList}</li>
-            </ul>
+        <ul>{myItemsList}</ul>
       </div>
     </>
   );

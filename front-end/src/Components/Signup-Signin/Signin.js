@@ -73,7 +73,7 @@ const SignIn = ({ clickHere, setClickHere, users, handleUser }) => {
   };
 
   return (
-    <Form onSubmit={handleSubmit} className="signupForm">
+    <Form onSubmit={handleSubmit}>
       <Form.Group controlId="formBasicEmail">
         <Form.Label>Email</Form.Label>
         <Form.Control
@@ -95,14 +95,6 @@ const SignIn = ({ clickHere, setClickHere, users, handleUser }) => {
         />
       </Form.Group>
       <br />
-      <Button
-        variant="secondary"
-        onClick={() => {
-          setClickHere(!clickHere);
-        }}
-      >
-        Go Back
-      </Button>{" "}
       <Button variant="success" type="submit">
         Log In
       </Button>
