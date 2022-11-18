@@ -1,13 +1,17 @@
-import NavBar from "./Components/NavBar/NavBar";
-import { useState, useEffect } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
+
+import MyItems from "./Components/NavBar/MyItems";
+import { useState, useEffect } from "react";
 import axios from "axios";
 
+
 // IMPORTS
+import NavBar from "./Components/NavBar/NavBar";
 import Home from "./Pages/Home";
 import New from "./Pages/New";
 import About from "./Pages/About/About";
 import Index from "./Pages/Index";
+import Found from "./Pages/Found";
 
 export default function App() {
   const navigate = useNavigate();
@@ -77,6 +81,8 @@ export default function App() {
           <Route path="found" element={<Index />} />
           <Route path="/new" element={<New user={user} />} />
           <Route path="/about" element={<About />} />
+          <Route path="/myitems" element={<MyItems />} />
+          <Route path="/found" element={<Found/>} />
         </Routes>
       </main>
     </div>

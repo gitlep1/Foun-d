@@ -4,10 +4,11 @@ import "./About.scss";
 export default function About() {
   return (
     <div>
-      <div>
+     <div>
         <h1 id="about-heading">Meet The Devs!</h1>
-        <div>
+ <div>
           <h2 id="aboutus-heading">About Us:</h2>
+          <p id="aboutus-heading"> We are a group of Jr. Software Developers currently enrolled at Pursuit. As our journey at Pursuit comes to an end we are showing off all that we have learn with this capstone project. Foun'd is an idea that we hatched when trying to find a problem that we would like to solve.   </p>
           <p></p>
         </div>
         <div id="dev-div">
@@ -64,9 +65,11 @@ export default function About() {
             alt="Isaac"
           ></img>
           <h5 id="title-headings">Title: Jr. Software Engineer</h5>
+          <a id="github-link" href="https://github.com/0IG"> Issac's Github</a>
           <p className="bioText"></p>
-        </div>
-      </div>
+           
+        </div> 
+      </div> 
     </div>
   );
 }
