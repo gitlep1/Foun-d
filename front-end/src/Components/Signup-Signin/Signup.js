@@ -4,6 +4,8 @@ import { Button, Form, Dropdown } from "react-bootstrap";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 
+import Signin from "./Signin";
+
 const Signup = ({ user, users, handleUser, authenticated, handleLogout }) => {
   const API = process.env.REACT_APP_API_URL;
 
@@ -11,7 +13,7 @@ const Signup = ({ user, users, handleUser, authenticated, handleLogout }) => {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [profImg, setProfImg] = useState("");
-
+  const [clickHere, setClickHere] = useState(false);
   const [error, setError] = useState("");
 
   const handleChange = (e) => {
@@ -90,7 +92,6 @@ const Signup = ({ user, users, handleUser, authenticated, handleLogout }) => {
         .post(`${API}/users`, newUser)
         .then((res) => {
           notify(res.data);
-          console.log(res.data);
         })
         .catch((err) => {
           setError(err);
@@ -114,24 +115,41 @@ const Signup = ({ user, users, handleUser, authenticated, handleLogout }) => {
     setTimeout(() => {
       handleUser(newUser);
     }, 4100);
+
+    clearForms();
+  };
+
+  const clearForms = () => {
+    setUsername("");
+    setPassword("");
+    setEmail("");
+    setProfImg("");
   };
 
   return (
     <section className="signupSection">
       {error && <p className="error">{error}</p>}
-      <Dropdown>
-        {authenticated ? (
-          <>
-            <Dropdown.Toggle variant="success" id="dropdown-basic">
+      <Dropdown className="signInDropdwon">
+        <Dropdown.Toggle variant="success" id="dropdown-basic">
+          {authenticated ? (
+            <>
               <img
                 className="profileImgSmall"
                 src={user.profileimg}
                 alt="profile"
               />
               {user.username}
-            </Dropdown.Toggle>
+            </>
+          ) : clickHere ? (
+            <>LOG IN</>
+          ) : (
+            <>SIGN UP</>
+          )}
+        </Dropdown.Toggle>
 
-            <Dropdown.Menu>
+        <Dropdown.Menu>
+          {authenticated ? (
+            <section className="authenticatedUser">
               <img
                 src={user.profileimg}
                 className="profileImgBig"
@@ -139,72 +157,90 @@ const Signup = ({ user, users, handleUser, authenticated, handleLogout }) => {
               />
 
               <Button
-                variant="primary"
+                variant="success"
                 onClick={() => {
                   handleLogout();
                 }}
               >
-                Sign Out
+                Log Out
               </Button>
-            </Dropdown.Menu>
-          </>
-        ) : (
-          <>
-            <Dropdown.Toggle variant="success" id="dropdown-basic">
-              sign in
-            </Dropdown.Toggle>
+            </section>
+          ) : (
+            <section className="unauthenticatedUser">
+              {clickHere ? (
+                <Signin
+                  clickHere={clickHere}
+                  setClickHere={setClickHere}
+                  user={user}
+                  users={users}
+                  handleUser={handleUser}
+                  authenticated={authenticated}
+                  clearForms={clearForms}
+                />
+              ) : (
+                <Form onSubmit={handleSubmit} className="signupForm">
+                  <Form.Group controlId="formBasicUsername">
+                    <Form.Label>Username</Form.Label>
+                    <Form.Control
+                      type="text"
+                      name="username"
+                      placeholder="Username"
+                      onChange={handleChange}
+                      value={username}
+                    />
+                  </Form.Group>
+                  <Form.Group controlId="formBasicPassword">
+                    <Form.Label>Password</Form.Label>
+                    <Form.Control
+                      type="password"
+                      name="password"
+                      placeholder="Password"
+                      onChange={handleChange}
+                      value={password}
+                    />
+                  </Form.Group>
+                  <Form.Group controlId="formBasicEmail">
+                    <Form.Label>Email</Form.Label>
+                    <Form.Control
+                      type="email"
+                      name="email"
+                      placeholder="Email"
+                      onChange={handleChange}
+                      value={email}
+                    />
+                  </Form.Group>
+                  <Form.Group controlId="formProfileImg">
+                    <Form.Label>Profile Image</Form.Label>
+                    <Form.Control
+                      type="url"
+                      name="profileImg"
+                      placeholder="Profile Image URL"
+                      onChange={handleChange}
+                      value={profImg}
+                    />
+                  </Form.Group>
 
-            <Dropdown.Menu>
-              <Form onSubmit={handleSubmit} className="signupForm">
-                <Form.Group controlId="formBasicUsername">
-                  <Form.Label>Username</Form.Label>
-                  <Form.Control
-                    type="text"
-                    name="username"
-                    placeholder="Username"
-                    onChange={handleChange}
-                    value={username}
-                  />
-                </Form.Group>
-                <Form.Group controlId="formBasicPassword">
-                  <Form.Label>Password</Form.Label>
-                  <Form.Control
-                    type="password"
-                    name="password"
-                    placeholder="Password"
-                    onChange={handleChange}
-                    value={password}
-                  />
-                </Form.Group>
-                <Form.Group controlId="formBasicEmail">
-                  <Form.Label>Email</Form.Label>
-                  <Form.Control
-                    type="email"
-                    name="email"
-                    placeholder="Email"
-                    onChange={handleChange}
-                    value={email}
-                  />
-                </Form.Group>
-                <Form.Group controlId="formProfileImg">
-                  <Form.Label>Profile Image</Form.Label>
-                  <Form.Control
-                    type="url"
-                    name="profileImg"
-                    placeholder="Profile Image URL"
-                    onChange={handleChange}
-                    value={profImg}
-                  />
-                </Form.Group>
+                  <br />
 
-                <br />
-                <Button variant="primary" type="submit">
-                  Submit
-                </Button>
-              </Form>
-            </Dropdown.Menu>
-          </>
-        )}
+                  <div className="alreadyHasAccount">
+                    Already have an account with us?{" "}
+                    <p
+                      className="clickHere"
+                      onClick={() => {
+                        setClickHere(!clickHere);
+                      }}
+                    >
+                      CLICK HERE
+                    </p>
+                  </div>
+                  <Button variant="success" type="submit">
+                    Sign up
+                  </Button>
+                </Form>
+              )}
+            </section>
+          )}
+        </Dropdown.Menu>
       </Dropdown>
       <ToastContainer autoClose={3000} theme="dark" />
     </section>
