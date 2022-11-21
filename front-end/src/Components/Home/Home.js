@@ -2,7 +2,7 @@ import "./Home.scss";
 
 const Home = () => {
   return (
-    <div className="home">
+    <section className="homepageSection">
       <h1 className="home-welcome">You lost it, we foun'd it!</h1>
       <h3 className="home-welcome">Look around for your lost items!</h3>
       <p>
@@ -75,7 +75,7 @@ const Home = () => {
         sed venenatis eget, ornare in arcu. Donec et orci sit amet arcu
         condimentum vestibulum.
       </p>
-    </div>
+    </section>
   );
 };
 
