@@ -1,12 +1,10 @@
 import { Link } from "react-router-dom";
-import Profile from "../Profile/Profile";
+import Profile from "../Accounts/Profile/Profile";
 import "./NavBar.scss";
 
 import foundLogo from "../../Images/Foun'dLogo.png";
 
 const NavBar = ({
-  pageWrapId,
-  outerContainerId,
   user,
   users,
   handleUser,
@@ -39,8 +37,6 @@ const NavBar = ({
       <section id="find"></section>
       <section id="profile">
         <Profile
-          pageWrapId={pageWrapId}
-          outerContainerId={outerContainerId}
           user={user}
           users={users}
           handleUser={handleUser}

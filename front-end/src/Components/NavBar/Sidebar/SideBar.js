@@ -5,7 +5,7 @@ import "./SideBar.scss";
 export default function SideBar() {
   const [effect, setEffect] = useState({
     home: false,
-    found: false,
+    index: false,
     new: false,
     giveaway: false,
     faq: false,
@@ -17,7 +17,7 @@ export default function SideBar() {
     setTimeout(() => {
       setEffect({
         home: false,
-        found: false,
+        index: false,
         new: false,
         giveaway: false,
         faq: false,
@@ -28,11 +28,11 @@ export default function SideBar() {
   return (
     <div className="sidebar-container sticky">
       <div>
-        <Link to="/found" className="icon-container">
+        <Link to="/index" className="icon-container">
           <img
-            className={effect.found ? "pulse" : ""}
+            className={effect.index ? "pulse" : ""}
             onClick={() => {
-              startAnimation("found");
+              startAnimation("index");
             }}
             style={{ height: "50px" }}
             src="https://static.thenounproject.com/png/1400400-200.png"
@@ -54,7 +54,7 @@ export default function SideBar() {
         </Link>
       </div>
       <div className="icon-container">
-        <Link to="/">
+        <Link to="/giveaways">
           <img
             className={effect.giveaway ? "pulse" : ""}
             onClick={() => {
@@ -67,7 +67,7 @@ export default function SideBar() {
         </Link>
       </div>
       <div className="icon-container">
-        <Link to="/">
+        <Link to="/faq">
           <img
             className={effect.faq ? "pulse" : ""}
             onClick={() => {

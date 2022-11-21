@@ -7,9 +7,10 @@
     width: 100px;
   }
 
+  // unauthenticated \\
   Form {
     text-align: center;
-    width: 16em;
+    width: 13em;
   }
 
   .alreadyHasAccount {
@@ -30,7 +31,17 @@
     }
   }
 
-  .profileStats {
-    display: flex;
+  // authenticated \\
+  .authenticatedUser {
+    .profileStats {
+      display: flex;
+      align-items: center;
+      text-align: center;
+      width: 14em;
+    }
+
+    #myItemsButton {
+      text-align: center;
+    }
   }
 }

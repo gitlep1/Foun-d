@@ -2,15 +2,19 @@ const express = require("express");
 const foundItems = express.Router();
 
 const {
-  getAllFoundItems,
-  getFoundItemByID,
+  getAllUserFoundItems,
+  getFoundItemByUserID,
 } = require("../queries/foundItems");
 
 foundItems.get("/", async (req, res) => {
-  const allFoundItems = await getAllFoundItems();
+  // const userFoundItems = {
+  //   userId: req.body.userId,
+  // };
+
+  const allFoundItems = await getAllUserFoundItems();
 
   if (allFoundItems) {
-    console.log("=== GET foundItemss", allFoundItems, "===");
+    console.log("=== GET user found items", allFoundItems, "===");
     res.status(200).json(allFoundItems);
   } else {
     res.status(404).send("Cannot find any FoundItems");
@@ -19,14 +23,14 @@ foundItems.get("/", async (req, res) => {
 
 foundItems.get("/:id", async (req, res) => {
   const { id } = req.params;
-  const getAFoundItem = await getFoundItemByID(id);
+  const getAFoundItem = await getFoundItemByUserID(id);
 
   if (getAFoundItem.length > 0) {
-    console.log("=== GET item by ID", getAFoundItem, "===");
+    console.log("=== GET found item by ID", getAFoundItem, "===");
     res.status(200).json(getAFoundItem);
   } else {
     res.status(404).send("foundItems not found");
   }
 });
 
-module.exports = foundItems
+module.exports = foundItems;

@@ -4,14 +4,12 @@ import { Button, Dropdown } from "react-bootstrap";
 import { ToastContainer } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
-import Signin from "../Signup-Signin/Signin";
-import Signup from "../Signup-Signin/Signup";
+import Signin from "./Signin";
+import Signup from "./Signup";
 
 // import fiveStars from "../../Images/5stars.png";
 
 const Profile = ({
-  pageWrapId,
-  outerContainerId,
   user,
   users,
   handleUser,
@@ -42,13 +40,9 @@ const Profile = ({
     }
   };
 
-  const handleOnClose = () => {
-    setIsOpen(!isOpen);
-  };
-
   return (
     <section className="profileSection">
-      <Dropdown className="profileDropdown">
+      <Dropdown>
         <Dropdown.Toggle variant="success" id="dropdown-basic">
           {authenticated ? (
             <>
@@ -78,13 +72,11 @@ const Profile = ({
                 <aside>
                   <div>Rating: {getUserRating()} </div>
                   <br />
-                  <div>
-                    Items Found:
-                    {/* <MyItems /> */}
-                  </div>
+                  <div>Items Found:</div>
                 </aside>
               </section>
               <Button
+                id="logoutButton"
                 variant="success"
                 onClick={() => {
                   handleLogout();
@@ -94,14 +86,16 @@ const Profile = ({
               </Button>
               <br />
               <br />
-              <Button
-                variant="dark"
-                onClick={() => {
-                  setIsOpen(!isOpen);
-                }}
-              >
-                My Items {"------->"}
-              </Button>
+              <div id="myItemsButton">
+                <Button
+                  variant="dark"
+                  onClick={() => {
+                    setIsOpen(!isOpen);
+                  }}
+                >
+                  My Items {"------->"}
+                </Button>
+              </div>
             </section>
           ) : (
             <section className="unauthenticatedUser">

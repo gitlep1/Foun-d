@@ -1,6 +1,7 @@
+import { useState, useEffect } from "react";
 import axios from "axios";
+
 import Found from "./Found";
-import React, { useState, useEffect } from "react";
 
 const API = process.env.REACT_APP_API_URL;
 
@@ -9,7 +10,7 @@ export default function FoundItems() {
 
   useEffect(() => {
     axios
-      .get(`${API}/found`)
+      .get(`${API}/items`)
       .then((response) => {
         setFoundItems(response.data);
         // console.log(response.data);
@@ -17,7 +18,6 @@ export default function FoundItems() {
       .catch((error) => console.error(error.message));
   }, []);
 
-  // console.log(foundItems);
   return (
     <section className="foundItems">
       {foundItems.length > 0
