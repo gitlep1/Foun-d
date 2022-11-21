@@ -12,6 +12,8 @@ import About from "./Pages/About/About";
 import Index from "./Pages/Index/Index";
 import SideBar from "./Components/NavBar/Sidebar/SideBar";
 import Found from "./Pages/Found/Found";
+import FAQ from "./Components/FAQ/FAQ";
+
 import "./App.scss";
 
 export default function App() {
@@ -85,6 +87,8 @@ export default function App() {
           <Route path="/about" element={<About />} />
           <Route path="/myitems" element={<MyItems />} />
           <Route path="/found" element={<Found />} />
+          <Route path="/faq" element={<FAQ />} />
+          <Route path="/:userId/settings" element={<NavBar user={user} />} />
         </Routes>
       </main>
     </div>

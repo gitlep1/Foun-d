@@ -16,3 +16,10 @@ INSERT INTO found_items (foundUserId, itemsId, status) VALUES
 (2, 2, 'Completed'),
 (3, 3, 'Donated'),
 (1, 4, 'Pending');
+
+-- Testing FAQ backend data *Delete if needed*
+-- -isaac
+-- INSERT INTO faq (userQuestion, questionId ) VALUES
+-- ('How do I make money on Found It?', 1),
+-- ('How long does it take to become a trusted Finder?', 2),
+-- ('How do I tip my finder?', 3);
