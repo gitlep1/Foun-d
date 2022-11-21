@@ -1,4 +1,4 @@
-import NewItemForm from "../../Components/NewItem/NewItemForm";
+import NewItemForm from "../../../Components/Items/Create/NewItemForm";
 import "./New.scss";
 
 export default function New({ user }) {

@@ -1,10 +1,18 @@
 import { Link } from "react-router-dom";
-import Profile from "../Profile/Profile";
+import Profile from "../Accounts/Profile/Profile";
 import "./NavBar.scss";
 
 import foundLogo from "../../Images/Foun'dLogo.png";
 
-const NavBar = ({ user, users, handleUser, authenticated, handleLogout }) => {
+const NavBar = ({
+  user,
+  users,
+  handleUser,
+  authenticated,
+  handleLogout,
+  isOpen,
+  setIsOpen,
+}) => {
   return (
     <div className="navbar">
       <section id="paths">
@@ -34,6 +42,8 @@ const NavBar = ({ user, users, handleUser, authenticated, handleLogout }) => {
           handleUser={handleUser}
           authenticated={authenticated}
           handleLogout={handleLogout}
+          isOpen={isOpen}
+          setIsOpen={setIsOpen}
         />
       </section>
       <footer></footer>

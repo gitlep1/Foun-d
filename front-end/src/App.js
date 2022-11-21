@@ -1,18 +1,25 @@
+// Library Imports
 import { useState, useEffect } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
-
-import MyItems from "./Components/NavBar/MyItems/MyItems";
+import { scaleRotate as MyItemsSidebar } from "react-burger-menu";
 import axios from "axios";
 
-// IMPORTS
+// Component Imports
 import NavBar from "./Components/NavBar/NavBar";
-import Home from "./Pages/Home/Home";
-import New from "./Pages/New/New";
-import About from "./Pages/About/About";
-import Index from "./Pages/Index/Index";
 import SideBar from "./Components/NavBar/Sidebar/SideBar";
-import Found from "./Pages/Found/Found";
+import MyItems from "./Components/Accounts/Profile/MyItems/MyItems";
+import FAQ from "./Components/FAQ/FAQ";
+
+// Page Imports
+import Homepage from "./Pages/Home/Home";
+import Indexpage from "./Pages/Items/Index/Index";
+import Createpage from "./Pages/Items/Create/New";
+import Showpage from "./Pages/Items/Show/Show";
+import About from "./Pages/About/About";
+
+// Styling Imports
 import "./App.scss";
+import { Nav } from "react-bootstrap";
 
 export default function App() {
   const navigate = useNavigate();
@@ -21,6 +28,7 @@ export default function App() {
   const [user, setUser] = useState({});
   const [users, setUsers] = useState([]);
   const [authenticated, setAuthenticated] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     const data = window.localStorage.getItem("Current_User");
@@ -67,26 +75,45 @@ export default function App() {
     navigate(`/`);
   };
 
+  const handleOnClose = () => {
+    setIsOpen(false);
+  };
+
   return (
-    <div className="App">
-      <NavBar
-        user={user}
-        users={users}
-        handleUser={handleUser}
-        authenticated={authenticated}
-        handleLogout={handleLogout}
-      />
-      <SideBar />
-      <main>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="found" element={<Index />} />
-          <Route path="/new" element={<New user={user} />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/myitems" element={<MyItems />} />
-          <Route path="/found" element={<Found />} />
-        </Routes>
-      </main>
-    </div>
+    <section id="outer-container">
+      <MyItemsSidebar
+        pageWrapId={"page-wrap"}
+        outerContainerId={"outer-container"}
+        isOpen={isOpen}
+        onClose={handleOnClose}
+        customBurgerIcon={false}
+        right
+      >
+        <MyItems user={user} authenticated={authenticated} />
+      </MyItemsSidebar>
+      <section id="page-wrap">
+        <NavBar
+          user={user}
+          users={users}
+          handleUser={handleUser}
+          authenticated={authenticated}
+          handleLogout={handleLogout}
+          isOpen={isOpen}
+          setIsOpen={setIsOpen}
+        />
+        <SideBar />
+        <main>
+          <Routes>
+            <Route path="/" element={<Homepage />} />
+            <Route path="/index" element={<Indexpage user={user} />} />
+            <Route path="/new" element={<Createpage user={user} />} />
+            <Route path="/show/:itemId" element={<Showpage users={users} />} />
+            <Route path="/about" element={<About />} />
+            <Route path="faq" element={<FAQ />} />
+            <Route path="/:userId/settings" element={<NavBar user={user} />} />
+          </Routes>
+        </main>
+      </section>
+    </section>
   );
 }
