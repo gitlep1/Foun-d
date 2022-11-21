@@ -7,9 +7,44 @@ import { useNavigate } from "react-router-dom";
 import Signin from "../Signup-Signin/Signin";
 import Signup from "../Signup-Signin/Signup";
 
-const Profile = ({ user, users, handleUser, authenticated, handleLogout }) => {
+// import fiveStars from "../../Images/5stars.png";
+
+const Profile = ({
+  pageWrapId,
+  outerContainerId,
+  user,
+  users,
+  handleUser,
+  authenticated,
+  handleLogout,
+  isOpen,
+  setIsOpen,
+}) => {
   const navigate = useNavigate();
   const [clickHere, setClickHere] = useState(false);
+
+  const getUserRating = () => {
+    const ur = user.rating;
+
+    if (ur === 1) {
+      // return <img src={fiveStars} alt="star" />;
+      return "*";
+    } else if (ur === 2) {
+      return "**";
+    } else if (ur === 3) {
+      return "***";
+    } else if (ur === 4) {
+      return "****";
+    } else if (ur >= 5) {
+      return "*****";
+    } else {
+      return "";
+    }
+  };
+
+  const handleOnClose = () => {
+    setIsOpen(!isOpen);
+  };
 
   return (
     <section className="profileSection">
@@ -41,9 +76,12 @@ const Profile = ({ user, users, handleUser, authenticated, handleLogout }) => {
                   alt="profile"
                 />
                 <aside>
-                  <div>Rating: {user.rating > 4 ? "****" : null} </div>
+                  <div>Rating: {getUserRating()} </div>
                   <br />
-                  <div>Items Found:</div>
+                  <div>
+                    Items Found:
+                    {/* <MyItems /> */}
+                  </div>
                 </aside>
               </section>
               <Button
@@ -53,6 +91,16 @@ const Profile = ({ user, users, handleUser, authenticated, handleLogout }) => {
                 }}
               >
                 Log Out
+              </Button>
+              <br />
+              <br />
+              <Button
+                variant="dark"
+                onClick={() => {
+                  setIsOpen(!isOpen);
+                }}
+              >
+                My Items {"------->"}
               </Button>
             </section>
           ) : (

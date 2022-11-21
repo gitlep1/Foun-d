@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { nanoid } from "nanoid";
 import axios from "axios";
 import "./MyItems.scss";
 
@@ -24,7 +25,7 @@ const MyItems = () => {
   const myItemsList = userItems.map((item, index) => {
     if (Object.values(item).includes(1)) {
       return (
-        <li key={index} className="myitems-list">
+        <li key={nanoid()} className="myitems-list">
           {/* <p>{find.userid}</p> */}
           <p>Title: {item.itemname}</p>
           <p>{item.itemimg}</p>
@@ -41,7 +42,7 @@ const MyItems = () => {
     <>
       <div>
         <h1 id="myitems-heading">My Items</h1>
-        <h3 id="myitems-heading">Total: {total} </h3>
+        <h3 id="myitems-heading">Total: {total}</h3>
       </div>
       <div id="container">
         <ul>{myItemsList}</ul>

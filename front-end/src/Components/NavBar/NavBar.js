@@ -4,7 +4,17 @@ import "./NavBar.scss";
 
 import foundLogo from "../../Images/Foun'dLogo.png";
 
-const NavBar = ({ user, users, handleUser, authenticated, handleLogout }) => {
+const NavBar = ({
+  pageWrapId,
+  outerContainerId,
+  user,
+  users,
+  handleUser,
+  authenticated,
+  handleLogout,
+  isOpen,
+  setIsOpen,
+}) => {
   return (
     <div className="navbar">
       <section id="paths">
@@ -29,11 +39,15 @@ const NavBar = ({ user, users, handleUser, authenticated, handleLogout }) => {
       <section id="find"></section>
       <section id="profile">
         <Profile
+          pageWrapId={pageWrapId}
+          outerContainerId={outerContainerId}
           user={user}
           users={users}
           handleUser={handleUser}
           authenticated={authenticated}
           handleLogout={handleLogout}
+          isOpen={isOpen}
+          setIsOpen={setIsOpen}
         />
       </section>
       <footer></footer>

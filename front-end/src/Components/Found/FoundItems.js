@@ -16,12 +16,13 @@ export default function FoundItems() {
       })
       .catch((error) => console.error(error.message));
   }, []);
-  console.log(foundItems);
+
+  // console.log(foundItems);
   return (
     <section className="foundItems">
       {foundItems.length > 0
         ? foundItems.map((foundItems, index) => {
-            console.log(foundItems);
+            // console.log(foundItems);
             return <Found key={index} foundItems={foundItems} />;
           })
         : null}
