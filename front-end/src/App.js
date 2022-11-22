@@ -20,7 +20,6 @@ import About from "./Pages/About/About";
 
 // Styling Imports
 import "./App.scss";
-import { Nav } from "react-bootstrap";
 
 export default function App() {
   const navigate = useNavigate();

@@ -20,7 +20,7 @@ const Chatbox = ({ user, users, authenticated }) => {
         onMouseOver={hoverMouse}
         onMouseOut={unhoverMouse}
       >
-        <img src={user.profileimg} alt="envelopeMessage" id="messagesIcon" />
+        <img src={user.profileimg} alt="user" id="messagesIcon" />
         <h4 id="messagesText">Messages</h4>
       </section>
     </>
