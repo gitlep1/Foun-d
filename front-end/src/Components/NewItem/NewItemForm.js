@@ -2,8 +2,6 @@ import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import './NewItemForm.scss'
-import socket from '../Socket.IO/socket';
-
 
 const API = process.env.REACT_APP_API_URL;
 
@@ -31,25 +29,15 @@ export default function NewItemForm({user}) {
   
     const handleSubmit = (event) => {
       event.preventDefault()
-    //   axios
-    //     .post(`${API}/items`, item)
-    //     .then((res) => {
-    //         setItem(res.data)
-    //         navigate('/')
-    //     })
-    //     .catch((err) => {
-    //       console.warn(err)
-    //     })
-    if (item.itemName !== "end"){
-        let username = item.itemName
-        socket.emit('new user', username)
-        socket.auth = { username }
-        socket.connect()
-        console.log(socket)
-    } else {
-        socket.off("connect_error");
-        console.log(socket)
-    }
+      axios
+        .post(`${API}/items`, item)
+        .then((res) => {
+            setItem(res.data)
+            navigate('/')
+        })
+        .catch((err) => {
+          console.warn(err)
+        })
     }
     
   return (

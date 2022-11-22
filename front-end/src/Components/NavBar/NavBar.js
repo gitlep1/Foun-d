@@ -1,10 +1,18 @@
 import { Link } from "react-router-dom";
-import Profile from "../Profile/Profile";
+import Profile from "../Accounts/Profile/Profile";
 import "./NavBar.scss";
 
 import FoundLogo3 from "../../Images/FoundLogo3.png";
 
-const NavBar = ({ user, users, handleUser, authenticated, handleLogout }) => {
+const NavBar = ({
+  user,
+  users,
+  handleUser,
+  authenticated,
+  handleLogout,
+  isOpen,
+  setIsOpen,
+}) => {
   return (
     <section className="nav-section">
       <div className="center-nav">
@@ -24,11 +32,14 @@ const NavBar = ({ user, users, handleUser, authenticated, handleLogout }) => {
       </div>
       <div className="user-nav">
         <Profile
-              user={user}
-              users={users}
-              handleUser={handleUser}
-              authenticated={authenticated}
-              handleLogout={handleLogout}/>
+          user={user}
+          users={users}
+          handleUser={handleUser}
+          authenticated={authenticated}
+          handleLogout={handleLogout}
+          isOpen={isOpen}
+          setIsOpen={setIsOpen}
+        />
       </div>
     </section>
   );

@@ -1,12 +1,7 @@
-import "./Home.scss"
+import Home from "../../Components/Home/Home";
 
-const Home = () => {
-  return (
-    <div className="home">
-      <h1 className="home-welcome">You lost it, we foun'd it!</h1>
-      <h3 className="home-welcome">Look around for your lost items!</h3>
-    </div>
-  );
+const Homepage = () => {
+  return <Home />;
 };
 
-export default Home;
+export default Homepage;

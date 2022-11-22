@@ -1,21 +1,22 @@
 const db = require("../db/dbConfig.js");
 
-const getAllFoundItems = async () => {
+const getAllUserFoundItems = async () => {
   try {
-    const foundItems = await db.any(`SELECT * FROM found_items 
-    JOIN items ON foundUserId = userId 
-    WHERE foundUserId = userId AND itemsId = items.id`);
+    const foundItems = await db.any(
+      `SELECT * FROM found_items JOIN items ON foundUserId = userId WHERE foundUserId = userid AND itemsId = items.id`
+    );
     return foundItems;
   } catch (err) {
     return err;
   }
 };
 
-const getFoundItemByID = async (id) => {
+const getFoundItemByUserID = async (id) => {
   try {
-    const foundItems = await db.any(`SELECT * FROM found_items 
-    JOIN items ON foundUserId = userId 
-    WHERE foundUserId = $1 AND itemsId = items.id`, id);
+    const foundItems = await db.any(
+      `SELECT * FROM found_items JOIN items ON foundUserId = userId WHERE foundUserId = userId AND found_items.id = $1`,
+      id
+    );
     return foundItems;
   } catch (err) {
     return err;
@@ -23,6 +24,6 @@ const getFoundItemByID = async (id) => {
 };
 
 module.exports = {
-  getAllFoundItems,
-  getFoundItemByID
+  getAllUserFoundItems,
+  getFoundItemByUserID,
 };
