@@ -9,6 +9,7 @@ import NavBar from "./Components/NavBar/NavBar";
 import SideBar from "./Components/NavBar/Sidebar/SideBar";
 import MyItems from "./Components/Accounts/Profile/MyItems/MyItems";
 import Chatbox from "./Components/Chatbox/Chatbox";
+import FAQ from "./Components/FAQ/FAQ";
 
 // Page Imports
 import Homepage from "./Pages/Home/Home";
@@ -19,6 +20,7 @@ import About from "./Pages/About/About";
 
 // Styling Imports
 import "./App.scss";
+import { Nav } from "react-bootstrap";
 
 export default function App() {
   const navigate = useNavigate();
@@ -109,6 +111,8 @@ export default function App() {
             <Route path="/new" element={<Createpage user={user} />} />
             <Route path="/show/:itemId" element={<Showpage users={users} />} />
             <Route path="/about" element={<About />} />
+            <Route path="faq" element={<FAQ />} />
+            <Route path="/:userId/settings" element={<NavBar user={user} />} />
           </Routes>
         </main>
       </section>
