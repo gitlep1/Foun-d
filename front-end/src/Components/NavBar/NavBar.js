@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import Profile from "../Accounts/Profile/Profile";
 import "./NavBar.scss";
 
-import foundLogo from "../../Images/FoundLogo.png";
+import FoundLogo3 from "../../Images/FoundLogo3.png";
 
 const NavBar = ({
   user,
@@ -16,11 +16,15 @@ const NavBar = ({
   return (
     <section className="nav-section">
       <div className="center-nav">
-        <h3 className="text-nav">
+      <h3 className="text-nav">
           <Link to="/">Home</Link>
         </h3>
         <Link to="/" className="logoLink">
-          <img className="logo" src={foundLogo} alt="foundLogo" />
+          <img
+            className="logo"
+            src={FoundLogo3}
+            alt="foundLogo"
+          />
         </Link>
         <h3 className="text-nav">
           <Link to="/about">About</Link>{" "}

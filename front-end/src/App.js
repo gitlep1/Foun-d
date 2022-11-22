@@ -21,6 +21,7 @@ import About from "./Pages/About/About";
 // Styling Imports
 import "./App.scss";
 
+
 export default function App() {
   const navigate = useNavigate();
   const API = process.env.REACT_APP_API_URL;

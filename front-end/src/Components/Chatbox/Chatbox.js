@@ -11,6 +11,17 @@ const Chatbox = ({ user, users, authenticated }) => {
   const unhoverMouse = () => {
     setMessageHover(false);
   };
+// import socket from '../Socket.IO/socket';
+// 	if (item.itemName !== "end"){
+// 		let username = item.itemName
+// 		socket.emit('new user', username)
+// 		socket.auth = { username }
+// 		socket.connect()
+// 		console.log(socket)
+// } else {
+// 		socket.off("connect_error");
+// 		console.log(socket)
+// }
 
   return authenticated && user ? (
     <>
