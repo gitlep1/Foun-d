@@ -112,7 +112,7 @@ export default function App() {
             <Route path="/new" element={<Createpage user={user} />} />
             <Route path="/show/:itemId" element={<Showpage users={users} />} />
             <Route path="/about" element={<About />} />
-            <Route path="faq" element={<FAQ />} />
+            <Route path="/faq" element={<FAQ />} />
             <Route path="/:userId/settings" element={<NavBar user={user} />} />
           </Routes>
         </main>
