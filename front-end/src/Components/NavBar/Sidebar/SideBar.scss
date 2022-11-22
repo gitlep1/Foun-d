@@ -7,43 +7,44 @@
   }
 }
 @keyframes pulse {
-    0%, 100% {
-      opacity: 1;
-    }
-    50% {
-      opacity: .5;
-    }
+  0%,
+  100% {
+    opacity: 1;
   }
+  50% {
+    opacity: 0.5;
+  }
+}
 
-.sidebar-container{
-    position: absolute;
-    padding: 1em;
-    border: solid;
-    border-left: none;
-    border-top-right-radius: 5em;
-    border-bottom-right-radius: 5em;
-    width: fit-content;
-    top: 14em;
-    display: flex;
-    flex-direction: column;
-    place-items: center;
-    float: left;
+.sidebar-container {
+  position: absolute;
+  padding: 1em;
+  border: solid;
+  border-left: none;
+  border-top-right-radius: 5em;
+  border-bottom-right-radius: 5em;
+  width: 3em;
+  top: 14em;
+  display: flex;
+  flex-direction: column;
+  place-items: center;
+  float: left;
 }
 
 .spin {
-    animation: spin 1s linear infinite;
+  animation: spin 1s linear infinite;
 }
 
 .pulse {
-    animation: pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  animation: pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
-.sticky{
-    position: sticky;
+.sticky {
+  position: sticky;
 }
 
 .icon-container {
-    :hover {
-        opacity: 0.5;
-    }
+  :hover {
+    opacity: 0.5;
+  }
 }

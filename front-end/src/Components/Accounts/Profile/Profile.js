@@ -7,6 +7,8 @@ import { useNavigate } from "react-router-dom";
 import Signin from "./Signin";
 import Signup from "./Signup";
 
+import gearIcon from "../../../Images/gearIcon.png";
+
 // import fiveStars from "../../Images/5stars.png";
 
 const Profile = ({
@@ -20,6 +22,7 @@ const Profile = ({
 }) => {
   const navigate = useNavigate();
   const [clickHere, setClickHere] = useState(false);
+  const [isHovering, setIsHovering] = useState(false);
 
   const getUserRating = () => {
     const ur = user.rating;
@@ -38,6 +41,14 @@ const Profile = ({
     } else {
       return "";
     }
+  };
+
+  const handleMouseOver = () => {
+    setIsHovering(true);
+  };
+
+  const handleMouseOut = () => {
+    setIsHovering(false);
   };
 
   return (
@@ -61,8 +72,23 @@ const Profile = ({
         </Dropdown.Toggle>
 
         <Dropdown.Menu>
-          {authenticated ? (
+          {authenticated && user.id ? (
             <section className="authenticatedUser">
+              <div>{isHovering ? <h3>User Settings</h3> : null}</div>
+              <div
+                className="accountSettingsImgCOntainer"
+                onMouseUp={handleMouseOver}
+                onMouseDown={handleMouseOut}
+              >
+                <img
+                  src={gearIcon}
+                  alt="settings"
+                  id="accountSettingsImg"
+                  onClick={() => {
+                    navigate(`/${user.id}/settings`);
+                  }}
+                />
+              </div>
               <section className="profileStats">
                 <img
                   src={user.profileimg}

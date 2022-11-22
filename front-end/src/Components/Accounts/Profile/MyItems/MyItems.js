@@ -6,7 +6,7 @@ import axios from "axios";
 
 import "./MyItems.scss";
 
-const MyItems = ({ user, authenticated }) => {
+const MyItems = ({ user, authenticated, showMyItems }) => {
   const navigate = useNavigate();
   const API = process.env.REACT_APP_API_URL;
 
@@ -20,16 +20,17 @@ const MyItems = ({ user, authenticated }) => {
     axios
       .get(`${API}/found/${currentUser.id}`)
       .then((res) => {
+        console.log(currentUser.id);
         // console.log(res.data);
         setUserItems(res.data);
       })
       .catch((error) => {
         setError(error);
       });
-  }, []); // eslint-disable-line
+  }, []); //eslint-disable-line
 
-  const getAllUserFoundItems = () => {
-    const myItemsList = userItems.map((item) => {
+  const renderUserItems = (user) => {
+    return userItems.map((item) => {
       if (Object.values(item).includes(user.id)) {
         return (
           <section key={nanoid()}>
@@ -61,23 +62,18 @@ const MyItems = ({ user, authenticated }) => {
       }
       return null;
     });
-
-    return myItemsList;
   };
 
   const total = userItems.length;
 
   return (
     <section id="myItemsSection">
-      {/* {console.log(currentUser.id)} */}
       {error && <p>{error}</p>}
       <div>
         <h1 id="myitems-heading">Items Found</h1>
         <h3 id="myitems-heading">Total: {total}</h3>
       </div>
-      <div id="myItemsContainer">
-        {authenticated ? getAllUserFoundItems() : null}
-      </div>
+      <div id="myItemsContainer">{user.id ? renderUserItems(user) : null}</div>
     </section>
   );
 };

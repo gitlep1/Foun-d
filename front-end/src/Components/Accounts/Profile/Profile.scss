@@ -3,10 +3,6 @@
     width: 30px;
   }
 
-  .profileImgBig {
-    width: 100px;
-  }
-
   // unauthenticated \\
   Form {
     text-align: center;
@@ -34,10 +30,40 @@
   // authenticated \\
   .authenticatedUser {
     .profileStats {
+      // border: 5px solid red;
+      // position: relative;
+      // top: -10%;
       display: flex;
       align-items: center;
       text-align: center;
       width: 14em;
+
+      .profileImgBig {
+        width: 100px;
+        // border: 5px solid cyan;
+        // position: relative;
+      }
+    }
+
+    .accountSettingsImgCOntainer {
+      position: relative;
+      left: 80%;
+      display: flex;
+      justify-content: flex-end;
+      width: 18%;
+
+      #accountSettingsImg {
+        width: 30px;
+
+        &:hover {
+          animation: spinGearIcon 0.5s linear;
+          @keyframes spinGearIcon {
+            100% {
+              transform: rotate(90deg);
+            }
+          }
+        }
+      }
     }
 
     #myItemsButton {

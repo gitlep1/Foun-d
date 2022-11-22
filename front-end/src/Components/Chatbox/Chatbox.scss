@@ -1,0 +1,26 @@
+.chatboxContainer {
+  float: right;
+  position: fixed;
+  top: 93%;
+  background-color: aliceblue;
+  display: grid;
+  grid-template-columns: 2fr;
+  grid-template-rows: 1;
+  border: 1px solid black;
+  border-radius: 5%;
+
+  #messagesIcon {
+    width: 50px;
+    height: 100%;
+    grid-row: 1;
+  }
+
+  #messagesButton {
+    grid-row: 1;
+    border: none;
+  }
+}
+
+.sticky {
+  position: sticky;
+}
