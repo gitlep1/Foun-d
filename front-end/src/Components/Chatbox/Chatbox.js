@@ -1,5 +1,4 @@
 import "./Chatbox.scss";
-import { Button } from "react-bootstrap";
 import { useState } from "react";
 
 const Chatbox = ({ user, users, authenticated }) => {

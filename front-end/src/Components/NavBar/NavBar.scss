@@ -1,7 +1,6 @@
 .nav-section {
   display: flex;
   justify-content: center;
-  // border: 5px solid blue;
   background-color: #e4deae;
 }
 
@@ -10,7 +9,6 @@
   gap: 2rem;
   flex-direction: row;
   flex-basis: 85%;
-  // border: 5px solid red;
   place-self: center;
   place-items: center;
   justify-content: center;
@@ -20,14 +18,14 @@
   text-align: right;
   padding: 20px;
   align-self: center;
-  // border: 5px solid green;
 }
 
-// #paths {
-//   // display: grid;
-//   // margin: 0px 25px;
-//   // grid-template-columns: repeat(3, 1fr);
-//   // gap: 1.5rem;
+#paths {
+  display: grid;
+  margin: 0px 25px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
 
 .text-nav a {
   text-decoration: none;
