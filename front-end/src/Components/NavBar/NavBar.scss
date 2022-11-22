@@ -1,8 +1,23 @@
-.navbar {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  background-color: rgb(40, 40, 40);
-  text-align: center;
+.nav-section {
+  display: flex;
+  justify-content: center;
+  background-color: #e4deae;
+}
+
+.center-nav {
+  display: flex;
+  gap: 2rem;
+  flex-direction: row;
+  flex-basis: 85%;
+  place-self: center;
+  place-items: center;
+  justify-content: center;
+}
+
+.user-nav {
+  text-align: right;
+  padding: 20px;
+  align-self: center;
 }
 
 #paths {
@@ -10,43 +25,18 @@
   margin: 0px 25px;
   grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
-
-  .logoLink {
-    display: flex;
-    flex-direction: column;
-    text-decoration: none;
-    color: green;
-
-    .logo {
-      width: 200px;
-      height: 200px;
-      text-align: center;
-    }
-  }
 }
 
-#paths #logo {
-  color: white;
-  margin-top: 34px;
-}
-
-#paths h3 a {
-  background: var(--primary);
-  display: block;
-  color: white;
-  border: 1px solid var(--primary);
-  margin: 10px;
-  padding: 10px;
-  text-align: center;
+.text-nav a {
   text-decoration: none;
+  color: black;
 }
 
-#paths h3 a:hover {
-  background: var(--white);
-  color: var(--black);
+.logo {
+  height: 200px;
+  width: 200px;
 }
 
-img.logo {
-  height: 60px;
-  padding-top: 18px;
+.text-nav a:hover {
+  color: white;
 }

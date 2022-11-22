@@ -2,17 +2,17 @@ import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { toast } from "react-toastify";
 
-const SignIn = ({ clickHere, setClickHere, users, handleUser }) => {
+const SignIn = ({ users, handleUser }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-    if (name === "password") {
-      setPassword(value);
-    } else if (name === "email") {
+    if (name === "email") {
       setEmail(value);
+    } else if (name === "password") {
+      setPassword(value);
     }
   };
 
@@ -38,8 +38,8 @@ const SignIn = ({ clickHere, setClickHere, users, handleUser }) => {
 
     const checkUser = users.filter(
       (user) =>
-        user.email === existingUser.email ||
-        user.password === existingUser.username
+        existingUser.email === user.email &&
+        existingUser.password === user.password
     );
 
     if (checkUser.length > 0) {

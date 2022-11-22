@@ -8,6 +8,7 @@ import axios from "axios";
 import NavBar from "./Components/NavBar/NavBar";
 import SideBar from "./Components/NavBar/Sidebar/SideBar";
 import MyItems from "./Components/Accounts/Profile/MyItems/MyItems";
+import Chatbox from "./Components/Chatbox/Chatbox";
 import FAQ from "./Components/FAQ/FAQ";
 
 // Page Imports
@@ -102,6 +103,7 @@ export default function App() {
           setIsOpen={setIsOpen}
         />
         <SideBar />
+        <Chatbox user={user} users={users} authenticated={authenticated} />
         <main>
           <Routes>
             <Route path="/" element={<Homepage />} />

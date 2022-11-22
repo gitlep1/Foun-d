@@ -1,20 +1,15 @@
 import { useState } from "react";
-import { Button, Form, Dropdown } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-import Signin from "./Signin";
-
-const Signup = ({ user, users, handleUser, authenticated, handleLogout }) => {
-  const navigate = useNavigate();
+const Signup = ({ users, handleUser }) => {
   const API = process.env.REACT_APP_API_URL;
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [profImg, setProfImg] = useState("");
-  const [clickHere, setClickHere] = useState(false);
   const [error, setError] = useState("");
 
   const handleChange = (e) => {
