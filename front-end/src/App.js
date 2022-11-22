@@ -14,13 +14,10 @@ import SideBar from "./Components/NavBar/Sidebar/SideBar";
 import Found from "./Pages/Found/Found";
 import "./App.scss";
 
-import socket from "./Components/Socket.IO/socket";
 
 export default function App() {
   const navigate = useNavigate();
   const API = process.env.REACT_APP_API_URL;
-  socket.auth = 'jan'
-  socket.connect()
 
   const [user, setUser] = useState({});
   const [users, setUsers] = useState([]);

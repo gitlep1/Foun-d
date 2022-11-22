@@ -2,42 +2,35 @@ import { Link } from "react-router-dom";
 import Profile from "../Profile/Profile";
 import "./NavBar.scss";
 
-import foundLogo from "../../Images/Foun'dLogo.png";
+import FoundLogo3 from "../../Images/FoundLogo3.png";
 
 const NavBar = ({ user, users, handleUser, authenticated, handleLogout }) => {
   return (
-    <div className="navbar">
-      <section id="paths">
-        <h3>
+    <section className="nav-section">
+      <div className="center-nav">
+      <h3 className="text-nav">
           <Link to="/">Home</Link>
         </h3>
         <Link to="/" className="logoLink">
           <img
             className="logo"
-            src={foundLogo}
-            height="150px"
+            src={FoundLogo3}
             alt="foundLogo"
           />
-          <span id="logoTitle">Foun'd</span>
         </Link>
-        <h3>
+        <h3 className="text-nav">
           <Link to="/about">About</Link>{" "}
         </h3>
-      </section>
-      <section id="welcome"></section>
-      <section id="report"></section>
-      <section id="find"></section>
-      <section id="profile">
+      </div>
+      <div className="user-nav">
         <Profile
-          user={user}
-          users={users}
-          handleUser={handleUser}
-          authenticated={authenticated}
-          handleLogout={handleLogout}
-        />
-      </section>
-      <footer></footer>
-    </div>
+              user={user}
+              users={users}
+              handleUser={handleUser}
+              authenticated={authenticated}
+              handleLogout={handleLogout}/>
+      </div>
+    </section>
   );
 };
 
