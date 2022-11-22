@@ -13,15 +13,10 @@ const MyItems = ({ user, authenticated, showMyItems }) => {
   const [userItems, setUserItems] = useState([]);
   const [error, setError] = useState("");
 
-  const data = window.localStorage.getItem("Current_User");
-  const currentUser = JSON.parse(data);
-
   useEffect(() => {
     axios
-      .get(`${API}/found/${currentUser.id}`)
+      .get(`${API}/found`)
       .then((res) => {
-        console.log(currentUser.id);
-        // console.log(res.data);
         setUserItems(res.data);
       })
       .catch((error) => {
@@ -30,6 +25,8 @@ const MyItems = ({ user, authenticated, showMyItems }) => {
   }, []); //eslint-disable-line
 
   const renderUserItems = (user) => {
+    // let total = 0
+
     return userItems.map((item) => {
       if (Object.values(item).includes(user.id)) {
         return (
@@ -64,14 +61,25 @@ const MyItems = ({ user, authenticated, showMyItems }) => {
     });
   };
 
-  const total = userItems.length;
+  const getTotalItems = () => {
+    let total = 0;
+
+    userItems.map((items) => {
+      if (user.id === items.founduserid) {
+        total += 1;
+      }
+      return total;
+    });
+
+    return total;
+  };
 
   return (
     <section id="myItemsSection">
       {error && <p>{error}</p>}
       <div>
         <h1 id="myitems-heading">Items Found</h1>
-        <h3 id="myitems-heading">Total: {total}</h3>
+        <h3 id="myitems-heading">Total: {getTotalItems()}</h3>
       </div>
       <div id="myItemsContainer">{user.id ? renderUserItems(user) : null}</div>
     </section>
