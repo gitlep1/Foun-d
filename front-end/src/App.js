@@ -21,7 +21,6 @@ import About from "./Pages/About/About";
 // Styling Imports
 import "./App.scss";
 
-
 export default function App() {
   const navigate = useNavigate();
   const API = process.env.REACT_APP_API_URL;
@@ -107,7 +106,16 @@ export default function App() {
         <main>
           <Routes>
             <Route path="/" element={<Homepage />} />
-            <Route path="/index" element={<Indexpage user={user} />} />
+            <Route
+              path="/index"
+              element={
+                <Indexpage
+                  user={user}
+                  users={users}
+                  authenticated={authenticated}
+                />
+              }
+            />
             <Route path="/new" element={<Createpage user={user} />} />
             <Route path="/show/:itemId" element={<Showpage users={users} />} />
             <Route path="/about" element={<About />} />

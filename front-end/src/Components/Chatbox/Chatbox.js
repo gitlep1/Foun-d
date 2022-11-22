@@ -14,23 +14,30 @@ const Chatbox = ({ user, users, authenticated }) => {
     setMessageHover(false);
   };
 
-  const renderUsersOnMessages = (user) => {
+  const renderUsersOnMessages = (user2) => {
     return (
-      <Dropdown.Item key={nanoid()} className="messageProfiles" onClick={``}>
+      <section key={nanoid()} className="messageProfiles">
         <Card className="messageCards">
           <Card.Img
             variant="top"
             className="cardProfileImg"
-            src={user.profileimg}
+            src={user2.profileimg}
           />
           <Card.Body>
             <Card.Title>
-              Name: <span>{user.username}</span>
+              Name: <span>{user2.username}</span>
             </Card.Title>
           </Card.Body>
-          <Button variant="success">Message</Button>
+          <Button
+            variant="dark"
+            onClick={() => {
+              console.log(user2.username);
+            }}
+          >
+            Message
+          </Button>
         </Card>
-      </Dropdown.Item>
+      </section>
     );
   };
   // import socket from '../Socket.IO/socket';
@@ -59,8 +66,8 @@ const Chatbox = ({ user, users, authenticated }) => {
             Messages
           </Dropdown.Toggle>
           <Dropdown.Menu className="dropdownMenu">
-            {users.map((user) => {
-              return renderUsersOnMessages(user);
+            {users.map((user2) => {
+              return renderUsersOnMessages(user2);
             })}
           </Dropdown.Menu>
         </Dropdown>

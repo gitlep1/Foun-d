@@ -1,11 +1,11 @@
-import FoundItems from "../../../Components/Items/Index/FoundItems";
+import IndexContainer from "../../../Components/Items/Index/IndexContainer";
 import "./Index.scss";
 
 const Index = () => {
   return (
     <section className="indexPage-container">
       <h1>List</h1>
-      <FoundItems />
+      <IndexContainer />
     </section>
   );
 };

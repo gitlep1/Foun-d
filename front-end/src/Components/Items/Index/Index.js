@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
+import { Button, Form } from "react-bootstrap";
+import axios from "axios";
 
-const Found = ({ foundItems }) => {
+const Index = ({ foundItems }) => {
   return (
     <article className="Found">
       <h4>name: {foundItems.itemname}</h4>
@@ -12,4 +14,4 @@ const Found = ({ foundItems }) => {
   );
 };
 
-export default Found;
+export default Index;
