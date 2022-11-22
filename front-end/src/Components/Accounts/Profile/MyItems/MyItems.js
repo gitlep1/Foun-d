@@ -6,7 +6,7 @@ import axios from "axios";
 
 import "./MyItems.scss";
 
-const MyItems = ({ user, authenticated, showMyItems }) => {
+const MyItems = ({ user }) => {
   const navigate = useNavigate();
   const API = process.env.REACT_APP_API_URL;
 
@@ -25,8 +25,6 @@ const MyItems = ({ user, authenticated, showMyItems }) => {
   }, []); //eslint-disable-line
 
   const renderUserItems = (user) => {
-    // let total = 0
-
     return userItems.map((item) => {
       if (Object.values(item).includes(user.id)) {
         return (
