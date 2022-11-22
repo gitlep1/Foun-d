@@ -1,7 +1,7 @@
 .chatboxContainer {
   float: right;
   position: fixed;
-  top: 95%;
+  top: 92%;
   background-color: white;
   display: grid;
   grid-template-columns: 2fr;
@@ -9,22 +9,22 @@
   border: 1px solid black;
   border-radius: 5%;
 
-  &:hover {
-    color: cyan;
-    cursor: pointer;
-    animation: pulse 1.5s infinite alternate;
-    @keyframes pulse {
-      100% {
-        text-shadow: 0 0 4px #fff, 0 0 11px #fff, 0 0 19px #fff, 0 0 40px #0fa,
-          0 0 80px #0fa, 0 0 90px #0fa, 0 0 100px #0fa, 0 0 150px #0fa;
-      }
+  // &:hover {
+  //   color: cyan;
+  //   cursor: pointer;
+  //   animation: pulse 1.5s infinite alternate;
+  //   @keyframes pulse {
+  //     100% {
+  //       text-shadow: 0 0 4px #fff, 0 0 11px #fff, 0 0 19px #fff, 0 0 40px #0fa,
+  //         0 0 80px #0fa, 0 0 90px #0fa, 0 0 100px #0fa, 0 0 150px #0fa;
+  //     }
 
-      0% {
-        text-shadow: 0 0 2px #fff, 0 0 4px #fff, 0 0 6px #fff, 0 0 10px #0fa,
-          0 0 45px #0fa, 0 0 55px #0fa, 0 0 70px #0fa, 0 0 80px #0fa;
-      }
-    }
-  }
+  //     0% {
+  //       text-shadow: 0 0 2px #fff, 0 0 4px #fff, 0 0 6px #fff, 0 0 10px #0fa,
+  //         0 0 45px #0fa, 0 0 55px #0fa, 0 0 70px #0fa, 0 0 80px #0fa;
+  //     }
+  //   }
+  // }
 
   #messagesIcon {
     width: 50px;
@@ -38,6 +38,26 @@
     align-self: center;
     justify-self: center;
   }
+
+  .messagesDropup {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .dropdownMenu {
+      border: 1px solid black;
+      height: 30em;
+      overflow: auto;
+    }
+
+    .messageProfiles {
+      height: 35%;
+
+      .cardProfileImg {
+        width: 50px;
+      }
+    }
+  }
 }
 
 .sticky {
@@ -47,7 +67,7 @@
 .customArrow {
   float: right;
   position: fixed;
-  top: 90%;
+  top: 85%;
   left: 90%;
 
   width: 30px;
