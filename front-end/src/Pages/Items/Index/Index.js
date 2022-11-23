@@ -1,12 +1,7 @@
-import IndexContainer from "../../../Components/Items/Index/IndexContainer";
-import "./Index.scss";
+import Index from "../../../Components/Items/Index/Index";
 
-const Index = () => {
-  return (
-    <section className="indexPage-container">
-      <h1>List</h1>
-      <IndexContainer />
-    </section>
-  );
+const Indexpage = ({ user, users, authenticated }) => {
+  return <Index user={user} users={users} authenticated={authenticated} />;
 };
-export default Index;
+
+export default Indexpage;

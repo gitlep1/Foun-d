@@ -80,7 +80,7 @@ export default function App() {
   };
 
   return (
-    <section id="outer-container">
+    <section id="outer-container" className="fullContainer">
       <MyItemsSidebar
         pageWrapId={"page-wrap"}
         outerContainerId={"outer-container"}
@@ -103,7 +103,7 @@ export default function App() {
         />
         <SideBar />
         <Chatbox user={user} users={users} authenticated={authenticated} />
-        <main>
+        <main className="mainSection">
           <Routes>
             <Route path="/" element={<Homepage />} />
             <Route

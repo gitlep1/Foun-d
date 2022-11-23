@@ -53,7 +53,7 @@ const Chatbox = ({ user, users, authenticated }) => {
   // }
 
   return authenticated && user ? (
-    <>
+    <section className="chatboxSection">
       <div className={messageHover ? "customArrow sticky" : null}></div>
       <section
         className="chatboxContainer sticky"
@@ -73,7 +73,7 @@ const Chatbox = ({ user, users, authenticated }) => {
         </Dropdown>
         {/* <h4 id="messagesText">Messages</h4> */}
       </section>
-    </>
+    </section>
   ) : null;
 };
 
