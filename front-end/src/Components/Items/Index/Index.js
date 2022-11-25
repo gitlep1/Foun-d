@@ -17,6 +17,8 @@ const IndexContainer = ({ user, users, authenticated }) => {
   const [error, setError] = useState("");
 
   useEffect(() => {
+    getItems();
+
     const ItemsInterval = setInterval(() => {
       getItems();
     }, 3000);
@@ -75,11 +77,11 @@ const IndexContainer = ({ user, users, authenticated }) => {
       <section id="indexContainer">
         {error && <p>{error}</p>}
         {foundItems.length > 0
-          ? foundItems.map((foundItems) => {
+          ? foundItems.map((itemFound) => {
               return (
                 <RenderIndex
                   key={nanoid()}
-                  foundItems={foundItems}
+                  itemFound={itemFound}
                   user={user}
                   users={users}
                   authenticated={authenticated}

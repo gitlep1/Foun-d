@@ -3,7 +3,6 @@
   height: 100%;
 
   #searchBarContainer {
-    // border: 5px solid red;
     display: flex;
     justify-content: center;
   }
@@ -24,7 +23,7 @@
   #indexContainer {
     // border: 5px solid cyan;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 125px 1fr 125px 1fr;
     text-align: center;
   }
 }
