@@ -1,33 +1,51 @@
-.itemsCard {
-  margin-bottom: 3%;
-  margin-right: 3%;
-  border: 5px solid red;
-
-  .cardInfoContainer {
-    // border: 5px solid red;
+.cardInfoContainer {
+  .itemsCard {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: 2;
-  }
+    margin-bottom: 3%;
+    margin-right: 3%;
+    margin-left: 5em;
 
-  .finderInfoContainer {
-    // border: 5px solid black;
-    grid-row: 1;
-    grid-column: 2;
-    height: 100px;
-
-    .finderImg {
-      width: 50px;
+    .finderInfo {
+      .finderImg {
+        margin-top: 1em;
+        width: 50px;
+      }
     }
-  }
-
-  .itemInfo {
-    border-right: 5px solid black;
   }
 }
 
+// use later if you want the current logged in user's items to highlight \\
+
+// .usersItem {
+//   border: 5px solid rgb(16, 248, 101);
+// }
+
 .itemImg {
-  width: 125px;
-  height: 125px;
+  width: 200px;
+  height: 200px;
   border-radius: 3%;
+}
+
+@media (max-width: 1000px) {
+  .cardInfoContainer {
+    border: 5px solid red;
+
+    .itemsCard {
+      border: 5px solid yellow;
+
+      .finderInfoContainer {
+        .finderImg {
+          margin-top: 1em;
+          width: 50px;
+        }
+      }
+
+      #itemImgBelowWidth {
+        border: 5px solid purple;
+        width: 200px;
+        height: 200px;
+      }
+    }
+  }
 }

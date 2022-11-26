@@ -5,10 +5,12 @@ import { nanoid } from "nanoid";
 import axios from "axios";
 
 import RenderIndex from "./RenderIndex";
+import windowDimensions from "../../GetWindowDimensions";
 
 import "./Index.scss";
 
 const IndexContainer = ({ user, users, authenticated }) => {
+  const { width, height } = windowDimensions();
   const navigate = useNavigate();
   const API = process.env.REACT_APP_API_URL;
 
@@ -85,6 +87,8 @@ const IndexContainer = ({ user, users, authenticated }) => {
                   user={user}
                   users={users}
                   authenticated={authenticated}
+                  width={width}
+                  height={height}
                 />
               );
             })
