@@ -5,6 +5,12 @@
     margin-bottom: 3%;
     margin-right: 3%;
     margin-left: 5em;
+    box-shadow: 3px 3px 8px 5px rgba(0, 0, 0, 0.7);
+
+    &:hover {
+      transition: 1s;
+      transform: scale(1.03);
+    }
 
     .finderInfo {
       .finderImg {
@@ -29,22 +35,25 @@
 
 @media (max-width: 1000px) {
   .cardInfoContainer {
-    border: 5px solid red;
-
     .itemsCard {
-      border: 5px solid yellow;
-
-      .finderInfoContainer {
+      .finderInfo {
+        grid-column: 2;
+        grid-row: 1;
         .finderImg {
           margin-top: 1em;
           width: 50px;
         }
       }
 
+      .itemInfo {
+        grid-column: 1 / span 2;
+      }
+
       #itemImgBelowWidth {
-        border: 5px solid purple;
+        border: 3px solid black;
         width: 200px;
         height: 200px;
+        box-shadow: 3px 3px 8px 5px rgba(0, 0, 0, 0.7);
       }
     }
   }
