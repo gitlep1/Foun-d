@@ -18,6 +18,7 @@ import Homepage from "./Pages/Home/Home";
 import Indexpage from "./Pages/Items/Index/Index";
 import Createpage from "./Pages/Items/Create/New";
 import Showpage from "./Pages/Items/Show/Show";
+import ShowItem from "./Components/Items/Show/ShowItem";
 import About from "./Pages/About/About";
 import Editpage from "./Pages/Items/Edit/Edit";
 import useModel from "./Hooks/useModel";
@@ -30,11 +31,11 @@ export default function App() {
   const navigate = useNavigate();
   const API = process.env.REACT_APP_API_URL;
 
-	const [model, setModel, modelStructure] = useModel({condition: "app"})
-
+  const [model, setModel, modelStructure] = useModel({ condition: "app" });
 
   const [user, setUser] = useState({});
   const [users, setUsers] = useState([]);
+  const [items, setItems] = useState([]);
   const [authenticated, setAuthenticated] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -48,6 +49,7 @@ export default function App() {
     }
 
     getUsers();
+    getItems();
 
     const UsersInterval = setInterval(() => {
       getUsers();
@@ -59,6 +61,13 @@ export default function App() {
   const getUsers = async () => {
     await axios.get(`${API}/users`).then((res) => {
       setUsers(res.data);
+    });
+  };
+
+  const getItems = async () => {
+    await axios.get(`${API}/items`).then((res) => {
+      setItems(res.data);
+      // console.log(res.data);
     });
   };
 
@@ -89,7 +98,7 @@ export default function App() {
 
   return (
     <section id="outer-container">
-			{ model ? modelStructure : ""}
+      {model ? modelStructure : ""}
       <MyItemsSidebar
         pageWrapId={"page-wrap"}
         outerContainerId={"outer-container"}
@@ -98,7 +107,12 @@ export default function App() {
         customBurgerIcon={false}
         right
       >
-        <MyItems user={user} isOpen={isOpen} setIsOpen={setIsOpen} authenticated={authenticated} />
+        <MyItems
+          user={user}
+          isOpen={isOpen}
+          setIsOpen={setIsOpen}
+          authenticated={authenticated}
+        />
       </MyItemsSidebar>
       <section id="page-wrap">
         <NavBar
@@ -109,10 +123,15 @@ export default function App() {
           handleLogout={handleLogout}
           isOpen={isOpen}
           setIsOpen={setIsOpen}
-					model={model}
+          model={model}
         />
-        <SideBar model={model}/>
-        <Chatbox model={model} user={user} users={users} authenticated={authenticated} />
+        <SideBar model={model} />
+        <Chatbox
+          model={model}
+          user={user}
+          users={users}
+          authenticated={authenticated}
+        />
         <main className="mainSection">
           <Routes>
             <Route path="/" element={<Homepage />} />
@@ -127,16 +146,19 @@ export default function App() {
               }
             />
             <Route path="/new" element={<Createpage user={user} />} />
-            <Route path="/show/:itemId" element={<Showpage users={users} />} />
-						<Route path="/edit/:itemId" element={<Editpage user={user.id} />} />
+            <Route path="/newitem" element={<NewItemForm user={user} />} />
             <Route path="/about" element={<About />} />
             <Route path="/faq" element={<FAQ />} />
+            <Route
+              path="/show/:itemId"
+              element={<ShowItem user={user} items={items} />}
+            />
+            <Route path="/edit/:itemId" element={<Editpage user={user.id} />} />
             <Route path="/:userId/settings" element={<NavBar user={user} />} />
             <Route
               path="/:userId/viewsettings"
               element={<ViewUserSettings user={user} />}
             />
-            <Route path="/newitem" element={<NewItemForm user={user} />} />
             <Route path="/:userId/edit" element={<Edit user={user} />} />
           </Routes>
         </main>
