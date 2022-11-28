@@ -19,6 +19,7 @@ const Profile = ({
   handleLogout,
   isOpen,
   setIsOpen,
+	model
 }) => {
   const navigate = useNavigate();
   const [clickHere, setClickHere] = useState(false);
@@ -52,7 +53,7 @@ const Profile = ({
   };
 
   return (
-    <section className="profileSection">
+    <section className={`profileSection ${ model ? "model-0n" : ''}`}>
       <Dropdown>
         <Dropdown.Toggle variant="success" id="dropdown-basic">
           {authenticated ? (

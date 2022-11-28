@@ -8,6 +8,9 @@ const Found = ({ foundItems }) => {
       <button>
         <Link to={`/Found/${foundItems.id}`}>READ MORE</Link>
       </button>
+			<button>
+        <Link to={`/edit/${foundItems.id}`}>Edit Item</Link>
+      </button>
     </article>
   );
 };

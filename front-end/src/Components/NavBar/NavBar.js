@@ -12,6 +12,7 @@ const NavBar = ({
   handleLogout,
   isOpen,
   setIsOpen,
+	model
 }) => {
   return (
     <section className="nav-section">
@@ -39,6 +40,7 @@ const NavBar = ({
           handleLogout={handleLogout}
           isOpen={isOpen}
           setIsOpen={setIsOpen}
+					model={model}
         />
       </div>
     </section>

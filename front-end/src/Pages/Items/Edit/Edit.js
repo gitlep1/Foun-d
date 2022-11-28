@@ -1,9 +1,9 @@
 import EditItem from "../../../Components/Items/Edit/EditItem";
 
-const Editpage = () => {
+const Editpage = ({user}) => {
   return (
     <>
-      <EditItem />
+      <EditItem user={user}/>
     </>
   );
 };
