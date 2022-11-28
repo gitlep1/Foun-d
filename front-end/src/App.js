@@ -19,14 +19,19 @@ import Indexpage from "./Pages/Items/Index/Index";
 import Createpage from "./Pages/Items/Create/New";
 import Showpage from "./Pages/Items/Show/Show";
 import About from "./Pages/About/About";
-import Edit from "./Components/Accounts/EditAccount/Edit";
+import Editpage from "./Pages/Items/Edit/Edit";
+import useModel from "./Hooks/useModel";
 
+import Edit from "./Components/Accounts/EditAccount/Edit";
 // Styling Imports
 import "./App.scss";
 
 export default function App() {
   const navigate = useNavigate();
   const API = process.env.REACT_APP_API_URL;
+
+	const [model, setModel, modelStructure] = useModel({condition: "app"})
+
 
   const [user, setUser] = useState({});
   const [users, setUsers] = useState([]);
@@ -83,7 +88,8 @@ export default function App() {
   };
 
   return (
-    <section id="outer-container" className="fullContainer">
+    <section id="outer-container">
+			{ model ? modelStructure : ""}
       <MyItemsSidebar
         pageWrapId={"page-wrap"}
         outerContainerId={"outer-container"}
@@ -92,7 +98,7 @@ export default function App() {
         customBurgerIcon={false}
         right
       >
-        <MyItems user={user} authenticated={authenticated} />
+        <MyItems user={user} isOpen={isOpen} setIsOpen={setIsOpen} authenticated={authenticated} />
       </MyItemsSidebar>
       <section id="page-wrap">
         <NavBar
@@ -103,9 +109,10 @@ export default function App() {
           handleLogout={handleLogout}
           isOpen={isOpen}
           setIsOpen={setIsOpen}
+					model={model}
         />
-        <SideBar />
-        <Chatbox user={user} users={users} authenticated={authenticated} />
+        <SideBar model={model}/>
+        <Chatbox model={model} user={user} users={users} authenticated={authenticated} />
         <main className="mainSection">
           <Routes>
             <Route path="/" element={<Homepage />} />
@@ -121,6 +128,7 @@ export default function App() {
             />
             <Route path="/new" element={<Createpage user={user} />} />
             <Route path="/show/:itemId" element={<Showpage users={users} />} />
+						<Route path="/edit/:itemId" element={<Editpage user={user.id} />} />
             <Route path="/about" element={<About />} />
             <Route path="/faq" element={<FAQ />} />
             <Route path="/:userId/settings" element={<NavBar user={user} />} />

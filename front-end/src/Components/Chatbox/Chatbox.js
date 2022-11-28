@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Button, Card, Dropdown } from "react-bootstrap";
 import { nanoid } from "nanoid";
 
-const Chatbox = ({ user, users, authenticated }) => {
+const Chatbox = ({ model, user, users, authenticated }) => {
   const [messageHover, setMessageHover] = useState(false);
 
   const hoverMouse = () => {
@@ -13,6 +13,32 @@ const Chatbox = ({ user, users, authenticated }) => {
   const unhoverMouse = () => {
     setMessageHover(false);
   };
+// import socket from '../Socket.IO/socket';
+// 	if (item.itemName !== "end"){
+			// THIS LETS USERS PICK THEIR NAME AND CONNECT TO SOCKET
+			// WE ONLY WHAT TO CONNECT ONCE THEY SIGN IN
+// 		let username = item.itemName
+// 		socket.emit('new user', username)
+// 		socket.auth = { username }
+// 		socket.connect()
+// 		console.log(socket)
+// } else {
+// 		socket.off("connect_error");
+// 		console.log(socket)
+// }
+// THIS SENDS THE MESSAGE
+// onMessage(content) {
+//   if (this.selectedUser) {
+//     socket.emit("private message", {
+//       content,
+//       to: this.selectedUser.userID,
+//     });
+//     this.selectedUser.messages.push({
+//       content,
+//       fromSelf: true,
+//     });
+//   }
+// }
 
   const renderUsersOnMessages = (user2) => {
     return (
@@ -56,7 +82,7 @@ const Chatbox = ({ user, users, authenticated }) => {
     <section className="chatboxSection">
       <div className={messageHover ? "customArrow sticky" : null}></div>
       <section
-        className="chatboxContainer sticky"
+        className={`chatboxContainer sticky ${ model ? "model-On" : ''}`}
         onMouseOver={hoverMouse}
         onMouseOut={unhoverMouse}
       >

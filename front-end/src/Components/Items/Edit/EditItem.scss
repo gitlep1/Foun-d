@@ -1,0 +1,34 @@
+#editItemSection {
+	display: block;
+	background-color: #e4deae;
+	width: 100vw;
+	height: 100vh;
+	text-align: center;
+
+}
+
+.editItemImage {
+	border-radius: 100%;
+	box-shadow: 50px;
+}
+
+.flex-div{
+	display: flex;
+	place-content: center;
+	gap: 3rem;
+	padding: 25px;
+	padding-right: 215px;
+	// margin-right: 200px;
+}
+
+#edit-form{
+	align-self: center;
+	text-align: left;
+}
+
+.input-style{
+	width: 450px;
+	border-radius: 18px;
+	padding: 5px;
+	margin: 1px;
+}
