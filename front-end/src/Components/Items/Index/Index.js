@@ -5,7 +5,7 @@ import { nanoid } from "nanoid";
 import axios from "axios";
 
 import RenderIndex from "./RenderIndex";
-import windowDimensions from "../../GetWindowDimensions";
+import windowDimensions from "../../../Hooks/GetWindowDimensions";
 
 import "./Index.scss";
 
