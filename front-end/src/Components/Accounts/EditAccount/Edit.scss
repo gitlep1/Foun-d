@@ -1,20 +1,29 @@
-.edit-settings-heading{
-	text-align: center;
+#userSettingsSection {
+  display: block;
+  background-color: #e4deae;
+  // height: 100vh;
+  // width: 100vw;
+}
+
+.edit-settings-heading {
+  text-align: center;
 }
 
 #user-info-section {
-	text-align: center;
+  border: 5px solid cyan;
+  background-color: #e4deae;
+  text-align: center;
 }
 
-#user-data-li{
-	border: black solid ;
+#user-data-li {
+  border: black solid;
 }
 #edit-user-info {
-	text-align: center;
+  text-align: center;
 }
 
-.edit-info-input{
-	margin-left: 20px;
-	margin-bottom: 20px;
-	margin-top: 20px;
+.edit-info-input {
+  margin-left: 20px;
+  margin-bottom: 20px;
+  margin-top: 20px;
 }

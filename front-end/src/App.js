@@ -23,9 +23,6 @@ import Edit from "./Components/Accounts/EditAccount/Edit";
 
 // Styling Imports
 import "./App.scss";
-import { Nav } from "react-bootstrap";
-
-
 
 export default function App() {
   const navigate = useNavigate();
@@ -86,7 +83,7 @@ export default function App() {
   };
 
   return (
-    <section id="outer-container">
+    <section id="outer-container" className="fullContainer">
       <MyItemsSidebar
         pageWrapId={"page-wrap"}
         outerContainerId={"outer-container"}
@@ -109,18 +106,30 @@ export default function App() {
         />
         <SideBar />
         <Chatbox user={user} users={users} authenticated={authenticated} />
-        <main>
+        <main className="mainSection">
           <Routes>
             <Route path="/" element={<Homepage />} />
-            <Route path="/index" element={<Indexpage user={user} />} />
+            <Route
+              path="/index"
+              element={
+                <Indexpage
+                  user={user}
+                  users={users}
+                  authenticated={authenticated}
+                />
+              }
+            />
             <Route path="/new" element={<Createpage user={user} />} />
             <Route path="/show/:itemId" element={<Showpage users={users} />} />
             <Route path="/about" element={<About />} />
             <Route path="/faq" element={<FAQ />} />
             <Route path="/:userId/settings" element={<NavBar user={user} />} />
-						<Route path="/:userId/viewsettings" element={<ViewUserSettings user={user} />} />
-						<Route path="/newitem" element={<NewItemForm user={user} />} />
-						<Route path="/:userId/edit" element={<Edit user={user} />} />
+            <Route
+              path="/:userId/viewsettings"
+              element={<ViewUserSettings user={user} />}
+            />
+            <Route path="/newitem" element={<NewItemForm user={user} />} />
+            <Route path="/:userId/edit" element={<Edit user={user} />} />
           </Routes>
         </main>
       </section>
