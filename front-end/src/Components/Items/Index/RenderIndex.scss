@@ -1,7 +1,10 @@
 .cardInfoContainer {
+  border: 5px solid yellow;
   .itemsCard {
+    border: 5px solid green;
+    height: 50%;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1;
     margin-bottom: 3%;
     margin-right: 3%;
     margin-left: 5em;
@@ -13,7 +16,11 @@
     // }
 
     .finderInfo {
+      grid-row: 2;
+      // display: flex;
       .finderImg {
+        display: grid;
+
         margin-top: 1em;
         width: 50px;
       }
@@ -27,11 +34,25 @@
 //   border: 5px solid rgb(16, 248, 101);
 // }
 
-.itemImg {
+#itemImgContainer {
   width: 200px;
   height: 200px;
-  border-radius: 3%;
-  box-shadow: 3px 3px 8px 5px rgba(0, 0, 0, 0.7);
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+
+  .itemImg {
+    // width: 200px;
+    // height: 200px;
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 3px 3px 8px 5px rgba(0, 0, 0, 0.7);
+  }
 }
 
 @media (max-width: 1000px) {

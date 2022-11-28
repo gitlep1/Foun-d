@@ -70,7 +70,9 @@ const RenderIndex = ({
   return (
     <>
       {width >= 1000 ? (
-        <img src={itemFound.itemimg} alt="item" className="itemImg" />
+        <div id="itemImgContainer">
+          <img src={itemFound.itemimg} alt="item" className="itemImg" />
+        </div>
       ) : null}
       <section className="cardInfoContainer">
         <Card key={nanoid()} className="itemsCard">
@@ -84,14 +86,13 @@ const RenderIndex = ({
           )}
           <Card.Body className="itemInfo">
             <Card.Title>
-              Name: <span>{itemFound.itemname}</span>
+              <span>{itemFound.itemname}</span>
             </Card.Title>
-            <Card.Text>
-              Description: <span>{itemFound.description}</span>
-            </Card.Text>
+
             <Card.Text>
               Neighborhood: <span>{itemFound.neighborhood}</span>
             </Card.Text>
+
             <Button
               variant="success"
               onClick={() => {
