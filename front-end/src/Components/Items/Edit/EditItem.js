@@ -62,6 +62,7 @@ export default function EditItem({ user }){
 
   return (
     <section id="editItemSection">
+			{model ? modelStructure : ''}
 			<h1>Edit {item.itemname}</h1>
 			<div className="flex-div">
 			<img

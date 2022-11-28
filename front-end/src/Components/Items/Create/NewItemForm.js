@@ -42,7 +42,7 @@ export default function NewItemForm({ user }) {
   };
 
   return (
-    <div>
+    <div id="newItemFormDiv">
       <form onSubmit={handleSubmit}>
         <img
           alt="Need full link for preview"

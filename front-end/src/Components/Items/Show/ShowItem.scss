@@ -1,5 +1,22 @@
 #showItemSection {
-	background-color: purple;
+	display: block;
+	background-color: #e4deae;
+	width: 100vw;
 	height: 100vh;
-	border: 5px solid coral;
+	text-align: center;
+	align-items: center;
+}
+
+#show-item-div{
+	display: flex;
+	text-align: left;
+	align-items: center;
+	place-content: center;
+	gap: 25px;
+}
+
+#show-image{
+	height: 350px;
+	width: 350px;
+	border-radius: 100%;
 }

@@ -8,19 +8,19 @@ export default function useModel({condition}) {
       <div class="model-style">
         <div class="box-model">
           <h1 class="text-model">
-            Are you sure you want to continue?
+            Are you sure you want to {condition} this item?
           </h1>
           <button
             onClick={() => setModel(false)}
             class="model-stop-button"
           >
-            Don't delete
+            Don't {condition}
           </button>
           <button
             onClick={() => {}}
             className="model-continue-button"
           >
-            Yes, please
+            Yes, please!
           </button>
         </div>
       </div>

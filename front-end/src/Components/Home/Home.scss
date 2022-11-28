@@ -1,5 +1,17 @@
 .homepageSection {
   height: 100vh;
   background-color: #e4deae;
-  border: 5px solid red;
+	text-align: center;
+	align-items: center;
+	padding-right: 20px;
+	padding-top: 45px;
+}
+
+.home-welcome{
+	font-size: 60px;
+	font-weight: 600;
+}
+
+#found{
+	text-decoration: underline;
 }

@@ -1,11 +1,19 @@
 .cardInfoContainer {
+	display: flex;
+	// background-color: aqua;
+	// place-content: space-evenly;
+	// background-color: #e4deae;
+	padding: 10px;
   .itemsCard {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    margin-bottom: 3%;
-    margin-right: 3%;
-    margin-left: 5em;
-    box-shadow: 3px 3px 8px 5px rgba(0, 0, 0, 0.7);
+		background-color: #e4deae;
+		padding: 5px;
+		border: none;
+    // display: grid;
+    // grid-template-columns: repeat(2, 1fr);
+    // margin-bottom: 3%;
+    // margin-right: 3%;
+    // margin-left: 5em;
+    // box-shadow: 3px 3px 8px 5px rgba(0, 0, 0, 0.7);
 
     // &:hover {
     //   transition: 1s;
@@ -14,10 +22,21 @@
 
     .finderInfo {
       .finderImg {
-        margin-top: 1em;
+        // margin-top: 1em;
         width: 50px;
       }
     }
+		.itemInfo{
+			padding: 5px;
+		}
+		.itemInfo p {
+			margin: 0%;
+			padding: 2px;
+		}
+		#foundby-tag{
+			margin: 0%;
+			margin-top: 5px;
+		}
   }
 }
 
@@ -30,84 +49,88 @@
 .itemImg {
   width: 200px;
   height: 200px;
-  border-radius: 3%;
-  box-shadow: 3px 3px 8px 5px rgba(0, 0, 0, 0.7);
+  border-radius: 100%;
+  // box-shadow: 3px 3px 8px 5px rgba(0, 0, 0, 0.7);
 }
 
-@media (max-width: 1000px) {
-  .cardInfoContainer {
-    .itemsCard {
-      .finderInfo {
-        grid-column: 2;
-        grid-row: 1;
-        .finderImg {
-          margin-top: 1em;
-          width: 50px;
-        }
-      }
-
-      .itemInfo {
-        grid-column: 1 / span 2;
-      }
-
-      #itemImgBelowWidth {
-        border: 3px solid black;
-        width: 200px;
-        height: 200px;
-        box-shadow: 3px 3px 8px 5px rgba(0, 0, 0, 0.7);
-      }
-    }
-  }
+.itemInfo{
+	text-align: left;
 }
 
-@media (max-width: 900px) {
-  .cardInfoContainer {
-    .itemsCard {
-      .finderInfo {
-        grid-column: 2;
-        grid-row: 1;
-        .finderImg {
-          margin-top: 1em;
-          width: 50px;
-        }
-      }
+// @media (max-width: 1000px) {
+//   .cardInfoContainer {
+//     .itemsCard {
+//       .finderInfo {
+//         grid-column: 2;
+//         grid-row: 1;
+//         .finderImg {
+//           margin-top: 1em;
+//           width: 50px;
+//         }
+//       }
 
-      .itemInfo {
-        grid-column: 1 / span 2;
-      }
+//       .itemInfo {
+//         grid-column: 1 / span 2;
+//       }
 
-      #itemImgBelowWidth {
-        border: 3px solid black;
-        width: 200px;
-        height: 200px;
-        box-shadow: 3px 3px 8px 5px rgba(0, 0, 0, 0.7);
-      }
-    }
-  }
-}
+//       #itemImgBelowWidth {
+//         border: 3px solid black;
+//         width: 200px;
+//         height: 200px;
+//         box-shadow: 3px 3px 8px 5px rgba(0, 0, 0, 0.7);
+//       }
+//     }
+//   }
+// }
 
-@media (max-width: 470px) {
-  .cardInfoContainer {
-    .itemsCard {
-      .finderInfo {
-        grid-column: 2;
-        grid-row: 1;
-        .finderImg {
-          margin-top: 1em;
-          width: 50px;
-        }
-      }
+// @media (max-width: 900px) {
+//   .cardInfoContainer {
+//     .itemsCard {
+//       .finderInfo {
+//         grid-column: 2;
+//         grid-row: 1;
+//         .finderImg {
+//           margin-top: 1em;
+//           width: 50px;
+//         }
+//       }
 
-      .itemInfo {
-        grid-column: 1 / span 2;
-      }
+//       .itemInfo {
+//         grid-column: 1 / span 2;
+//       }
 
-      #itemImgBelowWidth {
-        border: 3px solid black;
-        width: 100px;
-        height: 100px;
-        box-shadow: 3px 3px 8px 5px rgba(0, 0, 0, 0.7);
-      }
-    }
-  }
-}
+//       #itemImgBelowWidth {
+//         border: 3px solid black;
+//         width: 200px;
+//         height: 200px;
+//         box-shadow: 3px 3px 8px 5px rgba(0, 0, 0, 0.7);
+//       }
+//     }
+//   }
+// }
+
+// @media (max-width: 470px) {
+//   .cardInfoContainer {
+//     .itemsCard {
+//       .finderInfo {
+//         grid-column: 2;
+//         grid-row: 1;
+//         .finderImg {
+//           margin-top: 1em;
+//           width: 50px;
+//         }
+//       }
+
+//       .itemInfo {
+//         grid-column: 1 / span 2;
+//       }
+
+//       #itemImgBelowWidth {
+//         border: 3px solid black;
+//         width: 100px;
+//         height: 100px;
+//         box-shadow: 3px 3px 8px 5px rgba(0, 0, 0, 0.7);
+//       }
+//     }
+//   }
+// }

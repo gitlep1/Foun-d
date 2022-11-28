@@ -69,10 +69,10 @@ const RenderIndex = ({
 
   return (
     <>
-      {width >= 1000 ? (
+      <section className="cardInfoContainer">
+			{width >= 1000 ? (
         <img src={itemFound.itemimg} alt="item" className="itemImg" />
       ) : null}
-      <section className="cardInfoContainer">
         <Card key={nanoid()} className="itemsCard">
           {width >= 1000 ? null : (
             <Card.Img
@@ -87,12 +87,20 @@ const RenderIndex = ({
               Name: <span>{itemFound.itemname}</span>
             </Card.Title>
             <Card.Text>
-              Description: <span>{itemFound.description}</span>
+              Category: <span>{itemFound.category}</span>
             </Card.Text>
             <Card.Text>
               Neighborhood: <span>{itemFound.neighborhood}</span>
             </Card.Text>
-            <Button
+						<Card.Title id='foundby-tag'>
+              {/* <span>{getFinder()}</span>  */}
+							Found By:{" "}
+              <span>{getFinderName()}</span>
+            </Card.Title>
+            <Card.Text>
+              Rating: <span>{getFinderRating()}</span>
+            </Card.Text>
+						<Button
               variant="success"
               onClick={() => {
                 navigate(`/show/${itemFound.id}`);
@@ -100,17 +108,19 @@ const RenderIndex = ({
             >
               More Info
             </Button>
+            {/* <Button variant="dark">Message</Button> */}
           </Card.Body>
-          <Card.Body className="finderInfo">
+          {/* <Card.Body className="finderInfo">
             <Card.Title>
-              <span>{getFinder()}</span> Found By:{" "}
+              <span>{getFinder()}</span> 
+							Found By:{" "}
               <span>{getFinderName()}</span>
             </Card.Title>
             <Card.Text>
               Rating: <span>{getFinderRating()}</span>
             </Card.Text>
             <Button variant="dark">Message</Button>
-          </Card.Body>
+          </Card.Body> */}
         </Card>
       </section>
     </>

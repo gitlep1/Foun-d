@@ -6,7 +6,7 @@ import axios from "axios";
 
 import "./MyItems.scss";
 
-const MyItems = ({ user, isOpen, setIsOpen}) => {
+const MyItems = ({ user, isOpen, setIsOpen, setModel}) => {
   const navigate = useNavigate();
   const API = process.env.REACT_APP_API_URL;
 
@@ -64,7 +64,8 @@ const MyItems = ({ user, isOpen, setIsOpen}) => {
                 variant="success"
                 onClick={() => {
 									setIsOpen(false)
-                  navigate(`/edit/${item.id}`);
+									setModel(true)
+                  navigate(`/show/${item.id}`);
                 }}
               >
                 DELETE

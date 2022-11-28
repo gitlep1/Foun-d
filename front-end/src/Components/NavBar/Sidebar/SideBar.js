@@ -103,7 +103,7 @@ export default function SideBar({model}) {
 
 			</div>
       <div className="icon-container">
-        <Link to="/giveaways" className={effect.giveaway ? "pulse" : ""}>
+        <Link to="/giveaway" className={effect.giveaway ? "pulse" : ""}>
           <img
             className={effect.giveaway ? "pulse" : ""}
             onClick={() => {
