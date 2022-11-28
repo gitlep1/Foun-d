@@ -53,6 +53,7 @@ export default function App() {
 
     const UsersInterval = setInterval(() => {
       getUsers();
+      getItems();
     }, 5000);
 
     return () => clearInterval(UsersInterval);
@@ -67,7 +68,6 @@ export default function App() {
   const getItems = async () => {
     await axios.get(`${API}/items`).then((res) => {
       setItems(res.data);
-      // console.log(res.data);
     });
   };
 
