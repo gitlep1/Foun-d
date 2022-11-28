@@ -25,9 +25,6 @@ import useModel from "./Hooks/useModel";
 import Edit from "./Components/Accounts/EditAccount/Edit";
 // Styling Imports
 import "./App.scss";
-import { Nav } from "react-bootstrap";
-
-
 
 export default function App() {
   const navigate = useNavigate();
@@ -116,22 +113,34 @@ export default function App() {
         />
         <SideBar model={model}/>
         <Chatbox model={model} user={user} users={users} authenticated={authenticated} />
-        <main>
+        <main className="mainSection">
           <Routes>
             <Route path="/" element={<Homepage />} />
-            <Route path="/index" element={<Indexpage user={user} />} />
+            <Route
+              path="/index"
+              element={
+                <Indexpage
+                  user={user}
+                  users={users}
+                  authenticated={authenticated}
+                />
+              }
+            />
             <Route path="/new" element={<Createpage user={user} />} />
             <Route path="/show/:itemId" element={<Showpage users={users} />} />
 						<Route path="/edit/:itemId" element={<Editpage user={user.id} />} />
             <Route path="/about" element={<About />} />
             <Route path="/faq" element={<FAQ />} />
             <Route path="/:userId/settings" element={<NavBar user={user} />} />
-						<Route path="/:userId/viewsettings" element={<ViewUserSettings user={user} />} />
-						<Route path="/newitem" element={<NewItemForm user={user} />} />
-						<Route path="/:userId/edit" element={<Edit user={user} />} />
+            <Route
+              path="/:userId/viewsettings"
+              element={<ViewUserSettings user={user} />}
+            />
+            <Route path="/newitem" element={<NewItemForm user={user} />} />
+            <Route path="/:userId/edit" element={<Edit user={user} />} />
           </Routes>
         </main>
       </section>
-    // </section>
+    </section>
   );
 }
