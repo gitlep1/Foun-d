@@ -84,7 +84,7 @@ const RenderIndex = ({
           )}
           <Card.Body className="itemInfo">
             <Card.Title>
-              Name: <span>{itemFound.itemname}</span>
+              <span>{itemFound.itemname}</span>
             </Card.Title>
             <Card.Text>
               Category: <span>{itemFound.category}</span>

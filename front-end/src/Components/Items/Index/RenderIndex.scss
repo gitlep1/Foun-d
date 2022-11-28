@@ -1,9 +1,4 @@
 .cardInfoContainer {
-	display: flex;
-	// background-color: aqua;
-	// place-content: space-evenly;
-	// background-color: #e4deae;
-	padding: 10px;
   .itemsCard {
 		background-color: #e4deae;
 		padding: 5px;
@@ -21,8 +16,10 @@
     // }
 
     .finderInfo {
+      grid-row: 2;
+      // display: flex;
       .finderImg {
-        // margin-top: 1em;
+        margin-top: 1em;
         width: 50px;
       }
     }
@@ -46,11 +43,11 @@
 //   border: 5px solid rgb(16, 248, 101);
 // }
 
-.itemImg {
+#itemImgContainer {
   width: 200px;
   height: 200px;
-  border-radius: 100%;
-  // box-shadow: 3px 3px 8px 5px rgba(0, 0, 0, 0.7);
+  border-radius: 3%;
+  box-shadow: 3px 3px 8px 5px rgba(0, 0, 0, 0.7);
 }
 
 .itemInfo{

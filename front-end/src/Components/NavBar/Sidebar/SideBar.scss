@@ -16,7 +16,8 @@
   }
 }
 @keyframes bounce {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(-25%);
     animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
   }
@@ -34,13 +35,13 @@
   border-bottom-right-radius: 5em;
   width: 3.5em;
   top: 14em;
-	position: fixed;
-  z-index: 0;
+  position: fixed;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   place-items: center;
   float: left;
-	gap: 10px;
+  gap: 10px;
 }
 
 .spin {
@@ -62,37 +63,37 @@
 }
 
 .model-On {
-	pointer-events: none 
+  pointer-events: none;
 }
 
-.sidebar-tooltip{
-	background-color: black;
-	background: rgba(0, 0, 0, 0.9);
-	color: greenyellow;
-	font-size: 25px;
-	border-radius: 15px;
-	position: absolute;
-	width: auto;
-	padding: 5px;
-	min-width: max-content;
-	left: 3.5rem;
-	transition-property: all;
-	transition-duration: 100ms;
-	transform-origin: left;
-	text-align: center;
-	margin-top: 8px;
-	visibility: hidden;
-	animation: bounce 1s infinite
+.sidebar-tooltip {
+  background-color: black;
+  background: rgba(0, 0, 0, 0.9);
+  color: greenyellow;
+  font-size: 25px;
+  border-radius: 15px;
+  position: absolute;
+  width: auto;
+  padding: 5px;
+  min-width: max-content;
+  left: 3.5rem;
+  transition-property: all;
+  transition-duration: 100ms;
+  transform-origin: left;
+  text-align: center;
+  margin-top: 8px;
+  visibility: hidden;
+  animation: bounce 1s infinite;
 }
 
-.visible-sidebar-tooltip{
-	visibility: visible;
+.visible-sidebar-tooltip {
+  visibility: visible;
 }
 
 .add-span {
-	margin-top: 30px;
+  margin-top: 30px;
 }
 
-.faq-span{
-	margin-top: 30px;
+.faq-span {
+  margin-top: 30px;
 }
