@@ -10,22 +10,28 @@ import SideBar from "./Components/NavBar/Sidebar/SideBar";
 import MyItems from "./Components/Accounts/Profile/MyItems/MyItems";
 import Chatbox from "./Components/Chatbox/Chatbox";
 import FAQ from "./Components/FAQ/FAQ";
+import ViewUserSettings from "./Components/Accounts/EditAccount/ViewUserSettings";
+import NewItemForm from "./Components/Items/Create/NewItemForm";
 
 // Page Imports
 import Homepage from "./Pages/Home/Home";
 import Indexpage from "./Pages/Items/Index/Index";
 import Createpage from "./Pages/Items/Create/New";
-// import Showpage from "./Pages/Items/Show/Show";
+import Showpage from "./Pages/Items/Show/Show";
 import ShowItem from "./Components/Items/Show/ShowItem";
 import About from "./Pages/About/About";
+import Editpage from "./Pages/Items/Edit/Edit";
+import useModel from "./Hooks/useModel";
 
+import Edit from "./Components/Accounts/EditAccount/Edit";
 // Styling Imports
 import "./App.scss";
-import { Nav } from "react-bootstrap";
 
 export default function App() {
   const navigate = useNavigate();
   const API = process.env.REACT_APP_API_URL;
+
+  const [model, setModel, modelStructure] = useModel({ condition: "app" });
 
   const [user, setUser] = useState({});
   const [users, setUsers] = useState([]);
@@ -92,6 +98,7 @@ export default function App() {
 
   return (
     <section id="outer-container">
+      {model ? modelStructure : ""}
       <MyItemsSidebar
         pageWrapId={"page-wrap"}
         outerContainerId={"outer-container"}
@@ -100,7 +107,12 @@ export default function App() {
         customBurgerIcon={false}
         right
       >
-        <MyItems user={user} authenticated={authenticated} />
+        <MyItems
+          user={user}
+          isOpen={isOpen}
+          setIsOpen={setIsOpen}
+          authenticated={authenticated}
+        />
       </MyItemsSidebar>
       <section id="page-wrap">
         <NavBar
@@ -111,22 +123,40 @@ export default function App() {
           handleLogout={handleLogout}
           isOpen={isOpen}
           setIsOpen={setIsOpen}
+          model={model}
         />
-        <SideBar />
-        <Chatbox user={user} users={users} authenticated={authenticated} />
-        <main>
+        <SideBar model={model} />
+        <Chatbox
+          model={model}
+          user={user}
+          users={users}
+          authenticated={authenticated}
+        />
+        <main className="mainSection">
           <Routes>
             <Route path="/" element={<Homepage />} />
-            <Route path="/index" element={<Indexpage user={user} />} />
-            <Route path="/new" element={<Createpage user={user} />} />
-            {/* <Route path="/show/:itemId" element={<Showpage users={users} />} /> */}
             <Route
-              path="/show/:itemId"
-              element={<ShowItem users={users} items={items} />}
+              path="/index"
+              element={
+                <Indexpage
+                  user={user}
+                  users={users}
+                  authenticated={authenticated}
+                />
+              }
             />
+            <Route path="/new" element={<Createpage user={user} />} />
+            <Route path="/show/:itemId" element={<Showpage users={users} />} />
+            <Route path="/edit/:itemId" element={<Editpage user={user.id} />} />
             <Route path="/about" element={<About />} />
             <Route path="/faq" element={<FAQ />} />
             <Route path="/:userId/settings" element={<NavBar user={user} />} />
+            <Route
+              path="/:userId/viewsettings"
+              element={<ViewUserSettings user={user} />}
+            />
+            <Route path="/newitem" element={<NewItemForm user={user} />} />
+            <Route path="/:userId/edit" element={<Edit user={user} />} />
           </Routes>
         </main>
       </section>

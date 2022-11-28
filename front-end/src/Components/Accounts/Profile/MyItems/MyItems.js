@@ -6,7 +6,7 @@ import axios from "axios";
 
 import "./MyItems.scss";
 
-const MyItems = ({ user }) => {
+const MyItems = ({ user, isOpen, setIsOpen}) => {
   const navigate = useNavigate();
   const API = process.env.REACT_APP_API_URL;
 
@@ -22,8 +22,8 @@ const MyItems = ({ user }) => {
       .catch((error) => {
         setError(error);
       });
-  }, []); //eslint-disable-line
-
+  }, [isOpen]);
+	
   const renderUserItems = (user) => {
     return userItems.map((item) => {
       if (Object.values(item).includes(user.id)) {
@@ -45,10 +45,29 @@ const MyItems = ({ user }) => {
               <Button
                 variant="success"
                 onClick={() => {
+									setIsOpen(false)
                   navigate(`/Found/${item.id}`);
                 }}
               >
                 VIEW
+              </Button>
+							<Button
+                variant="success"
+                onClick={() => {
+									setIsOpen(false)
+                  navigate(`/edit/${item.id}`);
+                }}
+              >
+                EDIT
+              </Button>
+							<Button
+                variant="success"
+                onClick={() => {
+									setIsOpen(false)
+                  navigate(`/edit/${item.id}`);
+                }}
+              >
+                DELETE
               </Button>
             </Card>
             <br key={nanoid()} />

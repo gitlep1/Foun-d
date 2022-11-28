@@ -5,7 +5,7 @@ const Home = () => {
     <section className="homepageSection">
       <h1 className="home-welcome">You lost it, we foun'd it!</h1>
       <h3 className="home-welcome">Look around for your lost items!</h3>
-      <p>
+      {/* <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vulputate
         magna ut urna lobortis suscipit. Vestibulum auctor enim ut nibh
         molestie, ut euismod justo finibus. Donec in lectus eget erat commodo
@@ -74,7 +74,7 @@ const Home = () => {
         gravida sem sit amet, ornare lectus. Pellentesque ante est, ullamcorper
         sed venenatis eget, ornare in arcu. Donec et orci sit amet arcu
         condimentum vestibulum.
-      </p>
+      </p> */}
     </section>
   );
 };

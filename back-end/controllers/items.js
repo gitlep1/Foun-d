@@ -74,20 +74,23 @@ items.post("/", async (req, res) => {
 items.put("/:id", async (req, res) => {
   const { id } = req.params;
 
+	console.log(req.body.userid)
+
   const updatedItemsData = {
-    userId: req.body.userId,
-    itemName: req.body.itemName,
-    itemImg: req.body.itemImg,
+    userId: req.body.userid,
+    itemName: req.body.itemname,
+    itemImg: req.body.itemimg,
     category: req.body.category,
     description: req.body.description,
-    isFound: req.body.isFound,
+    isFound: req.body.isfound,
     request: req.body.request,
     giveaway: req.body.giveaway,
-    pinLocation: req.body.pinLocation,
+    pinLocation: req.body.pinlocation,
     neighborhood: req.body.neighborhood,
     borough: req.body.borough,
     zipcode: req.body.zipcode
   };
+	console.log(updatedItemsData)
 
   const updatedItems = await updateItems(
     id,

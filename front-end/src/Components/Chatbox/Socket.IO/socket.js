@@ -5,8 +5,9 @@ import { useEffect, useState } from "react"
 const API = process.env.REACT_APP_API_URL;
 const socket = io(API, { autoConnect: false });
 
-// const [users, reFetch] = useUsers([])
+const [users, reFetch] = useUsers([])
 
+//THIS CONNECTS OUR SOCKET
 socket.on("connect", () => {
     console.log('Socket is connected')
     console.log("ID:", socket.id);
@@ -23,6 +24,7 @@ socket.on("connect", () => {
     }
   });
 
+	// THIS DISPLAYS MESSAGE TO RECEIVER
   socket.on("private message", ({ content, from }) => {
     for (let i = 0; i < this.users.length; i++) {
       const user = this.users[i];
@@ -39,6 +41,8 @@ socket.on("connect", () => {
     }
   });
 
+
+	// THIS GIVES US CURRENT USERS
   socket.on("users", (users) => {
     users.forEach((user) => {
       user.self = user.userID === socket.id;
@@ -56,6 +60,7 @@ socket.on("connect", () => {
       return a.username > b.username ? 1 : 0;
     });
 
+		// THIS NOTIFIES US OF ANY NEW USERS CONNCETED
     socket.on("user connected", (user) => {
       // setUser({
         // user.connected = false;

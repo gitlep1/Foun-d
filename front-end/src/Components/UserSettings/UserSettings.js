@@ -1,5 +1,9 @@
 import React from "react";
 
 export default function UserSettings() {
-  return <div>UserSettings</div>;
+  return (
+    <div>
+      <h1>UserSettings</h1>
+    </div>
+  );
 }

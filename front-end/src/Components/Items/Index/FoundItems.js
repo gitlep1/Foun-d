@@ -13,7 +13,7 @@ export default function FoundItems() {
       .get(`${API}/items`)
       .then((response) => {
         setFoundItems(response.data);
-        // console.log(response.data);
+        console.log(response.data);
       })
       .catch((error) => console.error(error.message));
   }, []);
