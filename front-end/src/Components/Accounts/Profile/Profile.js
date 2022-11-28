@@ -85,7 +85,7 @@ const Profile = ({
                   alt="settings"
                   id="accountSettingsImg"
                   onClick={() => {
-                    navigate(`/${user.id}/settings`);
+                    navigate(`/${user.id}/viewsettings`);
                   }}
                 />
               </div>
