@@ -2,7 +2,8 @@ import "./Profile.scss";
 import { useState } from "react";
 import { Button, Dropdown } from "react-bootstrap";
 import { ToastContainer } from "react-toastify";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,Link } from "react-router-dom";
+import EditUserSettings from "../EditAccount/ViewUserSettings";
 
 import Signin from "./Signin";
 import Signup from "./Signup";
@@ -88,6 +89,7 @@ const Profile = ({
                     navigate(`/${user.id}/viewsettings`);
                   }}
                 />
+
               </div>
               <section className="profileStats">
                 <img
