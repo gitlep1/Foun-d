@@ -7,10 +7,10 @@
     margin-left: 5em;
     box-shadow: 3px 3px 8px 5px rgba(0, 0, 0, 0.7);
 
-    &:hover {
-      transition: 1s;
-      transform: scale(1.03);
-    }
+    // &:hover {
+    //   transition: 1s;
+    //   transform: scale(1.03);
+    // }
 
     .finderInfo {
       .finderImg {
@@ -31,6 +31,7 @@
   width: 200px;
   height: 200px;
   border-radius: 3%;
+  box-shadow: 3px 3px 8px 5px rgba(0, 0, 0, 0.7);
 }
 
 @media (max-width: 1000px) {
@@ -53,6 +54,58 @@
         border: 3px solid black;
         width: 200px;
         height: 200px;
+        box-shadow: 3px 3px 8px 5px rgba(0, 0, 0, 0.7);
+      }
+    }
+  }
+}
+
+@media (max-width: 900px) {
+  .cardInfoContainer {
+    .itemsCard {
+      .finderInfo {
+        grid-column: 2;
+        grid-row: 1;
+        .finderImg {
+          margin-top: 1em;
+          width: 50px;
+        }
+      }
+
+      .itemInfo {
+        grid-column: 1 / span 2;
+      }
+
+      #itemImgBelowWidth {
+        border: 3px solid black;
+        width: 200px;
+        height: 200px;
+        box-shadow: 3px 3px 8px 5px rgba(0, 0, 0, 0.7);
+      }
+    }
+  }
+}
+
+@media (max-width: 470px) {
+  .cardInfoContainer {
+    .itemsCard {
+      .finderInfo {
+        grid-column: 2;
+        grid-row: 1;
+        .finderImg {
+          margin-top: 1em;
+          width: 50px;
+        }
+      }
+
+      .itemInfo {
+        grid-column: 1 / span 2;
+      }
+
+      #itemImgBelowWidth {
+        border: 3px solid black;
+        width: 100px;
+        height: 100px;
         box-shadow: 3px 3px 8px 5px rgba(0, 0, 0, 0.7);
       }
     }

@@ -7,18 +7,20 @@
   #searchBarContainer {
     display: flex;
     justify-content: center;
-  }
 
-  #searchBar {
-    display: grid;
-    grid-template-columns: 1fr 1.5fr 1fr;
+    #searchBar {
+      #searchBarInnerContainer {
+        display: grid;
+        grid-template-columns: 1fr 1.5fr 1fr;
+      }
 
-    #formBasicSearchbar {
-      border-radius: 0;
-    }
+      #formBasicSearchbar {
+        border-radius: 0;
+      }
 
-    #searchBarButton {
-      border-radius: 0;
+      #searchBarButton {
+        border-radius: 0;
+      }
     }
   }
 
@@ -42,11 +44,53 @@
   }
 }
 
+@media (max-width: 1400px) {
+  #indexSection {
+    #indexContainer {
+      grid-template-columns: 125px 1fr 125px 1fr;
+    }
+  }
+}
+
 @media (max-width: 1000px) {
   #indexSection {
     #indexContainer {
       border: 5px solid cyan;
       grid-template-columns: repeat(2, 1fr);
+    }
+  }
+}
+
+@media (max-width: 900px) {
+  #indexSection {
+    #indexContainer {
+      border: 5px solid cyan;
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+@media (max-width: 550px) {
+  body {
+    max-width: 550px;
+
+    #indexSection {
+      #searchBar {
+        border: 5px solid red;
+        display: flex;
+        justify-content: flex-start;
+
+        #searchBarInnerContainer {
+          border: 5px solid green;
+          width: 100%;
+        }
+
+        #filterListContainer {
+          #filterList {
+            //
+          }
+        }
+      }
     }
   }
 }

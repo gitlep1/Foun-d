@@ -51,28 +51,28 @@ const IndexContainer = ({ user, users, authenticated }) => {
     <section id="indexSection">
       <aside id="searchBarContainer">
         <Form id="searchBar">
-          <Dropdown>
-            <Dropdown.Toggle variant="dark" id="filterList">
-              Advanced Search
-            </Dropdown.Toggle>
+          <section id="searchBarInnerContainer">
+            <Dropdown id="filterListContainer">
+              <Dropdown.Toggle variant="dark">Advanced Search</Dropdown.Toggle>
 
-            <Dropdown.Menu>
-              <h1>Test</h1>
-              <Button>Filter Search</Button>
-            </Dropdown.Menu>
-          </Dropdown>
-          <Form.Group controlId="formBasicSearchbar">
-            <Form.Control
-              type="text"
-              name="itemName"
-              placeholder="Item Name"
-              onChange={handleChange}
-              value={itemName}
-            />
-          </Form.Group>
-          <Button variant="success" id="searchBarButton">
-            Search
-          </Button>
+              <Dropdown.Menu id="filterList">
+                <h1>Test</h1>
+                <Button variant="success">Filter Search</Button>
+              </Dropdown.Menu>
+            </Dropdown>
+            <Form.Group controlId="formBasicSearchbar">
+              <Form.Control
+                type="text"
+                name="itemName"
+                placeholder="Item Name"
+                onChange={handleChange}
+                value={itemName}
+              />
+            </Form.Group>
+            <Button variant="success" id="searchBarButton">
+              Search
+            </Button>
+          </section>
         </Form>
       </aside>
       <br />

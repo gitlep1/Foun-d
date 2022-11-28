@@ -95,7 +95,7 @@ const RenderIndex = ({
             <Button
               variant="success"
               onClick={() => {
-                navigate(`/Found/${itemFound.id}`);
+                navigate(`/show/${itemFound.id}`);
               }}
             >
               More Info
