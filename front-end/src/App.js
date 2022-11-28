@@ -146,16 +146,19 @@ export default function App() {
               }
             />
             <Route path="/new" element={<Createpage user={user} />} />
-            <Route path="/show/:itemId" element={<Showpage users={users} />} />
-            <Route path="/edit/:itemId" element={<Editpage user={user.id} />} />
+            <Route path="/newitem" element={<NewItemForm user={user} />} />
             <Route path="/about" element={<About />} />
             <Route path="/faq" element={<FAQ />} />
+            <Route
+              path="/show/:itemId"
+              element={<ShowItem user={user} items={items} />}
+            />
+            <Route path="/edit/:itemId" element={<Editpage user={user.id} />} />
             <Route path="/:userId/settings" element={<NavBar user={user} />} />
             <Route
               path="/:userId/viewsettings"
               element={<ViewUserSettings user={user} />}
             />
-            <Route path="/newitem" element={<NewItemForm user={user} />} />
             <Route path="/:userId/edit" element={<Edit user={user} />} />
           </Routes>
         </main>
