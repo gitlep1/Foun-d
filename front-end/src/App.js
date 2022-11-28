@@ -15,13 +15,13 @@ import FAQ from "./Components/FAQ/FAQ";
 import Homepage from "./Pages/Home/Home";
 import Indexpage from "./Pages/Items/Index/Index";
 import Createpage from "./Pages/Items/Create/New";
-import Showpage from "./Pages/Items/Show/Show";
+// import Showpage from "./Pages/Items/Show/Show";
+import ShowItem from "./Components/Items/Show/ShowItem";
 import About from "./Pages/About/About";
 
 // Styling Imports
 import "./App.scss";
 import { Nav } from "react-bootstrap";
-
 
 export default function App() {
   const navigate = useNavigate();
@@ -29,6 +29,7 @@ export default function App() {
 
   const [user, setUser] = useState({});
   const [users, setUsers] = useState([]);
+  const [items, setItems] = useState([]);
   const [authenticated, setAuthenticated] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -42,6 +43,7 @@ export default function App() {
     }
 
     getUsers();
+    getItems();
 
     const UsersInterval = setInterval(() => {
       getUsers();
@@ -53,6 +55,13 @@ export default function App() {
   const getUsers = async () => {
     await axios.get(`${API}/users`).then((res) => {
       setUsers(res.data);
+    });
+  };
+
+  const getItems = async () => {
+    await axios.get(`${API}/items`).then((res) => {
+      setItems(res.data);
+      // console.log(res.data);
     });
   };
 
@@ -110,7 +119,11 @@ export default function App() {
             <Route path="/" element={<Homepage />} />
             <Route path="/index" element={<Indexpage user={user} />} />
             <Route path="/new" element={<Createpage user={user} />} />
-            <Route path="/show/:itemId" element={<Showpage users={users} />} />
+            {/* <Route path="/show/:itemId" element={<Showpage users={users} />} /> */}
+            <Route
+              path="/show/:itemId"
+              element={<ShowItem users={users} items={items} />}
+            />
             <Route path="/about" element={<About />} />
             <Route path="/faq" element={<FAQ />} />
             <Route path="/:userId/settings" element={<NavBar user={user} />} />
