@@ -10,6 +10,8 @@ import SideBar from "./Components/NavBar/Sidebar/SideBar";
 import MyItems from "./Components/Accounts/Profile/MyItems/MyItems";
 import Chatbox from "./Components/Chatbox/Chatbox";
 import FAQ from "./Components/FAQ/FAQ";
+import ViewUserSettings from "./Components/Accounts/EditAccount/ViewUserSettings";
+import NewItemForm from "./Components/Items/Create/NewItemForm";
 
 // Page Imports
 import Homepage from "./Pages/Home/Home";
@@ -17,9 +19,11 @@ import Indexpage from "./Pages/Items/Index/Index";
 import Createpage from "./Pages/Items/Create/New";
 import Showpage from "./Pages/Items/Show/Show";
 import About from "./Pages/About/About";
+import Edit from "./Components/Accounts/EditAccount/Edit";
 
 // Styling Imports
 import "./App.scss";
+
 
 
 export default function App() {
@@ -113,6 +117,9 @@ export default function App() {
             <Route path="/about" element={<About />} />
             <Route path="/faq" element={<FAQ />} />
             <Route path="/:userId/settings" element={<NavBar user={user} />} />
+						<Route path="/:userId/viewsettings" element={<ViewUserSettings user={user} />} />
+						<Route path="/newitem" element={<NewItemForm user={user} />} />
+						<Route path="/:userId/edit" element={<Edit user={user} />} />
           </Routes>
         </main>
       </section>
