@@ -1,24 +1,36 @@
-import React from "react";
-import "./About.scss";
+import React from 'react';
+import './About.scss';
 
 export default function About() {
   return (
-     <div id="about-div">
-        <h1 id="about-heading">Meet The Devs!</h1>
- 				<div>
-          <h2 id="aboutus-heading">About Us:</h2>
-          <p id="aboutus-heading"> We are a group of Jr. Software Developers currently enrolled at Pursuit. As our journey at Pursuit comes to an end we are showing off all that we have learn with this capstone project. Foun'd is an idea that we hatched when trying to find a problem that we would like to solve.   </p>
-          <p></p>
+    <div>
+			        <h1 id="about-heading">Meet The Devs!</h1>
+							<div>
+				<h2 id="aboutus-heading">About Us:</h2>
+          <p id="aboutus-heading">
+            {' '}
+            We are a group of Jr. Software Developers currently enrolled at
+            Pursuit. As our journey at Pursuit comes to an end we are showing
+            off all that we have learned with this capstone project. Foun'd is an
+            idea that we hatched when trying to find a problem that we would
+            like to solve.{' '}
+          </p>
         </div>
+			<div id='meet-div'>
+        
         <div id="dev-div">
           <h4 id="name-headings">Candace Garvin</h4>
           <img
-            scr="https://avatars.githubusercontent.com/u/98069665?v=4"
+            className="about-page-img"
+            src="https://avatars.githubusercontent.com/u/98069665?v=4"
             alt="Candace"
-          ></img>
+          />
           <h5 id="title-headings">Title: Jr. Software Engineer</h5>
-          <a id="github-link" href="https://github.com/CandaceNia">
-            {" "}
+          <a
+            id="github-link"
+            href="https://github.com/CandaceNia"
+          >
+            {' '}
             Candace's Github
           </a>
           <p className="bioText">
@@ -34,12 +46,16 @@ export default function About() {
         <div id="dev-div">
           <h4 id="name-headings">Jan Matais</h4>
           <img
-            scr="https://avatars.githubusercontent.com/u/98069665?v=4"
+            className="about-page-img"
+            src="https://avatars.githubusercontent.com/u/96319078?v=4"
             alt="Jan"
-          ></img>
+          />
           <h5 id="title-headings">Title: Jr. Software Engineer</h5>
-          <a id="github-link" href="https://github.com/JC-MT">
-            {" "}
+          <a
+            id="github-link"
+            href="https://github.com/JC-MT"
+          >
+            {' '}
             Jan's Github
           </a>
           <p className="bioText"></p>
@@ -47,12 +63,16 @@ export default function About() {
         <div id="dev-div">
           <h4 id="name-headings">Antonio Shivers</h4>
           <img
-            scr="https://avatars.githubusercontent.com/u/98069665?v=4"
+            className="about-page-img"
+            src="https://media-exp1.licdn.com/dms/image/C4D03AQHX4yDmG5XwkA/profile-displayphoto-shrink_400_400/0/1643389553985?e=1675296000&v=beta&t=Los5_dl_h_Okf8-j6Wag7ARydd0dRqyh_dJpc-5o86c"
             alt="Antonio"
-          ></img>
+          />
           <h5 id="title-headings">Title: Jr. Software Engineer</h5>
-          <a id="github-link" href="https://github.com/gitlep1">
-            {" "}
+          <a
+            id="github-link"
+            href="https://github.com/gitlep1"
+          >
+            {' '}
             Antonio's Github
           </a>
           <p className="bioText"></p>
@@ -60,14 +80,21 @@ export default function About() {
         <div id="dev-div">
           <h4 id="name-headings">Isaac Gonzalez</h4>
           <img
-            scr="https://avatars.githubusercontent.com/u/98069665?v=4"
+            className="about-page-img"
+            src="https://avatars.githubusercontent.com/u/98069665?v=4"
             alt="Isaac"
-          ></img>
+          />
           <h5 id="title-headings">Title: Jr. Software Engineer</h5>
-          <a id="github-link" href="https://github.com/0IG"> Issac's Github</a>
+          <a
+            id="github-link"
+            href="https://github.com/0IG"
+          >
+            {' '}
+            Issac's Github
+          </a>
           <p className="bioText"></p>
-           
-        </div> 
-      </div> 
+        </div>
+      </div>
+    </div>
   );
 }
