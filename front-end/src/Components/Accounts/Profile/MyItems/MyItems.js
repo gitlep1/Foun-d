@@ -81,13 +81,17 @@ const MyItems = ({ user, isOpen, setIsOpen, setModel}) => {
 
   const getTotalItems = () => {
     let total = 0;
-
-    userItems.map((items) => {
+console.log(userItems)
+  if (userItems){
+	  userItems.map((items) => {
       if (user.id === items.founduserid) {
         total += 1;
       }
       return total;
     });
+	}else {
+		return null;
+	};
 
     return total;
   };

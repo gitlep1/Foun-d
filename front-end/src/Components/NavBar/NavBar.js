@@ -17,10 +17,11 @@ const NavBar = ({
   return (
     <section className="nav-section">
       <div className="center-nav">
+			
       <h3 className="text-nav">
           <Link to="/">Home</Link>
         </h3>
-        <Link to="/" className="logoLink">
+				<Link to="/" className="logoLink">
           <img
             className="logo"
             src={Found4}
