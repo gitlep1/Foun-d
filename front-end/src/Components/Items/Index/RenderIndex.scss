@@ -1,154 +1,289 @@
 .cardInfoContainer {
-	height: fit-content;
-
+  height: fit-content;
   .itemsCard {
-		background-color: #e4deae;
-		padding: 5px;
-		gap: 5px;
-		border: none;
-		height: fit-content;
-		width: fit-content;
-		display: flex;
-		flex-direction: row;
+    background-color: #E4DEAE;
+    padding: 5px;
+    gap: 5px;
+    border: none;
+    // height: 350px;
+    // width: 350px;
+    display: flex;
+    flex-direction: row;
     // display: grid;
-    // grid-template-columns: repeat(2, 1fr);
+    // grid-template-columns: 1;
     // margin-bottom: 3%;
     // margin-right: 3%;
     // margin-left: 5em;
     // box-shadow: 3px 3px 8px 5px rgba(0, 0, 0, 0.7);
-
     // &:hover {
     //   transition: 1s;
     //   transform: scale(1.03);
     // }
-
     // .finderInfo {
     //   grid-row: 2;
-      // display: flex;
-		#foundby-tag{
-			display: flex;
-			flex-direction: row;
-			place-items: center;
-
-		}
-      .finderImg {
-        // margin-top: 1em;
-        width: 50px;
-				height: fit-content;
-      }
+    // display: flex;
+    #foundby-tag {
+      display: flex;
+      flex-direction: row;
+      place-items: center;
+    }
+    .finderImg {
+      // margin-top: 1em;
+      width: 50px;
+      height: fit-content;
+    }
     // }
-		.itemInfo{
-			padding: 5px;
-			grid-row: 2;
-		}
-		.itemInfo p {
-			margin: 0%;
-			padding: 2px;
-		}
-		#foundby-tag{
-			margin: 0%;
-			margin-top: 5px;
-			// grid-column: 2;
-		}
+    .itemInfo {
+      padding: 5px;
+      grid-row: 2;
+    }
+    .itemInfo p {
+      margin: 0%;
+      padding: 2px;
+    }
+    #foundby-tag {
+      margin: 0%;
+      margin-top: 5px;
+      // grid-column: 2;
+    }
   }
+  // use later if you want the current logged in user's items to highlight \\
+  #itemImgContainer {
+    width: 200px;
+    height: 200px;
+    border-radius: 1%;
+    // box-shadow: 3px 3px 8px 5px rgba(0, 0, 0, 0.7);
+  }
+  .itemImg {
+    width: 200px;
+    height: 200px;
+    border-radius: 100%;
+    box-shadow: 3px 3px 8px 5px rgba(0, 0, 0, 0.7);
+  }
+  .itemInfo {
+    text-align: left;
+  }
+  // @media (max-width: 1000px) {
+  //   .cardInfoContainer {
+  //     .itemsCard {
+  //       .finderInfo {
+  //         grid-column: 2;
+  //         grid-row: 1;
+  //         .finderImg {
+  //           margin-top: 1em;
+  //           width: 50px;
+  //         }
+  //       }
+  //       .itemInfo {
+  //         grid-column: 1 / span 2;
+  //       }
+  //       #itemImgBelowWidth {
+  //         border: 3px solid black;
+  //         width: 200px;
+  //         height: 200px;
+  //         box-shadow: 3px 3px 8px 5px rgba(0, 0, 0, 0.7);
+  //       }
+  //     }
+  //   }
+  // }
+  // @media (max-width: 900px) {
+  //   .cardInfoContainer {
+  //     .itemsCard {
+  //       .finderInfo {
+  //         grid-column: 2;
+  //         grid-row: 1;
+  //         .finderImg {
+  //           margin-top: 1em;
+  //           width: 50px;
+  //         }
+  //       }
+  //       .itemInfo {
+  //         grid-column: 1 / span 2;
+  //       }
+  //       #itemImgBelowWidth {
+  //         border: 3px solid black;
+  //         width: 200px;
+  //         height: 200px;
+  //         box-shadow: 3px 3px 8px 5px rgba(0, 0, 0, 0.7);
+  //       }
+  //     }
+  //   }
+  // }
+  // @media (max-width: 470px) {
+  //   .cardInfoContainer {
+  //     .itemsCard {
+  //       .finderInfo {
+  //         grid-column: 2;
+  //         grid-row: 1;
+  //         .finderImg {
+  //           margin-top: 1em;
+  //           width: 50px;
+  //         }
+  //       }
+  //       .itemInfo {
+  //         grid-column: 1 / span 2;
+  //       }
+  //       #itemImgBelowWidth {
+  //         border: 3px solid black;
+  //         width: 100px;
+  //         height: 100px;
+  //         box-shadow: 3px 3px 8px 5px rgba(0, 0, 0, 0.7);
+  //       }
+  //     }
+  //   }
 }
+// .cardInfoContainer {
+// 	height: fit-content;
 
-// use later if you want the current logged in user's items to highlight \\
+//   .itemsCard {
+// 		background-color: #e4deae;
+// 		padding: 5px;
+// 		gap: 5px;
+// 		border: none;
+// 		height: fit-content;
+// 		width: fit-content;
+// 		display: flex;
+// 		flex-direction: row;
+//     // display: grid;
+//     // grid-template-columns: repeat(2, 1fr);
+//     // margin-bottom: 3%;
+//     // margin-right: 3%;
+//     // margin-left: 5em;
 
-// .usersItem {
-//   border: 5px solid rgb(16, 248, 101);
-// }
+//     // &:hover {
+//     //   transition: 1s;
+//     //   transform: scale(1.03);
+//     // }
 
-#itemImgContainer {
-  width: 200px;
-  height: 200px;
-  border-radius: 1%;
-  // box-shadow: 3px 3px 8px 5px rgba(0, 0, 0, 0.7);
-}
-.itemImg{
-	width: 200px;
-  height: 200px;
-	border-radius: 100%;
-}
+//     // .finderInfo {
+//     //   grid-row: 2;
+//       // display: flex;
+// 		#foundby-tag{
+// 			display: flex;
+// 			flex-direction: row;
+// 			place-items: center;
 
-.itemInfo{
-	text-align: left;
-}
-
-// @media (max-width: 1000px) {
-//   .cardInfoContainer {
-//     .itemsCard {
-//       .finderInfo {
-//         grid-column: 2;
-//         grid-row: 1;
-//         .finderImg {
-//           margin-top: 1em;
-//           width: 50px;
-//         }
+// 		}
+//       .finderImg {
+//         // margin-top: 1em;
+//         width: 50px;
+// 				height: fit-content;
 //       }
-
-//       .itemInfo {
-//         grid-column: 1 / span 2;
-//       }
-
-//       #itemImgBelowWidth {
-//         border: 3px solid black;
-//         width: 200px;
-//         height: 200px;
-//         box-shadow: 3px 3px 8px 5px rgba(0, 0, 0, 0.7);
-//       }
-//     }
+//     // }
+// 		.itemInfo{
+// 			padding: 5px;
+// 			grid-row: 2;
+// 		}
+// 		.itemInfo p {
+// 			margin: 0%;
+// 			padding: 2px;
+// 		}
+// 		#foundby-tag{
+// 			margin: 0%;
+// 			margin-top: 5px;
+// 			// grid-column: 2;
+// 		}
 //   }
 // }
 
-// @media (max-width: 900px) {
-//   .cardInfoContainer {
-//     .itemsCard {
-//       .finderInfo {
-//         grid-column: 2;
-//         grid-row: 1;
-//         .finderImg {
-//           margin-top: 1em;
-//           width: 50px;
-//         }
-//       }
+// // use later if you want the current logged in user's items to highlight \\
 
-//       .itemInfo {
-//         grid-column: 1 / span 2;
-//       }
+// // .usersItem {
+// //   border: 5px solid rgb(16, 248, 101);
+// // }
 
-//       #itemImgBelowWidth {
-//         border: 3px solid black;
-//         width: 200px;
-//         height: 200px;
-//         box-shadow: 3px 3px 8px 5px rgba(0, 0, 0, 0.7);
-//       }
-//     }
-//   }
+// #itemImgContainer {
+//   width: 200px;
+//   height: 200px;
+//   border-radius: 1%;
+//   // box-shadow: 3px 3px 8px 5px rgba(0, 0, 0, 0.7);
+// }
+// .itemImg{
+// 	width: 200px;
+//   height: 200px;
+// 	border-radius: 100%;
+// 	box-shadow: 3px 3px 8px 5px rgba(0, 0, 0, 0.7);
+
 // }
 
-// @media (max-width: 470px) {
-//   .cardInfoContainer {
-//     .itemsCard {
-//       .finderInfo {
-//         grid-column: 2;
-//         grid-row: 1;
-//         .finderImg {
-//           margin-top: 1em;
-//           width: 50px;
-//         }
-//       }
-
-//       .itemInfo {
-//         grid-column: 1 / span 2;
-//       }
-
-//       #itemImgBelowWidth {
-//         border: 3px solid black;
-//         width: 100px;
-//         height: 100px;
-//         box-shadow: 3px 3px 8px 5px rgba(0, 0, 0, 0.7);
-//       }
-//     }
-//   }
+// .itemInfo{
+// 	text-align: left;
 // }
+
+// // @media (max-width: 1000px) {
+// //   .cardInfoContainer {
+// //     .itemsCard {
+// //       .finderInfo {
+// //         grid-column: 2;
+// //         grid-row: 1;
+// //         .finderImg {
+// //           margin-top: 1em;
+// //           width: 50px;
+// //         }
+// //       }
+
+// //       .itemInfo {
+// //         grid-column: 1 / span 2;
+// //       }
+
+// //       #itemImgBelowWidth {
+// //         border: 3px solid black;
+// //         width: 200px;
+// //         height: 200px;
+// //         box-shadow: 3px 3px 8px 5px rgba(0, 0, 0, 0.7);
+// //       }
+// //     }
+// //   }
+// // }
+
+// // @media (max-width: 900px) {
+// //   .cardInfoContainer {
+// //     .itemsCard {
+// //       .finderInfo {
+// //         grid-column: 2;
+// //         grid-row: 1;
+// //         .finderImg {
+// //           margin-top: 1em;
+// //           width: 50px;
+// //         }
+// //       }
+
+// //       .itemInfo {
+// //         grid-column: 1 / span 2;
+// //       }
+
+// //       #itemImgBelowWidth {
+// //         border: 3px solid black;
+// //         width: 200px;
+// //         height: 200px;
+// //         box-shadow: 3px 3px 8px 5px rgba(0, 0, 0, 0.7);
+// //       }
+// //     }
+// //   }
+// // }
+
+// // @media (max-width: 470px) {
+// //   .cardInfoContainer {
+// //     .itemsCard {
+// //       .finderInfo {
+// //         grid-column: 2;
+// //         grid-row: 1;
+// //         .finderImg {
+// //           margin-top: 1em;
+// //           width: 50px;
+// //         }
+// //       }
+
+// //       .itemInfo {
+// //         grid-column: 1 / span 2;
+// //       }
+
+// //       #itemImgBelowWidth {
+// //         border: 3px solid black;
+// //         width: 100px;
+// //         height: 100px;
+// //         box-shadow: 3px 3px 8px 5px rgba(0, 0, 0, 0.7);
+// //       }
+// //     }
+// //   }
+// // }

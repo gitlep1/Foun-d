@@ -90,37 +90,35 @@ const [message, setMessage] = useState({text: ''})
 	}
 
 // THIS SENDS THE MESSAGE
-// onMessage(content) {
-//   if (this.selectedUser) {
-//     socket.emit("private message", {
-//       content,
-//       to: this.selectedUser.userID,
-//     });
-//     this.selectedUser.messages.push({
-//       content,
-//       fromSelf: true,
-//     });
-//   }
-// }
+const handleMessage = (content) => {
+  if (this.selectedUser) {
+    socket.emit("private message", {
+      content,
+      to: this.selectedUser.userID,
+    });
+    this.selectedUser.messages.push({
+      content,
+      fromSelf: true,
+    });
+  }
+}
 const handleTextChange = (event) => {
 	setMessage({ ...message, text: event.target.value })
 }
 
 const handleDelete = (conversation) => {
 	let findConversation = openConvo.filter((convo) => conversation.id !== convo.id)
-	console.log(findConversation)
 	setOpenConvo([...findConversation])
 }
 
  const displayOpenConversation = () => {
-	// console.log(openConvo)
 	let currentRight = 10.5
 	return ( 
 	<section>
 	{openConvo.map((conversation, index) => {
-	return (	
+	return (
 			<Dropdown drop="up" id='user2-conversation' style={{right: `${currentRight * (index + 1)}em`}}align='end'>
-				<Dropdown.Toggle variant="light" className="dropdown-conversation" >
+				<Dropdown.Toggle variant="light">
 					<img
 							className="cardProfileImg"
 							height={'50px'}
@@ -137,7 +135,7 @@ const handleDelete = (conversation) => {
 					<div id="chat-box-area">
 					</div>
 					<div id="chat-input-area">
-						<textarea value={message.text} onChange={handleTextChange}/>
+						<textarea placeholder='Type message here...' value={message.text} onChange={handleTextChange}/>
 						<Button variant='dark' >Send</Button>
 						{/* <img id='send-icon' height='100px' width='100px' src="https://thenounproject.com/api/private/icons/1323013/edit/?backgroundShape=SQUARE&backgroundShapeColor=%23000000&backgroundShapeOpacity=0&exportSize=752&flipX=false&flipY=false&foregroundColor=%23000000&foregroundOpacity=1&imageFormat=png&rotation=0&token=gAAAAABjhV8gs4boIO3rbrCzp96FcVyKCgv4OvgrWlM63MGpu63Ke6eMrGfvWPsPpV03lkE3tMQDh0lxTMOFiLgOjHnQ7nFxlzAYrMqq9CaPl499HVWNbZ8%3D"/> */}
 					</div>
