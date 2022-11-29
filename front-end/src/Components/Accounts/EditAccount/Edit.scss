@@ -15,15 +15,36 @@
   text-align: center;
 }
 
+<<<<<<< Updated upstream
 #user-data-li {
   border: black solid;
+=======
+#user-data-li{
+	border: black dotted ;
+	margin-left: 200px;
+	margin-right: 200px;
+	margin-bottom: 60px;
+	margin-top: 60px;
+>>>>>>> Stashed changes
 }
 #edit-user-info {
   text-align: center;
 }
 
+<<<<<<< Updated upstream
 .edit-info-input {
   margin-left: 20px;
   margin-bottom: 20px;
   margin-top: 20px;
 }
+=======
+.edit-info-input{
+	margin-left: 20px;
+	margin-bottom: 20px;
+	margin-top: 20px;
+}
+
+#user-data-li{
+	list-style-type: none;
+}
+>>>>>>> Stashed changes
