@@ -70,18 +70,19 @@ const RenderIndex = ({
   return (
     <>
       <section className="cardInfoContainer">
-			{width >= 1000 ? (
-        <img src={itemFound.itemimg} alt="item" className="itemImg" />
-      ) : null}
         <Card key={nanoid()} className="itemsCard">
-          {width >= 1000 ? null : (
+				{/* {width >= 1000 ? (
+        <img src={itemFound.itemimg} alt="item" className="itemImg" />
+      ) : null} */}
+          {/* {width >= 1000 ? null : (
             <Card.Img
               src={itemFound.itemimg}
               alt="item"
               id="itemImgBelowWidth"
               variant="top"
             />
-          )}
+          )} */}
+					<img src={itemFound.itemimg} alt="item" className="itemImg" />
           <Card.Body className="itemInfo">
             <Card.Title>
               <span>{itemFound.itemname}</span>
@@ -93,8 +94,8 @@ const RenderIndex = ({
               Neighborhood: <span>{itemFound.neighborhood}</span>
             </Card.Text>
 						<Card.Title id='foundby-tag'>
-              {/* <span>{getFinder()}</span>  */}
 							Found By:{" "}
+							<span>{getFinder()}</span> 
               <span>{getFinderName()}</span>
             </Card.Title>
             <Card.Text>

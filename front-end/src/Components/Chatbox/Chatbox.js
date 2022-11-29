@@ -7,6 +7,9 @@ import socket from './Socket.IO/socket';
 const Chatbox = ({ model, user, users, authenticated }) => {
 const [connected, setConnected] = useState([])
 const [messageHover, setMessageHover] = useState(false);
+const [openConvo, setOpenConvo] = useState([])
+const [message, setMessage] = useState({text: ''})
+
 
 
 	socket.on("connect", () => {
@@ -99,11 +102,59 @@ const [messageHover, setMessageHover] = useState(false);
 //     });
 //   }
 // }
+const handleTextChange = (event) => {
+	setMessage({ ...message, text: event.target.value })
+}
+
+const handleDelete = (conversation) => {
+	let findConversation = openConvo.filter((convo) => conversation.id !== convo.id)
+	console.log(findConversation)
+	setOpenConvo([...findConversation])
+}
+
+ const displayOpenConversation = () => {
+	// console.log(openConvo)
+	let currentRight = 10.5
+	return ( 
+	<section>
+	{openConvo.map((conversation, index) => {
+	return (	
+			<Dropdown drop="up" id='user2-conversation' style={{right: `${currentRight * (index + 1)}em`}}align='end'>
+				<Dropdown.Toggle variant="light" className="dropdown-conversation" >
+					<img
+							className="cardProfileImg"
+							height={'50px'}
+							width={'50px'}
+							src={conversation.profileimg}
+						/>
+					<span id="user2-name-chat">{conversation.username}</span>
+				</Dropdown.Toggle>
+				<Dropdown.Menu>
+				<section>
+					<div id='delete-chat'>
+					<div onClick={() => {handleDelete(conversation)}}>X</div>
+					</div>
+					<div id="chat-box-area">
+					</div>
+					<div id="chat-input-area">
+						<textarea value={message.text} onChange={handleTextChange}/>
+						<Button variant='dark' >Send</Button>
+						{/* <img id='send-icon' height='100px' width='100px' src="https://thenounproject.com/api/private/icons/1323013/edit/?backgroundShape=SQUARE&backgroundShapeColor=%23000000&backgroundShapeOpacity=0&exportSize=752&flipX=false&flipY=false&foregroundColor=%23000000&foregroundOpacity=1&imageFormat=png&rotation=0&token=gAAAAABjhV8gs4boIO3rbrCzp96FcVyKCgv4OvgrWlM63MGpu63Ke6eMrGfvWPsPpV03lkE3tMQDh0lxTMOFiLgOjHnQ7nFxlzAYrMqq9CaPl499HVWNbZ8%3D"/> */}
+					</div>
+				</section>
+				</Dropdown.Menu>
+			</Dropdown>
+		)})}
+	</section>
+	
+	)
+ }
+
 
   const renderUsersOnMessages = (user2) => {
     return (
       <section key={nanoid()} className="messageProfiles">
-        <Card className="messageCards">
+        <Card className="messageCards" onClick={() => {setOpenConvo([...openConvo, user2])}}>
           <Card.Img
             variant="top"
             className="cardProfileImg"
@@ -114,14 +165,14 @@ const [messageHover, setMessageHover] = useState(false);
               Name: <span>{connected.includes(user2.username) ? "✅": ''}{user2.username}</span>
             </Card.Title>
           </Card.Body>
-          <Button
+          {/* <Button
             variant="dark"
             onClick={() => {
               console.log(user2.username);
             }}
           >
             Message
-          </Button>
+          </Button> */}
         </Card>
       </section>
     );
@@ -137,7 +188,6 @@ const [messageHover, setMessageHover] = useState(false);
   // 		socket.off("connect_error");
   // 		console.log(socket)
   // }
-
 
   return authenticated && user ? (
     <section className="chatboxSection">
@@ -161,7 +211,8 @@ const [messageHover, setMessageHover] = useState(false);
           </Dropdown.Menu>
         </Dropdown>
         {/* <h4 id="messagesText">Messages</h4> */}
-      </section>
+				{openConvo.length > 0 ? displayOpenConversation() : ''}
+			</section>
     </section>
   ) : null;
 };
