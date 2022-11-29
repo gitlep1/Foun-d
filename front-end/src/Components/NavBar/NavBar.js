@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import Profile from "../Accounts/Profile/Profile";
 import "./NavBar.scss";
 
-import FoundLogo3 from "../../Images/FoundLogo3.png";
+import Found4 from "../../Images/Found4.png";
 
 const NavBar = ({
   user,
@@ -23,7 +23,7 @@ const NavBar = ({
         <Link to="/" className="logoLink">
           <img
             className="logo"
-            src={FoundLogo3}
+            src={Found4}
             alt="foundLogo"
           />
         </Link>

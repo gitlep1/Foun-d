@@ -1,3 +1,31 @@
-.input-style {
-  width: 300px;
+#newItemSection {
+  background-color: #e4deae;
+  display: block;
+  height: 100vh;
+  width: 100vw;
+
+  #innerNewItemDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  #lostItemImg {
+    width: 200px;
+    height: 200px;
+  }
+
+  .radioButtonsSection {
+    display: flex;
+    justify-content: space-evenly;
+  }
+}
+
+#newItemFormDiv {
+		display: block;
+		background-color: #e4deae;
+		width: 100vw;
+		height: 100vh;
+		text-align: center;
 }

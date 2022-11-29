@@ -1,4 +1,5 @@
 import './Edit.scss'
+import './ViewUserSettings.scss'
 import { useEffect, useState, React } from 'react'
 import axios from 'axios';
 import {useParams, Link} from 'react-router-dom';
@@ -41,7 +42,7 @@ return (
 
 	}
 	return (
-<div>
+<div id='user-settings-div'>
 	<h1 className="edit-settings-heading"> Edit User settings</h1>
 	<section id='user-info-section'>
 	<h3>Personal Info</h3>

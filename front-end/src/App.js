@@ -21,6 +21,7 @@ import Showpage from "./Pages/Items/Show/Show";
 import ShowItem from "./Components/Items/Show/ShowItem";
 import About from "./Pages/About/About";
 import Editpage from "./Pages/Items/Edit/Edit";
+import GiveawayPage from "./Pages/Items/Giveaway/Giveaway";
 import useModel from "./Hooks/useModel";
 
 import Edit from "./Components/Accounts/EditAccount/Edit";
@@ -31,7 +32,7 @@ export default function App() {
   const navigate = useNavigate();
   const API = process.env.REACT_APP_API_URL;
 
-  const [model, setModel, modelStructure] = useModel({ condition: "app" });
+  const [model, setModel, modelStructure] = useModel({condition: 'delete'});
 
   const [user, setUser] = useState({});
   const [users, setUsers] = useState([]);
@@ -53,6 +54,7 @@ export default function App() {
 
     const UsersInterval = setInterval(() => {
       getUsers();
+      getItems();
     }, 5000);
 
     return () => clearInterval(UsersInterval);
@@ -67,7 +69,6 @@ export default function App() {
   const getItems = async () => {
     await axios.get(`${API}/items`).then((res) => {
       setItems(res.data);
-      // console.log(res.data);
     });
   };
 
@@ -110,6 +111,7 @@ export default function App() {
         <MyItems
           user={user}
           isOpen={isOpen}
+					setModel={setModel}
           setIsOpen={setIsOpen}
           authenticated={authenticated}
         />
@@ -139,6 +141,16 @@ export default function App() {
               path="/index"
               element={
                 <Indexpage
+                  user={user}
+                  users={users}
+                  authenticated={authenticated}
+                />
+              }
+            />
+						<Route
+              path="/giveaway"
+              element={
+                <GiveawayPage
                   user={user}
                   users={users}
                   authenticated={authenticated}
