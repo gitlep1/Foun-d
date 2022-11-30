@@ -2,7 +2,7 @@ import "./Profile.scss";
 import { useState } from "react";
 import { Button, Dropdown } from "react-bootstrap";
 import { ToastContainer } from "react-toastify";
-import { useNavigate,Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import EditUserSettings from "../EditAccount/ViewUserSettings";
 
 import Signin from "./Signin";
@@ -20,7 +20,7 @@ const Profile = ({
   handleLogout,
   isOpen,
   setIsOpen,
-	model
+  model,
 }) => {
   const navigate = useNavigate();
   const [clickHere, setClickHere] = useState(false);
@@ -54,7 +54,7 @@ const Profile = ({
   };
 
   return (
-    <section className={`profileSection ${ model ? "model-0n" : ''}`}>
+    <section className={`profileSection ${model ? "model-0n" : ""}`}>
       <Dropdown>
         <Dropdown.Toggle variant="success" id="dropdown-basic">
           {authenticated ? (
@@ -75,22 +75,26 @@ const Profile = ({
 
         <Dropdown.Menu>
           {authenticated && user.id ? (
-            <section className="authenticatedUser">
+            <section className={`authenticatedUser`}>
               <div>{isHovering ? <h3>User Settings</h3> : null}</div>
               <div
-                className="accountSettingsImgCOntainer"
-                onMouseUp={handleMouseOver}
-                onMouseDown={handleMouseOut}
+                className="accountSettingsImgContainer"
+                onMouseOver={() => {
+                  setIsHovering(true);
+                }}
+                onMouseLeave={() => {
+                  setIsHovering(false);
+                }}
               >
                 <img
                   src={gearIcon}
                   alt="settings"
                   id="accountSettingsImg"
+                  className="settings-tooltip"
                   onClick={() => {
                     navigate(`/${user.id}/viewsettings`);
                   }}
                 />
-
               </div>
               <section className="profileStats">
                 <img
