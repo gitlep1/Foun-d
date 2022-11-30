@@ -12,6 +12,9 @@ const io = new Server(httpServer, {
   },
 });
 
+const crypto = require("crypto");
+const randomId = () => crypto.randomBytes(8).toString("hex");
+
 io.use((socket, next) => {
   const username = socket.handshake.auth.username;
   if (!username) {
@@ -36,11 +39,11 @@ io.on('connection', (socket) => {
     username: socket.username,
   });
 
-  socket.on("private message", ({ content, to }) => {
+  socket.on("private message", ({ sendThis, to }) => {
     socket.to(to).emit("private message", {
-      content,
+      sendThis,
       from: socket.id,
-    });
+    })
   });
  
   socket.on("disconnect", () => {
@@ -48,6 +51,7 @@ io.on('connection', (socket) => {
   });
 
   socket.on('new message', (msg) => {
+		console.log(msg)
       io.emit('send message', {message: msg, user: socket.username});
   });
 
