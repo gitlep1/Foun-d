@@ -45,7 +45,7 @@
       }
     }
 
-    .accountSettingsImgCOntainer {
+    .accountSettingsImgContainer {
       position: relative;
       left: 80%;
       display: flex;
@@ -70,17 +70,4 @@
       text-align: center;
     }
   }
-}
-
-.model-0n {
-		pointer-events: none 
-}
-
-// image input
-#display_image{
-	width: 375px;
-	height: 211px;
-	border: 1px solid black;
-	background-position: center;
-	background-size: cover;
 }

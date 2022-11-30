@@ -78,17 +78,22 @@ const Profile = ({
 
         <Dropdown.Menu>
           {authenticated && user.id ? (
-            <section className="authenticatedUser">
+            <section className={`authenticatedUser`}>
               <div>{isHovering ? <h3>User Settings</h3> : null}</div>
               <div
-                className="accountSettingsImgCOntainer"
-                onMouseUp={handleMouseOver}
-                onMouseDown={handleMouseOut}
+                className="accountSettingsImgContainer"
+                onMouseOver={() => {
+                  setIsHovering(true);
+                }}
+                onMouseLeave={() => {
+                  setIsHovering(false);
+                }}
               >
                 <img
                   src={gearIcon}
                   alt="settings"
                   id="accountSettingsImg"
+                  className="settings-tooltip"
                   onClick={() => {
                     navigate(`/${user.id}/viewsettings`);
                   }}
