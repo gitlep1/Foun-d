@@ -129,3 +129,68 @@
 .model-On {
 	pointer-events: none 
 }
+
+.messageCards:hover{
+	background-color: darkslategrey;
+	cursor: pointer;
+}
+
+#user2-conversation{
+	position: fixed;
+  bottom: 0px;
+  right: 10.5em;
+}
+
+#chat-box-area{
+	height: 15em;
+	width: 15em;
+}
+
+#chat-input-area{
+	display: flex;
+	gap: .5em;
+	padding: 2px;
+
+	textarea{
+		padding: 5px;
+		border-radius: 10px;
+	}
+}
+
+#send-icon{
+	border-radius: 100%;
+	:hover{
+		background-color: rgba(0, 0, 0, 0.4);
+	}
+}
+
+.dropdown-conversation{
+	width: 10em;
+}
+
+#user2-name-chat{
+	font-size: 25px;
+	padding-left: 8px;
+}
+
+
+#chat-section{
+	border: 5px solid red;
+}
+
+#delete-chat{
+display: flex;
+justify-content: flex-end;
+text-align: right;
+padding-right: 10px;
+
+div { 
+	width: fit-content;
+	height: fit-content;
+	border-radius: 100%;
+	&:hover{
+		cursor: pointer;
+		font-weight: 700;
+	}
+}
+}

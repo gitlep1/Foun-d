@@ -3,8 +3,12 @@ import "./Home.scss";
 const Home = () => {
   return (
     <section className="homepageSection">
-      <h1 className="home-welcome">You lost it, we foun'd it!</h1>
-      <h3 className="home-welcome">Look around for your lost items!</h3>
+      <h1 className="home-welcome">You lost it, we <em id="found">Foun'd</em> it! <br></br>
+						{/* Press the <img style={{ height: "50px" }}
+            src="https://static.thenounproject.com/png/1400400-200.png"
+						/> icon <br></br> */}
+						Look around for your lost items!</h1>
+
       {/* <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vulputate
         magna ut urna lobortis suscipit. Vestibulum auctor enim ut nibh

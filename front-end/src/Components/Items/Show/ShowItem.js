@@ -36,12 +36,14 @@ const ShowItem = ({ users, items }) => {
         console.log(item.id === Number(itemId));
         if (item.id === Number(itemId)) {
           return (
-            <div key={nanoid()}>
+            <div id='show-item-div' key={nanoid()}>
+							<img id='show-image' src={item.itemimg} alt="item" />
+							<div>
               <h1>Found by: {item.id}</h1>
               <h2>Title: {item.itemname}</h2>
-              <img src={item.itemimg} alt="item" />
-              <p>Description: {item.description}</p>
+              <h3>Description: {item.description}</h3>
               <h3>Neighborhood: {item.neighborhood}</h3>{" "}
+							</div>
             </div>
           );
         }

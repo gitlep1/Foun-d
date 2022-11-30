@@ -13,10 +13,11 @@
 // - isaac
 
 import React from "react";
+import "./FAQ.scss"
 
 export default function FAQ() {
   return (
-    <div>
+    <div id="faq-div">
       <h1>FREQUENTLY ASKED QUESTIONS</h1>
       <ol>How do I make money on Found It?</ol>
       <ul>

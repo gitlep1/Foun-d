@@ -1,6 +1,9 @@
 #about-heading {
     text-align: center;
-    padding-top: 15px
+    padding-top: 15px;
+		padding-bottom: 50px;
+		font-family: Impact, fantasy;
+		padding-left: 200px;
 }
 
 #name-headings{
@@ -28,8 +31,23 @@
 
 #dev-div {
     text-align: center;
-    padding-left: 200px;
-    padding-right: 200px;
+    padding-left: 150px;
+    padding-right: 100px;
     padding-top: 50px;
     padding-bottom: 50px;
+		border: 1px solid #000;
+		margin-left: 20px;
+		margin-bottom: 20px;
+}
+
+.about-page-img{
+height: 250px;
+}
+
+#meet-div{
+	width: 1100px;
+	// border: black outset 1px;
+	margin: auto;
+	display: grid;
+	grid-template-columns: repeat(2,1fr);
 }

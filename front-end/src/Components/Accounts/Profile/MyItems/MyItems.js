@@ -6,7 +6,7 @@ import axios from "axios";
 
 import "./MyItems.scss";
 
-const MyItems = ({ user, isOpen, setIsOpen}) => {
+const MyItems = ({ user, isOpen, setIsOpen, setModel}) => {
   const navigate = useNavigate();
   const API = process.env.REACT_APP_API_URL;
 
@@ -64,7 +64,8 @@ const MyItems = ({ user, isOpen, setIsOpen}) => {
                 variant="success"
                 onClick={() => {
 									setIsOpen(false)
-                  navigate(`/edit/${item.id}`);
+									setModel(true)
+                  navigate(`/show/${item.id}`);
                 }}
               >
                 DELETE
@@ -80,13 +81,17 @@ const MyItems = ({ user, isOpen, setIsOpen}) => {
 
   const getTotalItems = () => {
     let total = 0;
-
-    userItems.map((items) => {
+console.log(userItems)
+  if (userItems){
+	  userItems.map((items) => {
       if (user.id === items.founduserid) {
         total += 1;
       }
       return total;
     });
+	}else {
+		return null;
+	};
 
     return total;
   };
