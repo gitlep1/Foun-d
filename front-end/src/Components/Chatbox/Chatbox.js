@@ -3,7 +3,7 @@ import Conversation from "./Conversations/Conversations";
 import { useState } from "react";
 import { Button, Card, Dropdown } from "react-bootstrap";
 import { nanoid } from "nanoid";
-import socket from './Socket.IO/socket';
+import socket from "./Socket.IO/socket";
 
 const Chatbox = ({ model, user, users, authenticated }) => {
 const [connected, setConnected] = useState([])
@@ -159,7 +159,6 @@ function handleMessage(to, content){
 			}
 	}
 
-
   const renderUsersOnMessages = (user2) => {
     return (
       <section key={nanoid()} className="messageProfiles">
@@ -171,7 +170,11 @@ function handleMessage(to, content){
           />
           <Card.Body>
             <Card.Title>
-              Name: <span>{connected.includes(user2.username) ? "✅": ''}{user2.username}</span>
+              Name:{" "}
+              <span>
+                {connected.includes(user2.username) ? "✅" : ""}
+                {user2.username}
+              </span>
             </Card.Title>
           </Card.Body>
           {/* <Button
@@ -202,7 +205,7 @@ function handleMessage(to, content){
     <section className="chatboxSection">
       <div className={messageHover ? "customArrow sticky" : null}></div>
       <section
-        className={`chatboxContainer sticky ${ model ? "model-On" : ''}`}
+        className={`chatboxContainer sticky ${model ? "model-On" : ""}`}
         onMouseOver={hoverMouse}
         onMouseOut={unhoverMouse}
       >
@@ -213,15 +216,13 @@ function handleMessage(to, content){
           </Dropdown.Toggle>
           <Dropdown.Menu className="dropdownMenu">
             {users.map((user2) => {
-							
-							
               return renderUsersOnMessages(user2);
             })}
           </Dropdown.Menu>
         </Dropdown>
         {/* <h4 id="messagesText">Messages</h4> */}
-				{openConvo.length > 0 ? displayOpenConversation() : ''}
-			</section>
+        {openConvo.length > 0 ? displayOpenConversation() : ""}
+      </section>
     </section>
   ) : null;
 };
