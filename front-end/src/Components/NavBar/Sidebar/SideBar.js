@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./SideBar.scss";
 
-export default function SideBar({model}) {
+export default function SideBar({ model }) {
   const [effect, setEffect] = useState({
     home: false,
     index: false,
@@ -11,7 +11,7 @@ export default function SideBar({model}) {
     faq: false,
   });
 
-	const [show, setShow] = useState({
+  const [show, setShow] = useState({
     home: false,
     index: false,
     new: false,
@@ -20,7 +20,6 @@ export default function SideBar({model}) {
   });
 
   function startAnimation(icon) {
-
     setEffect({ ...effect, [icon]: true });
 
     setTimeout(() => {
@@ -35,7 +34,7 @@ export default function SideBar({model}) {
   }
 
   return (
-    <div className={`sidebar-container sticky ${ model ? "model-On" : ''}`}>
+    <div className={`sidebar-container sticky ${model ? "model-On" : ""}`}>
       <div>
         <Link to="/index" className={effect.index ? "pulse" : ""}>
           <img
@@ -43,30 +42,43 @@ export default function SideBar({model}) {
             onClick={() => {
               startAnimation("index");
             }}
-						onMouseOver={() => {
-							setShow({	
-								home: false,							
-								new: false,
-								giveaway: false,
-								faq: false, 
-								index: true })
-						}}
-						onMouseLeave={() => {
-							setShow({
-								home: false,
-								index: false,
-								new: false,
-								giveaway: false,
-								faq: false,
-							})
-						}}
+            onMouseOver={() => {
+              setShow({
+                home: false,
+                new: false,
+                giveaway: false,
+                faq: false,
+                index: true,
+              });
+            }}
+            onMouseLeave={() => {
+              setShow({
+                home: false,
+                index: false,
+                new: false,
+                giveaway: false,
+                faq: false,
+              });
+            }}
             style={{ height: "50px" }}
             src="https://static.thenounproject.com/png/1400400-200.png"
             alt="sidebaricon"
           />
-					<span className={`sidebar-tooltip ${ show.index ? `visible-sidebar-tooltip` : ``}`}>View All Items 🏁</span>
+          <span
+            className={`sidebar-tooltip ${
+              show.index ? `visible-sidebar-tooltip` : ``
+            }`}
+          >
+            View All Items 🏁
+          </span>
         </Link>
-				<span className={`sidebar-tooltip ${ show.index ? `visible-sidebar-tooltip` : ``}`}>View All Items 🏁</span>
+        <span
+          className={`sidebar-tooltip ${
+            show.index ? `visible-sidebar-tooltip` : ``
+          }`}
+        >
+          View All Items 🏁
+        </span>
       </div>
       <div className="icon-container">
         <Link to="/new" className={effect.new ? "pulse" : ""}>
@@ -75,33 +87,44 @@ export default function SideBar({model}) {
             onClick={() => {
               startAnimation("new");
             }}
-						onMouseOver={() => {
-							setShow({								
-								home: false,
-								index: false,
-								giveaway: false,
-								faq: false,
-								new: true 
-							})
-						}}
-						onMouseLeave={() => {
-							setShow({
-								home: false,
-								index: false,
-								new: false,
-								giveaway: false,
-								faq: false,
-							})
-						}}
+            onMouseOver={() => {
+              setShow({
+                home: false,
+                index: false,
+                giveaway: false,
+                faq: false,
+                new: true,
+              });
+            }}
+            onMouseLeave={() => {
+              setShow({
+                home: false,
+                index: false,
+                new: false,
+                giveaway: false,
+                faq: false,
+              });
+            }}
             style={{ height: "100px" }}
             src="https://static.thenounproject.com/png/1409569-200.png"
             alt="sidebaricon"
           />
-					<span className={`add-span sidebar-tooltip ${ show.new ? `visible-sidebar-tooltip` : ``}`}>Add New 🆕</span>
+          <span
+            className={`add-span sidebar-tooltip ${
+              show.new ? `visible-sidebar-tooltip` : ``
+            }`}
+          >
+            Add New 🆕
+          </span>
         </Link>
-				<span className={`add-span sidebar-tooltip ${ show.new ? `visible-sidebar-tooltip` : ``}`}>Add New 🆕</span>
-
-			</div>
+        <span
+          className={`add-span sidebar-tooltip ${
+            show.new ? `visible-sidebar-tooltip` : ``
+          }`}
+        >
+          Add New 🆕
+        </span>
+      </div>
       <div className="icon-container">
         <Link to="/giveaway" className={effect.giveaway ? "pulse" : ""}>
           <img
@@ -109,31 +132,43 @@ export default function SideBar({model}) {
             onClick={() => {
               startAnimation("giveaway");
             }}
-						onMouseOver={() => {
-							setShow({								
-								home: false,
-								index: false,
-								new: false, 
-								giveaway: true,
-								faq: false
-							 })
-						}}
-						onMouseLeave={() => {
-							setShow({
-								home: false,
-								index: false,
-								new: false,
-								giveaway: false,
-								faq: false,
-							})
-						}}
+            onMouseOver={() => {
+              setShow({
+                home: false,
+                index: false,
+                new: false,
+                giveaway: true,
+                faq: false,
+              });
+            }}
+            onMouseLeave={() => {
+              setShow({
+                home: false,
+                index: false,
+                new: false,
+                giveaway: false,
+                faq: false,
+              });
+            }}
             style={{ height: "50px" }}
             src="https://static.thenounproject.com/png/5014824-200.png"
             alt="sidebaricon"
           />
-									<span className={`sidebar-tooltip ${ show.giveaway ? `visible-sidebar-tooltip` : ``}`}>Giveaway 🎁</span>
+          <span
+            className={`sidebar-tooltip ${
+              show.giveaway ? `visible-sidebar-tooltip` : ``
+            }`}
+          >
+            Giveaway 🎁
+          </span>
         </Link>
-				<span className={`sidebar-tooltip ${ show.giveaway ? `visible-sidebar-tooltip` : ``}`}>Giveaway 🎁</span>
+        <span
+          className={`sidebar-tooltip ${
+            show.giveaway ? `visible-sidebar-tooltip` : ``
+          }`}
+        >
+          Giveaway 🎁
+        </span>
       </div>
       <div className="icon-container">
         <Link to="/faq" className={effect.faq ? "pulse" : ""}>
@@ -142,30 +177,43 @@ export default function SideBar({model}) {
             onClick={() => {
               startAnimation("faq");
             }}
-						onMouseOver={() => {
-							setShow({								
-								home: false,
-								index: false,
-								new: false,
-								giveaway: false, 
-								faq: true })
-						}}
-						onMouseLeave={() => {
-							setShow({
-								home: false,
-								index: false,
-								new: false,
-								giveaway: false,
-								faq: false,
-							})
-						}}
+            onMouseOver={() => {
+              setShow({
+                home: false,
+                index: false,
+                new: false,
+                giveaway: false,
+                faq: true,
+              });
+            }}
+            onMouseLeave={() => {
+              setShow({
+                home: false,
+                index: false,
+                new: false,
+                giveaway: false,
+                faq: false,
+              });
+            }}
             style={{ height: "100px" }}
             src="https://static.thenounproject.com/png/124666-200.png"
             alt="sidebaricon"
           />
-					<span className={`faq-span sidebar-tooltip ${ show.faq ? `visible-sidebar-tooltip` : ``}`}>FAQ's 🧐</span>
+          <span
+            className={`faq-span sidebar-tooltip ${
+              show.faq ? `visible-sidebar-tooltip` : ``
+            }`}
+          >
+            FAQ's 🧐
+          </span>
         </Link>
-				<span className={`faq-span sidebar-tooltip ${ show.faq ? `visible-sidebar-tooltip` : ``}`}>FAQ's 🧐</span>
+        <span
+          className={`faq-span sidebar-tooltip ${
+            show.faq ? `visible-sidebar-tooltip` : ``
+          }`}
+        >
+          FAQ's 🧐
+        </span>
       </div>
     </div>
   );

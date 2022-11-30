@@ -6,7 +6,7 @@ import axios from "axios";
 
 import "./MyItems.scss";
 
-const MyItems = ({ user, isOpen, setIsOpen, setModel}) => {
+const MyItems = ({ user, isOpen, setIsOpen, setModel }) => {
   const navigate = useNavigate();
   const API = process.env.REACT_APP_API_URL;
 
@@ -22,8 +22,8 @@ const MyItems = ({ user, isOpen, setIsOpen, setModel}) => {
       .catch((error) => {
         setError(error);
       });
-  }, [isOpen]);
-	
+  }, [isOpen]); // eslint-disable-line
+
   const renderUserItems = (user) => {
     return userItems.map((item) => {
       if (Object.values(item).includes(user.id)) {
@@ -45,26 +45,26 @@ const MyItems = ({ user, isOpen, setIsOpen, setModel}) => {
               <Button
                 variant="success"
                 onClick={() => {
-									setIsOpen(false)
+                  setIsOpen(false);
                   navigate(`/Found/${item.id}`);
                 }}
               >
                 VIEW
               </Button>
-							<Button
+              <Button
                 variant="success"
                 onClick={() => {
-									setIsOpen(false)
+                  setIsOpen(false);
                   navigate(`/edit/${item.id}`);
                 }}
               >
                 EDIT
               </Button>
-							<Button
+              <Button
                 variant="success"
                 onClick={() => {
-									setIsOpen(false)
-									setModel(true)
+                  setIsOpen(false);
+                  setModel(true);
                   navigate(`/show/${item.id}`);
                 }}
               >
@@ -81,17 +81,17 @@ const MyItems = ({ user, isOpen, setIsOpen, setModel}) => {
 
   const getTotalItems = () => {
     let total = 0;
-console.log(userItems)
-  if (userItems){
-	  userItems.map((items) => {
-      if (user.id === items.founduserid) {
-        total += 1;
-      }
-      return total;
-    });
-	}else {
-		return null;
-	};
+
+    if (userItems) {
+      userItems.map((items) => {
+        if (user.id === items.founduserid) {
+          total += 1;
+        }
+        return total;
+      });
+    } else {
+      return null;
+    }
 
     return total;
   };
