@@ -27,12 +27,13 @@ import useModel from "./Hooks/useModel";
 import Edit from "./Components/Accounts/EditAccount/Edit";
 // Styling Imports
 import "./App.scss";
+import FourOFour from "./Components/404/FourOFour";
 
 export default function App() {
   const navigate = useNavigate();
   const API = process.env.REACT_APP_API_URL;
 
-  const [model, setModel, modelStructure] = useModel({condition: 'delete'});
+  const [model, setModel, modelStructure] = useModel({ condition: "delete" });
 
   const [user, setUser] = useState({});
   const [users, setUsers] = useState([]);
@@ -111,7 +112,7 @@ export default function App() {
         <MyItems
           user={user}
           isOpen={isOpen}
-					setModel={setModel}
+          setModel={setModel}
           setIsOpen={setIsOpen}
           authenticated={authenticated}
         />
@@ -147,7 +148,7 @@ export default function App() {
                 />
               }
             />
-						<Route
+            <Route
               path="/giveaway"
               element={
                 <GiveawayPage
@@ -172,6 +173,8 @@ export default function App() {
               element={<ViewUserSettings user={user} />}
             />
             <Route path="/:userId/edit" element={<Edit user={user} />} />
+            <Route path="/404" element={<FourOFour />} />
+            <Route path="/*" element={<FourOFour />} />
           </Routes>
         </main>
       </section>
