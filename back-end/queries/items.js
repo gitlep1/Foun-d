@@ -18,36 +18,37 @@ const getItemsByID = async (id) => {
   }
 };
 
-const createItems = async ( 
-    userId,
-    itemName,
-    itemImg,
-    category,
-    description,
-    isFound,
-    request,
-    giveaway,
-    pinLocation,
-    neighborhood,
-    borough,
-    zipcode) => {
+const createItems = async (
+  userId,
+  itemName,
+  itemImg,
+  category,
+  description,
+  isFound,
+  request,
+  giveaway,
+  pinLocation,
+  neighborhood,
+  borough,
+  zipcode
+) => {
   try {
     const newItems = await db.one(
       "INSERT INTO items (userId, itemName, itemImg, category, description, isFound, request, giveaway, pinLocation, neighborhood, borough, zipcode) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING *",
-    [
-       userId,
-       itemName,
-       itemImg,
-       category,
-       description,
-       isFound,
-       request,
-       giveaway,
-       pinLocation,
-       neighborhood,
-       borough,
-       zipcode
-    ]
+      [
+        userId,
+        itemName,
+        itemImg,
+        category,
+        description,
+        isFound,
+        request,
+        giveaway,
+        pinLocation,
+        neighborhood,
+        borough,
+        zipcode,
+      ]
     );
     return newItems;
   } catch (error) {
@@ -56,19 +57,19 @@ const createItems = async (
 };
 
 const updateItems = async (
-    id,
-    userId,
-    itemName,
-    itemImg,
-    category,
-    description,
-    isFound,
-    request,
-    giveaway,
-    pinLocation,
-    neighborhood,
-    borough,
-    zipcode
+  id,
+  userId,
+  itemName,
+  itemImg,
+  category,
+  description,
+  isFound,
+  request,
+  giveaway,
+  pinLocation,
+  neighborhood,
+  borough,
+  zipcode
 ) => {
   try {
     const updateItem = await db.one(
@@ -86,7 +87,7 @@ const updateItems = async (
         neighborhood,
         borough,
         zipcode,
-        id
+        id,
       ]
     );
     return updateItem;
@@ -110,11 +111,10 @@ const deleteItems = async (id) => {
   }
 };
 
-
 module.exports = {
-    getAllItems,
-    getItemsByID,
-    createItems,
-    updateItems,
-    deleteItems
+  getAllItems,
+  getItemsByID,
+  createItems,
+  updateItems,
+  deleteItems,
 };
