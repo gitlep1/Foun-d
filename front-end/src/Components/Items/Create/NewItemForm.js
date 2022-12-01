@@ -21,7 +21,7 @@ const NewItemForm = ({ user }) => {
     pinlocation: "",
     neighborhood: "",
     borough: "",
-    zipcode: "",
+    zipcode: 0,
   });
 
   const [selectStatus, setSelectStatus] = useState("");

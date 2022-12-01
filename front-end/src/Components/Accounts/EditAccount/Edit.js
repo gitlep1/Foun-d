@@ -7,12 +7,11 @@ const API = process.env.REACT_APP_API_URL
 
 const Edit = () => {
   const API = process.env.REACT_APP_API_URL;
-
   const navigate = useNavigate();
-  let { index } = useParams();
+  let { userId } = useParams();
 
   const [user, setUser] = useState({
-    userName: "",
+    username: "",
     password: "",
     email: "",
     profileImg: "",
@@ -29,19 +28,19 @@ const Edit = () => {
 
   useEffect(() => {
     axios
-      .get(`${API}/users/${index}`)
+      .get(`${API}/users/${userId}`)
       .then((res) => {
-        setUser(res.data);
+        setUser(...res.data);
       })
       .catch();
-  }, [index]);
+  }, [userId]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
     axios
-      .put(`${API}/users/${index}`, user)
+      .put(`${API}/users/${userId}`, user)
       .then(() => {
-        navigate(`/users/${index}`);
+        navigate(`/users/${userId}`);
       })
       .catch((err) => {
         console.warn(err);
@@ -59,14 +58,14 @@ const Edit = () => {
               type="text"
               className="edit-info-input1"
               onChange={handleTextChange}
-              value={user.userName}
+              value={user.username}
             />
           </label>
           <br></br>
           <label htmlFor="password">
             Password
             <input
-              type="password"
+              type="text"
               className="edit-info-input"
               onChange={handleTextChange}
               value={user.password}
@@ -98,7 +97,7 @@ const Edit = () => {
             <input
               type="text"
               className="edit-info-input"
-              // value={user.zipcode}
+              value={user.zipcode}
               onChange={handleTextChange}
             />
           </label>

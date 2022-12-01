@@ -26,8 +26,14 @@
 }
 
 .input-style{
-	width: 450px;
+	width: 100%;
 	border-radius: 18px;
 	padding: 5px;
 	margin: 1px;
+}
+
+#button-edit-form{
+	display: flex;
+	gap: 5px;
+	padding-bottom: 2px;
 }

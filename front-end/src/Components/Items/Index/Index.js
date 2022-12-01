@@ -80,6 +80,7 @@ const IndexContainer = ({ user, users, authenticated }) => {
         {error && <p>{error}</p>}
         {foundItems.length > 0
           ? foundItems.map((itemFound) => {
+						console.log(foundItems)
               return (
                 <RenderIndex
                   key={nanoid()}

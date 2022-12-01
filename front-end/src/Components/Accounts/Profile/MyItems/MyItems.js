@@ -20,6 +20,7 @@ const MyItems = ({
   const [userItems, setUserItems] = useState([]);
   const [error, setError] = useState("");
 
+	console.log(userItems)
   useEffect(() => {
     getUsersFoundItems(user);
   }, [isOpen]); // eslint-disable-line
@@ -64,6 +65,9 @@ const MyItems = ({
                   <Card.Title>
                     Name: <span>{item.itemname}</span>
                   </Card.Title>
+									<Card.Text>
+                    Status: <span>{item.status}</span>
+                  </Card.Text>
                   <Card.Text>
                     Description: <span>{item.description}</span>
                   </Card.Text>

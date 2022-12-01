@@ -48,7 +48,7 @@ return (
 	<h3>Personal Info</h3>
 	<ul id='user-data-li'>
 	{userData}
-		<Link to='/:userId/edit'>
+		<Link to={`/${userId}/edit`}>
 		<button>
 			Edit
 		</button>

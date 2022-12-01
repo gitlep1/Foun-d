@@ -1,5 +1,6 @@
 import { useState, useEffect} from "react";
 import { Link, useNavigate, useParams} from "react-router-dom";
+import { Button } from "react-bootstrap";
 import axios from "axios";
 import "./EditItem.scss";
 import useModel from "../../../Hooks/useModel"
@@ -26,12 +27,24 @@ export default function EditItem({ user }){
     zipcode: "",
   });
 
+	const [status, setStatus] = useState({
+		status: ''
+	})
+
+	console.log(status)
 	useEffect(() => {
     axios
       .get(`${API}/items/${itemId}`)
       .then((res) => {
         setItem(res.data[0])
-      })
+      }).then(() => {
+				axios.get(`${API}/found/${itemId}`)
+				.then((res) => {
+					let correctItem = res.data.find((item) => item.id === Number(itemId))
+					// console.log('corrected item is edit page',correctItem)
+					setStatus({status: correctItem.status})
+				})
+			})
       .catch((err) => {
         console.log(err)
       })
@@ -41,16 +54,24 @@ export default function EditItem({ user }){
     setItem({ ...item, [event.target.id]: event.target.value });
   };
 
+	const handleStatusChange = (event) => {
+    setStatus({[event.target.id]: event.target.value });
+  };
+
   const handleSubmit = (event) => {
 		event.preventDefault();
 		if (item.userid === user){
 			axios
       .put(`${API}/items/${itemId}`, item)
       .then((res) => {
-				console.log(res)
         setItem(res.data);
-        navigate("/index");
-      })
+      }).then(() => {
+			axios
+      	.put(`${API}/found/${itemId}`, status)
+				.then((res) => {
+					navigate(`/show/${itemId}`);
+				})
+			})
       .catch((err) => {
         console.warn(err);
       });
@@ -73,16 +94,18 @@ export default function EditItem({ user }){
           src={ item.itemimg ? item.itemimg : `https://image.shutterstock.com/image-vector/sample-label-green-band-sign-260nw-1512261407.jpg`}
         />
       <form onSubmit={handleSubmit} id="edit-form">
-        <div>
-          <Link to={"/index"}>
-            <button>Back</button>
-          </Link>
-          <input type="submit" />
+        <div id='button-edit-form'>
+          <Button variant="dark" onClick={() => {navigate('/index')}}>
+            Back
+          </Button>
+					<Button type='submit' variant="success">
+            Edit
+          </Button>
         </div>
         <div>
           <label htmlFor="name">Name:</label>
           <input
-            id="itemName"
+            id="itemname"
             value={item.itemname}
             type="text"
             onChange={handleTextChange}
@@ -90,10 +113,25 @@ export default function EditItem({ user }){
             className="input-style"
           />
         </div>
+				<div>
+            <label htmlFor="status">Status:</label>
+            <select
+							id='status'
+              value={status.status}
+              onChange={handleStatusChange}
+              className="input-style"
+            >
+              <option value='Default'>--- Select Status  ---</option>
+              <option value="Active">Active (Item has no claims)</option>
+							<option value="Pending">Pending (Item has a claim request)</option>
+							<option value="Completed">Completed (Item returned to owner)</option>
+              <option value="Donated">Donated (Item has been disposed of or giving to charity)</option>
+            </select>
+          </div>
         <div>
           <label htmlFor="image">Image:</label>
           <input
-            id="itemImg"
+            id="itemimg"
             type="text"
             name="image"
             placeholder="http://"
