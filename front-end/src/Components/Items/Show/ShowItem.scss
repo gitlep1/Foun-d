@@ -1,18 +1,33 @@
 #showItemSection {
-	display: block;
-	background-color: #e4deae;
-	width: 100vw;
-	height: 100vh;
-	text-align: center;
-	align-items: center;
+  display: block;
+  background-color: #e4deae;
+  width: 100vw;
+  height: 100vh;
+  text-align: center;
+  align-items: center;
+
+  #show-item-div {
+    display: flex;
+    text-align: left;
+    align-items: center;
+    place-content: center;
+    gap: 25px;
+  }
+
+  #show-image {
+    height: 350px;
+    width: 350px;
+    border-radius: 100%;
+  }
 }
 
-#show-item-div{
-	display: flex;
-	text-align: left;
-	align-items: center;
-	place-content: center;
-	gap: 25px;
+#modalHeader {
+  align-self: center;
+}
+
+#modalBody {
+  text-align: center;
+  align-self: center;
 }
 
 #show-image{
@@ -24,4 +39,13 @@
 #claim-button{
 	width: 250px;
 	height: 40px;
+}
+#deleteItemImg {
+  align-self: center;
+  width: 450px;
+}
+
+#modalFooter {
+  display: flex;
+  justify-content: space-between;
 }

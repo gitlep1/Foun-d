@@ -11,20 +11,21 @@ import MyItems from "./Components/Accounts/Profile/MyItems/MyItems";
 import Chatbox from "./Components/Chatbox/Chatbox";
 import FAQ from "./Components/FAQ/FAQ";
 import ViewUserSettings from "./Components/Accounts/EditAccount/ViewUserSettings";
+import Edit from "./Components/Accounts/EditAccount/Edit";
 import NewItemForm from "./Components/Items/Create/NewItemForm";
+import ShowItem from "./Components/Items/Show/ShowItem";
 
 // Page Imports
 import Homepage from "./Pages/Home/Home";
 import Indexpage from "./Pages/Items/Index/Index";
 import Createpage from "./Pages/Items/Create/New";
-import Showpage from "./Pages/Items/Show/Show";
-import ShowItem from "./Components/Items/Show/ShowItem";
 import About from "./Pages/About/About";
 import Editpage from "./Pages/Items/Edit/Edit";
 import GiveawayPage from "./Pages/Items/Giveaway/Giveaway";
+
+// Hook imports
 import useModel from "./Hooks/useModel";
 
-import Edit from "./Components/Accounts/EditAccount/Edit";
 // Styling Imports
 import "./App.scss";
 
@@ -32,14 +33,18 @@ export default function App() {
   const navigate = useNavigate();
   const API = process.env.REACT_APP_API_URL;
 
-  const [model, setModel, modelStructure] = useModel({condition: 'delete'});
+  // const [model, setModel, modelStructure] = useModel({ handleDelete });
 
   const [user, setUser] = useState({});
   const [users, setUsers] = useState([]);
-  const [items, setItems] = useState([]);
+  const [deleteItem, setDeleteItem] = useState({});
   const [authenticated, setAuthenticated] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 	const [claimItem, setClaimItem] = useState({user: {}, item: ''})
+  const [show, setShow] = useState(false);
+
+  const handleShow = () => setShow(true);
+  const handleClose = () => setShow(false);
 
   useEffect(() => {
     const data = window.localStorage.getItem("Current_User");
@@ -51,11 +56,11 @@ export default function App() {
     }
 
     getUsers();
-    getItems();
+    // getItems();
 
     const UsersInterval = setInterval(() => {
       getUsers();
-      getItems();
+      // getItems();
     }, 5000);
 
     return () => clearInterval(UsersInterval);
@@ -67,11 +72,11 @@ export default function App() {
     });
   };
 
-  const getItems = async () => {
-    await axios.get(`${API}/items`).then((res) => {
-      setItems(res.data);
-    });
-  };
+  // const getItems = async () => {
+  //   await axios.get(`${API}/items`).then((res) => {
+  //     setItems(res.data);
+  //   });
+  // };
 
   const handleUser = (user) => {
     setUser(user);
@@ -105,7 +110,7 @@ export default function App() {
 
   return (
     <section id="outer-container">
-      {model ? modelStructure : ""}
+      {/* {model ? modelStructure : ""} */}
       <MyItemsSidebar
         pageWrapId={"page-wrap"}
         outerContainerId={"outer-container"}
@@ -117,9 +122,12 @@ export default function App() {
         <MyItems
           user={user}
           isOpen={isOpen}
-					setModel={setModel}
           setIsOpen={setIsOpen}
           authenticated={authenticated}
+          setDeleteItem={setDeleteItem}
+          handleShow={handleShow}
+          // handleItemDelete={handleItemDelete}
+          // setModel={setModel}
         />
       </MyItemsSidebar>
       <section id="page-wrap">
@@ -131,13 +139,13 @@ export default function App() {
           handleLogout={handleLogout}
           isOpen={isOpen}
           setIsOpen={setIsOpen}
-          model={model}
+          // model={model}
         />
-        <SideBar model={model} />
+        <SideBar /* model={model} */ />
         <Chatbox
 					claimItem={claimItem}
 					setClaimItem={setClaimItem}
-          model={model}
+          // model={model}
           user={user}
           users={users}
           authenticated={authenticated}
@@ -155,7 +163,7 @@ export default function App() {
                 />
               }
             />
-						<Route
+            <Route
               path="/giveaway"
               element={
                 <GiveawayPage
@@ -171,7 +179,16 @@ export default function App() {
             <Route path="/faq" element={<FAQ />} />
             <Route
               path="/show/:itemId"
-              element={<ShowItem handleClaim={handleClaim} user={user} users={users} items={items} />}
+              element={
+                <ShowItem
+                  users={users}
+									user={user}
+                  deleteItem={deleteItem}
+                  show={show}
+									handleClaim={handleClaim}
+									handleClose={handleClose}
+                />
+              }
             />
             <Route path="/edit/:itemId" element={<Editpage user={user.id} />} />
             <Route path="/:userId/settings" element={<NavBar user={user} />} />
