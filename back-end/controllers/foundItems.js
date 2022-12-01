@@ -4,7 +4,8 @@ const foundItems = express.Router();
 const {
   getAllUserFoundItems,
   getFoundItemByUserID,
-	updateFoundItems,
+  postNewFoundItem,
+  updateFoundItem,
   deleteFoundItem,
 } = require("../queries/foundItems");
 
@@ -36,24 +37,48 @@ foundItems.get("/:id", async (req, res) => {
   }
 });
 
+foundItems.post("/", async (req, res) => {
+  const newFoundItem = {
+    foundUserId: req.body.foundUserId,
+    itemsId: req.body.itemsId,
+    status: req.body.status,
+  };
+
+  const createFoundItem = await postNewFoundItem(
+    newFoundItem.foundUserId,
+    newFoundItem.itemsId,
+    newFoundItem.status
+  );
+
+  if (createFoundItem) {
+    console.log("=== POST found item", createFoundItem, "===");
+    res.status(201).json(createFoundItem);
+  } else {
+    res.status(404).send("found item was not created");
+  }
+});
+
 foundItems.put("/:id", async (req, res) => {
   const { id } = req.params;
 
-  const updatedStatusData = {
-		status: req.body.status,
+  const updatedFoundItemData = {
+    foundUserId: req.body.foundUserId,
+    itemsId: req.body.itemsId,
+    status: req.body.status,
   };
-	console.log(updatedStatusData)
 
-  const updatedFoundItems = await updateFoundItems(
+  const updateItemFound = await updateFoundItem(
     id,
-    updatedStatusData.status,
+    updatedFoundItemData.foundUserId,
+    updatedFoundItemData.itemsId,
+    updatedFoundItemData.status
   );
 
-  if (updatedFoundItems) {
-    console.log("=== PUT foundItems", updatedFoundItems, "===");
-    res.status(200).json(updatedFoundItems);
+  if (updateItemFound) {
+    console.log("=== PUT found item", updateItemFound, "===");
+    res.status(200).json(updateItemFound);
   } else {
-    res.status(404).send("items not found");
+    res.status(404).send("found item not updated");
   }
 });
 

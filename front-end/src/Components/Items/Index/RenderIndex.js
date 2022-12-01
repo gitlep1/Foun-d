@@ -71,18 +71,7 @@ const RenderIndex = ({
     <>
       <section className="cardInfoContainer">
         <Card key={nanoid()} className="itemsCard">
-				{/* {width >= 1000 ? (
-        <img src={itemFound.itemimg} alt="item" className="itemImg" />
-      ) : null} */}
-          {/* {width >= 1000 ? null : (
-            <Card.Img
-              src={itemFound.itemimg}
-              alt="item"
-              id="itemImgBelowWidth"
-              variant="top"
-            />
-          )} */}
-					<img src={itemFound.itemimg} alt="item" className="itemImg" />
+          <img src={itemFound.itemimg} alt="item" className="itemImg" />
           <Card.Body className="itemInfo">
             <Card.Title>
               <span>{itemFound.itemname}</span>
@@ -93,15 +82,14 @@ const RenderIndex = ({
             <Card.Text>
               Neighborhood: <span>{itemFound.neighborhood}</span>
             </Card.Text>
-						<Card.Title id='foundby-tag'>
-							Found By:{" "}
-							<span>{getFinder()}</span> 
+            <Card.Title id="foundby-tag">
+              Found By: <span>{getFinder()}</span>
               <span>{getFinderName()}</span>
             </Card.Title>
             <Card.Text>
               Rating: <span>{getFinderRating()}</span>
             </Card.Text>
-						<Button
+            <Button
               variant="success"
               onClick={() => {
                 navigate(`/show/${itemFound.id}`);
@@ -111,17 +99,6 @@ const RenderIndex = ({
             </Button>
             {/* <Button variant="dark">Message</Button> */}
           </Card.Body>
-          {/* <Card.Body className="finderInfo">
-            <Card.Title>
-              <span>{getFinder()}</span> 
-							Found By:{" "}
-              <span>{getFinderName()}</span>
-            </Card.Title>
-            <Card.Text>
-              Rating: <span>{getFinderRating()}</span>
-            </Card.Text>
-            <Button variant="dark">Message</Button>
-          </Card.Body> */}
         </Card>
       </section>
     </>
