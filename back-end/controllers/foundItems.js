@@ -4,6 +4,7 @@ const foundItems = express.Router();
 const {
   getAllUserFoundItems,
   getFoundItemByUserID,
+	updateFoundItems,
   deleteFoundItem,
 } = require("../queries/foundItems");
 
@@ -32,6 +33,27 @@ foundItems.get("/:id", async (req, res) => {
     res.status(200).json(getUserFoundItem);
   } else {
     res.status(404).send("user's foundItems not found");
+  }
+});
+
+foundItems.put("/:id", async (req, res) => {
+  const { id } = req.params;
+
+  const updatedStatusData = {
+		status: req.body.status,
+  };
+	console.log(updatedStatusData)
+
+  const updatedFoundItems = await updateFoundItems(
+    id,
+    updatedStatusData.status,
+  );
+
+  if (updatedFoundItems) {
+    console.log("=== PUT foundItems", updatedFoundItems, "===");
+    res.status(200).json(updatedFoundItems);
+  } else {
+    res.status(404).send("items not found");
   }
 });
 
