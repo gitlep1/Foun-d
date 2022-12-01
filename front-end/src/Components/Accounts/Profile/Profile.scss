@@ -56,10 +56,10 @@
         width: 30px;
 
         &:hover {
-          animation: spinGearIcon 0.5s linear;
+          animation: spinGearIcon 1s linear infinite;
           @keyframes spinGearIcon {
             100% {
-              transform: rotate(90deg);
+              transform: rotate(180deg);
             }
           }
         }
