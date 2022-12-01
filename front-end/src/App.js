@@ -39,6 +39,7 @@ export default function App() {
   const [items, setItems] = useState([]);
   const [authenticated, setAuthenticated] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+	const [claimItem, setClaimItem] = useState({user: {}, item: ''})
 
   useEffect(() => {
     const data = window.localStorage.getItem("Current_User");
@@ -97,6 +98,11 @@ export default function App() {
     setIsOpen(false);
   };
 
+	function handleClaim(userId, itemName){
+		let getUser = users.find((user) => user.id === userId)
+		setClaimItem({user: getUser, item: itemName})
+	}
+
   return (
     <section id="outer-container">
       {model ? modelStructure : ""}
@@ -129,6 +135,8 @@ export default function App() {
         />
         <SideBar model={model} />
         <Chatbox
+					claimItem={claimItem}
+					setClaimItem={setClaimItem}
           model={model}
           user={user}
           users={users}
@@ -163,7 +171,7 @@ export default function App() {
             <Route path="/faq" element={<FAQ />} />
             <Route
               path="/show/:itemId"
-              element={<ShowItem user={user} items={items} />}
+              element={<ShowItem handleClaim={handleClaim} user={user} users={users} items={items} />}
             />
             <Route path="/edit/:itemId" element={<Editpage user={user.id} />} />
             <Route path="/:userId/settings" element={<NavBar user={user} />} />

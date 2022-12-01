@@ -46,7 +46,7 @@ const MyItems = ({ user, isOpen, setIsOpen, setModel }) => {
                 variant="success"
                 onClick={() => {
                   setIsOpen(false);
-                  navigate(`/Found/${item.id}`);
+                  navigate(`/show/${item.id}`);
                 }}
               >
                 VIEW
