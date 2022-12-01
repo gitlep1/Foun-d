@@ -84,7 +84,14 @@ const NewItemForm = ({ user }) => {
     await axios
       .post(`${API}/items`, postItem)
       .then((res) => {
-        notify(res.data);
+        const newFoundItem = {
+          foundUserId: res.data.userid,
+          itemsId: res.data.id,
+          status: "pending",
+        };
+        axios.post(`${API}/found`, newFoundItem).then((response) => {
+          notify(res.data);
+        });
       })
       .catch((err) => {
         setError(err);

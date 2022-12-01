@@ -112,7 +112,7 @@ const ShowItem = ({ users, deleteItem, show, handleClose }) => {
           </Modal>
         </>
       ) : null}
-      {/* {error && <p>{error}</p>} */}
+      {/* {error ? <p>{error}</p> : null} */}
       <ToastContainer autoClose={3000} theme="dark" />
     </section>
   );
