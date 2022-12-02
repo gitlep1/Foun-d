@@ -1,10 +1,8 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import axios from "axios";
 import { Button } from "react-bootstrap";
-import  "./Edit.scss"
-const API = process.env.REACT_APP_API_URL
-
+import axios from "axios";
+import "./Edit.scss";
 
 const Edit = () => {
   const API = process.env.REACT_APP_API_URL;
@@ -34,14 +32,15 @@ const Edit = () => {
         setUser(...res.data);
       })
       .catch();
-  }, [userId]);
+  }, [userId]); // eslint-disable-line
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    axios
+
+    await axios
       .put(`${API}/users/${userId}`, user)
       .then(() => {
-        navigate(`/users/${userId}`);
+        navigate(`/${userId}/viewsettings`);
       })
       .catch((err) => {
         console.warn(err);
@@ -57,6 +56,7 @@ const Edit = () => {
             Username
             <input
               type="text"
+              id="username"
               className="edit-info-input1"
               onChange={handleTextChange}
               value={user.username}
@@ -67,6 +67,7 @@ const Edit = () => {
             Password
             <input
               type="text"
+              id="password"
               className="edit-info-input"
               onChange={handleTextChange}
               value={user.password}
@@ -77,6 +78,7 @@ const Edit = () => {
             Email
             <input
               type="email"
+              id="email"
               className="edit-info-input"
               onChange={handleTextChange}
               value={user.email}
@@ -87,6 +89,7 @@ const Edit = () => {
             Address
             <input
               type="text"
+              id="address"
               className="edit-info-input"
               onChange={handleTextChange}
               value={user.address}
@@ -97,19 +100,24 @@ const Edit = () => {
             ZipCode
             <input
               type="text"
+              id="zipcode"
               className="edit-info-input"
               value={user.zipcode}
               onChange={handleTextChange}
             />
           </label>
           <br></br>
-					<Button variant='dark'onClick={() => {navigate(`/${userId}/viewsettings`)}}>
-						Back
-					</Button>
-					<Button variant='success' id="save-changes-button" type="submit">
-            {" "}
-            Save Changes{" "}
-					</Button>
+          <Button
+            variant="dark"
+            onClick={() => {
+              navigate(`/${userId}/viewsettings`);
+            }}
+          >
+            Back
+          </Button>{" "}
+          <Button variant="success" id="save-changes-button" type="submit">
+            Save Changes
+          </Button>
         </form>
       </div>
     </section>
