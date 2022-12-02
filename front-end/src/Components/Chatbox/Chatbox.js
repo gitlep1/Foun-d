@@ -146,14 +146,14 @@ function handleMessage(to, content){
 	let receiver  = searchTo(to)
 	// let searchFrom = (senderUserName) => { return connectedData.find((data) => senderUserName === data.username)}
 	// let sender = searchFrom(user.username)
-
+	console.log('this is to ',to)
+	setAllMessages([...allMessages, {id: 'self', to: to, message: sendThis}])
 	console.log('requested to send', sendThis, receiver)
 	if(sendThis){
     socket.emit("private message", {
       sendThis,
       to: receiver.userID,
     });
-		setAllMessages([...allMessages, {id: 'self', to: to, message: sendThis}])
 	}
 }
 

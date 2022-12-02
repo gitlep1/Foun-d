@@ -20,7 +20,6 @@ const MyItems = ({
   const [userItems, setUserItems] = useState([]);
   const [error, setError] = useState("");
 
-	console.log(userItems)
   useEffect(() => {
     getUsersFoundItems(user);
   }, [isOpen]); // eslint-disable-line
@@ -56,6 +55,7 @@ const MyItems = ({
   const renderUserItems = (user) => {
     if (userItems.length > 0) {
       return userItems.map((item) => {
+				console.log(item)
         if (Object.values(item).includes(user.id)) {
           return (
             <section key={nanoid()}>

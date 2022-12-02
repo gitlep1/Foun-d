@@ -25,26 +25,15 @@ export default function EditItem({ user }){
     neighborhood: "",
     borough: "",
     zipcode: "",
+		status: ""
   });
 
-	const [status, setStatus] = useState({
-		status: ''
-	})
-
-	console.log(status)
 	useEffect(() => {
     axios
       .get(`${API}/items/${itemId}`)
       .then((res) => {
         setItem(res.data[0])
-      }).then(() => {
-				axios.get(`${API}/found/${itemId}`)
-				.then((res) => {
-					let correctItem = res.data.find((item) => item.id === Number(itemId))
-					// console.log('corrected item is edit page',correctItem)
-					setStatus({status: correctItem.status})
-				})
-			})
+      })
       .catch((err) => {
         console.log(err)
       })
@@ -54,10 +43,6 @@ export default function EditItem({ user }){
     setItem({ ...item, [event.target.id]: event.target.value });
   };
 
-	const handleStatusChange = (event) => {
-    setStatus({[event.target.id]: event.target.value });
-  };
-
   const handleSubmit = (event) => {
 		event.preventDefault();
 		if (item.userid === user){
@@ -65,13 +50,8 @@ export default function EditItem({ user }){
       .put(`${API}/items/${itemId}`, item)
       .then((res) => {
         setItem(res.data);
-      }).then(() => {
-			axios
-      	.put(`${API}/found/${itemId}`, status)
-				.then((res) => {
-					navigate(`/show/${itemId}`);
-				})
-			})
+				navigate(`/show/${itemId}`);
+      })
       .catch((err) => {
         console.warn(err);
       });
@@ -117,8 +97,8 @@ export default function EditItem({ user }){
             <label htmlFor="status">Status:</label>
             <select
 							id='status'
-              value={status.status}
-              onChange={handleStatusChange}
+              value={item.status}
+              onChange={handleTextChange}
               className="input-style"
             >
               <option value='Default'>--- Select Status  ---</option>
@@ -151,19 +131,28 @@ export default function EditItem({ user }){
             className="input-style"
           />
         </div>
-        <div>
-          <label htmlFor="category">Category:</label>
-          <select
-            name="category"
-            id="category"
-            onChange={handleTextChange}
-            className="input-style"
-            value={item.category}
-          >
-						<option value="Other">{item.category}</option>
-            <option value="Other">Other</option>
-          </select>
-					</div>
+				<div>
+            <label htmlFor="category">Category:</label>
+            <select
+							id="category"
+              value={item.category}
+              onChange={handleTextChange}
+              className="input-style"
+            >
+              <option value="Default">--- Select A Category ---</option>
+              <option value="Pets">Pets</option>
+              <option value="Toys">Toys</option>
+              <option value="Health">Health</option>
+              <option value="Jewelry">Jewelry</option>
+              <option value="Personal">Personal</option>
+              <option value="Clothing">Clothing</option>
+              <option value="Furniture">Furniture</option>
+              <option value="Electronic">Electronic</option>
+              <option value="Accessories">Accessories</option>
+              <option value="Botany">Botany (Plants)</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
 					<div>
           <label htmlFor="neighborhood">Neighborhood:</label>
           <input

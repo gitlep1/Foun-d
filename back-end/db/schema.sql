@@ -32,7 +32,8 @@ CREATE TABLE items (
     neighborhood TEXT,
     borough TEXT,
     zipcode INT,
-    itemDate TIMESTAMP DEFAULT NOW()
+    itemDate TIMESTAMP DEFAULT NOW(),
+		status TEXT NOT NULL
 );
 
 DROP TABLE IF EXISTS found_items;
@@ -40,5 +41,4 @@ CREATE TABLE found_items (
     id SERIAL UNIQUE NOT NULL PRIMARY KEY,
     foundUserId INT REFERENCES users(id) NOT NULL,
     itemsId INT REFERENCES items(id) NOT NULL,
-    status TEXT NOT NULL
 );

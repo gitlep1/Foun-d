@@ -13,11 +13,8 @@ const ShowItem = ({ users, deleteItem, show, handleClose, handleClaim, user}) =>
   const { itemId } = useParams();
 
   const [item, setItem] = useState({});
-	const [status, setStatus] = useState({
-		status: ''
-	})
 
-	console.log(status)
+	console.log(item)
   const [error, setError] = useState({});
 
   useEffect(() => {
@@ -25,15 +22,7 @@ const ShowItem = ({ users, deleteItem, show, handleClose, handleClaim, user}) =>
       .get(`${API}/items/${itemId}`)
       .then((res) => {
         setItem(res.data);
-      }).then(() => {
-				axios.get(`${API}/found`)
-				.then((res) => {
-					console.log(res)
-				let correctItem = res.data.find((item) => item.id === Number(itemId))
-				console.log('this is corrected item',correctItem)
-				setStatus({status: correctItem.status})
-				})
-			})
+      })
       .catch((err) => setError(err));
   }, [API, itemId]);
 
@@ -85,7 +74,7 @@ const ShowItem = ({ users, deleteItem, show, handleClose, handleClaim, user}) =>
                   <img id="show-image" src={item[0].itemimg} alt="item" />
                   <div>
                     <h1>Found by: {foundUser.username}</h1>
-										<h2>Status: {status.status ? status.status : `Unknown`}</h2>
+										<h2>Status: {item.status ? item.status : `Unknown`}</h2>
                     <h2>Title: {item[0].itemname}</h2>
                     <h3>Description: {item[0].description}</h3>
                     <h3>Neighborhood: {item[0].neighborhood}</h3>{" "}
