@@ -13,9 +13,10 @@ const Edit = () => {
     username: "",
     password: "",
     email: "",
-    profileImg: "",
+    profileimg: "",
     address: "",
     zipcode: 0,
+    rating: 0,
   });
 
   const handleTextChange = (event) => {
@@ -37,14 +38,38 @@ const Edit = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    await axios
-      .put(`${API}/users/${userId}`, user)
-      .then(() => {
-        navigate(`/${userId}/viewsettings`);
-      })
-      .catch((err) => {
-        console.warn(err);
-      });
+    const updatedUser = {
+      username: user.username,
+      password: user.password,
+      email: user.email,
+      profileImg: user.profileimg,
+      address: user.address,
+      zipcode: user.zipcode,
+      rating: user.rating,
+      finder: user.finder,
+    };
+
+    if (updatedUser.profileImg.includes("https://")) {
+      await axios
+        .put(`${API}/users/${userId}`, updatedUser)
+        .then(() => {
+          navigate(`/${user.id}/viewsettings`);
+        })
+        .catch((err) => {
+          console.warn(err);
+        });
+    } else {
+      updatedUser.profileImg = `https://${updatedUser.profileImg}`;
+
+      await axios
+        .put(`${API}/users/${userId}`, updatedUser)
+        .then(() => {
+          navigate(`/${user.id}/viewsettings`);
+        })
+        .catch((err) => {
+          console.warn(err);
+        });
+    }
   };
 
   return (
@@ -58,8 +83,8 @@ const Edit = () => {
               type="text"
               id="username"
               className="edit-info-input1"
-              onChange={handleTextChange}
               value={user.username}
+              onChange={handleTextChange}
             />
           </label>
           <br></br>
@@ -69,8 +94,8 @@ const Edit = () => {
               type="text"
               id="password"
               className="edit-info-input"
-              onChange={handleTextChange}
               value={user.password}
+              onChange={handleTextChange}
             />
           </label>
           <br></br>
@@ -80,8 +105,19 @@ const Edit = () => {
               type="email"
               id="email"
               className="edit-info-input"
-              onChange={handleTextChange}
               value={user.email}
+              onChange={handleTextChange}
+            />
+          </label>
+          <br></br>
+          <label htmlFor="profileImg">
+            Profile Image
+            <input
+              type="text"
+              id="profileimg"
+              className="edit-info-input"
+              value={user.profileimg}
+              onChange={handleTextChange}
             />
           </label>
           <br></br>
@@ -91,8 +127,8 @@ const Edit = () => {
               type="text"
               id="address"
               className="edit-info-input"
-              onChange={handleTextChange}
               value={user.address}
+              onChange={handleTextChange}
             />
           </label>
           <br></br>
