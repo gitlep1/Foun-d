@@ -20,6 +20,7 @@ messages.get("/", async (req, res) => {
 });
 
 messages.post("/", async (req, res) => {
+	console.log(req.body.isread)
   const newMessage = {
     receiver: req.body.receiver,
     sender: req.body.sender,
@@ -46,6 +47,7 @@ messages.post("/", async (req, res) => {
 
 	messages.put("/:id", async (req, res) => {
 		const { id } = req.params;
+		console.log(req.body.isread)
 	
 		const updatedMessageData = {
 			isRead: req.body.isread,

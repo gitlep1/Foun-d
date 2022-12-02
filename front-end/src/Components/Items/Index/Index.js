@@ -6,6 +6,7 @@ import axios from "axios";
 
 import RenderIndex from "./RenderIndex";
 import windowDimensions from "../../../Hooks/GetWindowDimensions";
+import IndexSkeloton from "./IndexSkeloton"
 
 import "./Index.scss";
 
@@ -127,7 +128,7 @@ const IndexContainer = ({ user, users, authenticated }) => {
                 />
               );
             })
-          : null}
+          : <IndexSkeloton />}
       </section>
     </section>
   );

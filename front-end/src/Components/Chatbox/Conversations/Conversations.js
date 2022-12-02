@@ -36,7 +36,6 @@ const Conversation = ({allMessages, handleMessage, openConvo, setOpenConvo, conv
 			<div id="chat-box-area">
 				{allMessages.map((newMessage) => {
 					let everyMessageSame = allMessages.every((message) => message.message[0] === 'H')
-					console.log(everyMessageSame)
 						if(newMessage.id === conversation.id){
 							return <p id='message-received'><strong>{conversation.username}</strong>: {newMessage.message}</p>
 						} else if (newMessage.id === 'self' && newMessage.to === conversation.username){

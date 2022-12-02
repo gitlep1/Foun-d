@@ -1,16 +1,54 @@
 import "./Chatbox.scss";
 import Conversation from "./Conversations/Conversations";
-import { useState } from "react";
+import { useState, useEffect} from "react";
 import { Button, Card, Dropdown } from "react-bootstrap";
 import { nanoid } from "nanoid";
 import socket from "./Socket.IO/socket";
+import axios from "axios";
 
-const Chatbox = ({ setClaimItem, claimItem, model, user, users, authenticated }) => {
+const Chatbox = ({ setClaimItem, claimItem, model, user, users, authenticated, messages, reFetch }) => {
+  const API = process.env.REACT_APP_API_URL;
 const [connected, setConnected] = useState([])
 const [connectedData, setConnectedData] = useState([])
 const [messageHover, setMessageHover] = useState(false);
 const [openConvo, setOpenConvo] = useState([])
 const [allMessages, setAllMessages] = useState([])
+const [unReadMessageFromDatabase, setUnReadMessageFromDatabase] = useState([])
+
+console.log('all messages', allMessages)
+useEffect(() => {
+        // axios
+        // .get(`${API}/messages`)
+        // .then((res) => {
+				// 	setUnReadMessageFromDatabase(res.data)
+        // }).then(getmessagesForUser())
+        // .catch((err) => {
+        //     console.log(err)
+        // })}
+		setUnReadMessageFromDatabase([...messages])
+		getmessagesForUser()
+}, [reFetch])
+	// const reFetch = () => setReload(prev => prev + 1)
+// if(messages[0]){
+// 	setUnReadMessageFromDatabase([...messages])
+// 	getmessagesForUser()
+// }
+
+function getmessagesForUser(){
+	unReadMessageFromDatabase.filter((message) => 
+	!message.isread && message.receiver === user.username).map((unreadMessage) => {
+			let senderData = users.find((user) => user.username === unreadMessage.sender)
+			if(senderData){
+				isAlreadyAnOpenConversation(senderData)
+				setAllMessages([...allMessages, {id: senderData.id, to: user.username, message: unreadMessage.content}])
+				let newStatus = {isread: true}
+				console.log(unreadMessage.id)
+				axios.put(`/messages/${unreadMessage.id}`, newStatus)
+			}
+		})
+}
+
+
 
 if(claimItem.user.id){
 	setClaimItem({user: {}, item: ''});
@@ -145,10 +183,27 @@ function handleMessage(to, content){
 	let receiver  = searchTo(to)
 	// let searchFrom = (senderUserName) => { return connectedData.find((data) => senderUserName === data.username)}
 	// let sender = searchFrom(user.username)
+
 	console.log('this is to ', to)
 	setAllMessages([...allMessages, {id: 'self', to: to, message: sendThis}])
 	console.log('requested to send', sendThis, receiver)
 	if(sendThis){
+		let sendThisMessage =  {
+			receiver: to,
+			sender: user.username, 
+			itemname: '', 
+			content: sendThis, 
+			isread: false,
+		};
+		axios
+		.post(`${API}/messages`, sendThisMessage)
+		.then((res) => {
+			console.log(res)
+		})
+		.catch((err) => {
+			console.warn(err);
+		});
+
     socket.emit("private message", {
       sendThis,
       to: receiver.userID,
@@ -162,7 +217,7 @@ function handleMessage(to, content){
 		<section>
 			{openConvo.map((conversation, index) => {
 			return (
-				<Conversation allMessages={allMessages} handleMessage={handleMessage} key={index} openConvo={openConvo} setOpenConvo={setOpenConvo} conversation={conversation} index={index} currentRight={currentRight}/>
+				<Conversation allMessages={allMessages} handleMessage={handleMessage} key={index} openConvo={openConvo} setOpenConvo={setOpenConvo} conversation={conversation} index={index} currentRight={currentRight} />
 				)})}
 		</section>
 	)}

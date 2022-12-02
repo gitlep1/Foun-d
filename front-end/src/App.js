@@ -25,6 +25,7 @@ import GiveawayPage from "./Pages/Items/Giveaway/Giveaway";
 
 // Hook imports
 import useModel from "./Hooks/useModel";
+import useMessages from "./Hooks/useMessages";
 
 // Styling Imports
 import "./App.scss";
@@ -42,6 +43,7 @@ export default function App() {
   const [isOpen, setIsOpen] = useState(false);
 	const [claimItem, setClaimItem] = useState({user: {}, item: ''})
   const [show, setShow] = useState(false);
+	const [messages, reFetch] = useMessages()
 
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
@@ -58,12 +60,12 @@ export default function App() {
     getUsers();
     // getItems();
 
-    const UsersInterval = setInterval(() => {
-      getUsers();
-      // getItems();
-    }, 5000);
+    // const UsersInterval = setInterval(() => {
+    //   getUsers();
+    //   // getItems();
+    // }, 5000);
 
-    return () => clearInterval(UsersInterval);
+    // return () => clearInterval(UsersInterval);
   }, []); // eslint-disable-line
 
   const getUsers = async () => {
@@ -149,6 +151,8 @@ export default function App() {
           user={user}
           users={users}
           authenticated={authenticated}
+					messages={messages}
+					reFetch={reFetch}
         />
         <main className="mainSection">
           <Routes>
