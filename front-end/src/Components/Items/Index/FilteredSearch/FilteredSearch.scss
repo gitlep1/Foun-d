@@ -1,0 +1,29 @@
+#searhSection-form {
+  #searhSection-innerSection {
+    display: flex;
+    grid-template-columns: 1fr 1.5fr;
+  }
+
+  #formBasicSearchbar {
+    border-radius: 0;
+  }
+
+  #filterListContainer {
+    text-align: center;
+    #filterList {
+      width: 80vw;
+      height: 10em;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1%;
+
+      #filterCategory {
+        // border: 5px solid red;
+      }
+    }
+
+    #filteredSearchButton {
+      margin-top: 1em;
+    }
+  }
+}

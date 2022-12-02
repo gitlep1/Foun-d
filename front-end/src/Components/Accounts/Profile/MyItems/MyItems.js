@@ -54,6 +54,7 @@ const MyItems = ({
 
   const renderUserItems = (user) => {
     if (userItems.length > 0) {
+      console.log(userItems);
       return userItems.map((item) => {
         if (Object.values(item).includes(user.id)) {
           return (

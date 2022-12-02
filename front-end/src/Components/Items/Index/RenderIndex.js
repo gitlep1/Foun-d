@@ -12,6 +12,8 @@ const RenderIndex = ({
   authenticated,
   width,
   height,
+  itemName,
+  filteredSearchOptions,
 }) => {
   const navigate = useNavigate();
 
@@ -70,36 +72,71 @@ const RenderIndex = ({
   return (
     <>
       <section className="cardInfoContainer">
-        <Card key={nanoid()} className="itemsCard">
-          <img src={itemFound.itemimg} alt="item" className="itemImg" />
-          <Card.Body className="itemInfo">
-            <Card.Title>
-              <span>{itemFound.itemname}</span>
-            </Card.Title>
-            <Card.Text>
-              Category: <span>{itemFound.category}</span>
-            </Card.Text>
-            <Card.Text>
-              Neighborhood: <span>{itemFound.neighborhood}</span>
-            </Card.Text>
-            <Card.Title id="foundby-tag">
-              Found By: <span>{getFinder()}</span>
-              <span>{getFinderName()}</span>
-            </Card.Title>
-            <Card.Text>
-              Rating: <span>{getFinderRating()}</span>
-            </Card.Text>
-            <Button
-              variant="success"
-              onClick={() => {
-                navigate(`/show/${itemFound.id}`);
-              }}
-            >
-              More Info
-            </Button>
-            {/* <Button variant="dark">Message</Button> */}
-          </Card.Body>
-        </Card>
+        {itemName !== "" ? (
+          itemFound.itemname.includes(itemName) ? (
+            <Card key={nanoid()} className="itemsCard">
+              <img src={itemFound.itemimg} alt="item" className="itemImg" />
+              <Card.Body className="itemInfo">
+                <Card.Title>
+                  <span>{itemFound.itemname}</span>
+                </Card.Title>
+                <Card.Text>
+                  Category: <span>{itemFound.category}</span>
+                </Card.Text>
+                <Card.Text>
+                  Neighborhood: <span>{itemFound.neighborhood}</span>
+                </Card.Text>
+                <Card.Title id="foundby-tag">
+                  Found By: <span>{getFinder()}</span>
+                  <span>{getFinderName()}</span>
+                </Card.Title>
+                <Card.Text>
+                  Rating: <span>{getFinderRating()}</span>
+                </Card.Text>
+                <Button
+                  variant="success"
+                  onClick={() => {
+                    navigate(`/show/${itemFound.id}`);
+                  }}
+                >
+                  More Info
+                </Button>
+                {/* <Button variant="dark">Message</Button> */}
+              </Card.Body>
+            </Card>
+          ) : null
+        ) : (
+          <Card key={nanoid()} className="itemsCard">
+            <img src={itemFound.itemimg} alt="item" className="itemImg" />
+            <Card.Body className="itemInfo">
+              <Card.Title>
+                <span>{itemFound.itemname}</span>
+              </Card.Title>
+              <Card.Text>
+                Category: <span>{itemFound.category}</span>
+              </Card.Text>
+              <Card.Text>
+                Neighborhood: <span>{itemFound.neighborhood}</span>
+              </Card.Text>
+              <Card.Title id="foundby-tag">
+                Found By: <span>{getFinder()}</span>
+                <span>{getFinderName()}</span>
+              </Card.Title>
+              <Card.Text>
+                Rating: <span>{getFinderRating()}</span>
+              </Card.Text>
+              <Button
+                variant="success"
+                onClick={() => {
+                  navigate(`/show/${itemFound.id}`);
+                }}
+              >
+                More Info
+              </Button>
+              {/* <Button variant="dark">Message</Button> */}
+            </Card.Body>
+          </Card>
+        )}
       </section>
     </>
   );
