@@ -40,5 +40,5 @@ DROP TABLE IF EXISTS found_items;
 CREATE TABLE found_items (
     id SERIAL UNIQUE NOT NULL PRIMARY KEY,
     foundUserId INT REFERENCES users(id) NOT NULL,
-    itemsId INT REFERENCES items(id) NOT NULL,
+    itemsId INT REFERENCES items(id) NOT NULL
 );
