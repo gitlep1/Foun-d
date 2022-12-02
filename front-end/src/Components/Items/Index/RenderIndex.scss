@@ -1,11 +1,10 @@
 .cardInfoContainer {
 	height: fit-content;
-
   .itemsCard {
 		background-color: #e4deae;
 		padding: 5px;
-		gap: 5px;
 		border: none;
+		border: 5px solid red;
 		// height: fit-content;
 		width: fit-content;
 		display: flex;

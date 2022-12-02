@@ -2,12 +2,14 @@ import './Edit.scss'
 import './ViewUserSettings.scss'
 import { useEffect, useState, React } from 'react'
 import axios from 'axios';
-import {useParams, Link} from 'react-router-dom';
+import { Button } from "react-bootstrap";
+import {useParams, useNavigate} from 'react-router-dom';
 import Edit from './Edit';
 
 const API = 'http://localhost:4000'
 
 const ViewUserSettings = ({users}) => {
+	const navigate = useNavigate()
 
 	const { userId } = useParams();
 	const [userInfo, setUserInfo] = useState([])
@@ -48,16 +50,15 @@ return (
 	<h3>Personal Info</h3>
 	<ul id='user-data-li'>
 	{userData}
-		<Link to={`/${userId}/edit`}>
-		<button>
-			Edit
-		</button>
-		</Link>
-	</ul>
 
+		<Button variant='dark'onClick={() => {navigate(`/index`)}}>
+			Back
+		</Button>
+		<Button variant='success'onClick={() => {navigate(`/${userId}/edit`)}}>
+			Edit
+		</Button>
+	</ul>
 	</section>
-	<button>Save Changes</button>
-	<button>Deactivate Account</button>
 </div>
 	)
 }

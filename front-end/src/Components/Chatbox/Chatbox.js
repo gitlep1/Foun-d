@@ -11,7 +11,6 @@ const [connectedData, setConnectedData] = useState([])
 const [messageHover, setMessageHover] = useState(false);
 const [openConvo, setOpenConvo] = useState([])
 const [allMessages, setAllMessages] = useState([])
-console.log(allMessages)
 
 if(claimItem.user.id){
 	setClaimItem({user: {}, item: ''});
@@ -146,7 +145,7 @@ function handleMessage(to, content){
 	let receiver  = searchTo(to)
 	// let searchFrom = (senderUserName) => { return connectedData.find((data) => senderUserName === data.username)}
 	// let sender = searchFrom(user.username)
-	console.log('this is to ',to)
+	console.log('this is to ', to)
 	setAllMessages([...allMessages, {id: 'self', to: to, message: sendThis}])
 	console.log('requested to send', sendThis, receiver)
 	if(sendThis){

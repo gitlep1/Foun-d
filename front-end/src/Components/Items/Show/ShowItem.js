@@ -14,7 +14,6 @@ const ShowItem = ({ users, deleteItem, show, handleClose, handleClaim, user}) =>
 
   const [item, setItem] = useState({});
 
-	console.log(item)
   const [error, setError] = useState({});
 
   useEffect(() => {
@@ -27,9 +26,9 @@ const ShowItem = ({ users, deleteItem, show, handleClose, handleClaim, user}) =>
   }, [API, itemId]);
 
   const handleItemDelete = async () => {
-    await axios
-      .delete(`${API}/found/${deleteItem.id}`)
-      .then((res) => {
+    // await axios
+    //   .delete(`${API}/found/${deleteItem.id}`)
+    //   .then((res) => {
         axios
           .delete(`${API}/items/${deleteItem.id}`)
           .then((res) => {
@@ -38,10 +37,10 @@ const ShowItem = ({ users, deleteItem, show, handleClose, handleClaim, user}) =>
           .catch((err) => {
             setError(err);
           });
-      })
-      .catch((err) => {
-        setError(err);
-      });
+      // })
+      // .catch((err) => {
+      //   setError(err);
+      // });
   };
 
   const notify = (deletedItem) => {
@@ -74,7 +73,7 @@ const ShowItem = ({ users, deleteItem, show, handleClose, handleClaim, user}) =>
                   <img id="show-image" src={item[0].itemimg} alt="item" />
                   <div>
                     <h1>Found by: {foundUser.username}</h1>
-										<h2>Status: {item.status ? item.status : `Unknown`}</h2>
+										<h2>Status: {item[0].status ? item[0].status : `Unknown`}</h2>
                     <h2>Title: {item[0].itemname}</h2>
                     <h3>Description: {item[0].description}</h3>
                     <h3>Neighborhood: {item[0].neighborhood}</h3>{" "}

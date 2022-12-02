@@ -46,6 +46,7 @@ items.post("/", async (req, res) => {
     neighborhood: req.body.neighborhood,
     borough: req.body.borough,
     zipcode: req.body.zipcode,
+		status: req.body.status
   };
 
   const createdItems = await createItems(
@@ -60,7 +61,8 @@ items.post("/", async (req, res) => {
     newItems.pinLocation,
     newItems.neighborhood,
     newItems.borough,
-    newItems.zipcode
+    newItems.zipcode,
+		newItems.status
   );
 
   if (createdItems) {
@@ -87,6 +89,7 @@ items.put("/:id", async (req, res) => {
     neighborhood: req.body.neighborhood,
     borough: req.body.borough,
     zipcode: req.body.zipcode,
+		status: req.body.status
   };
   console.log(updatedItemsData);
 
@@ -103,7 +106,8 @@ items.put("/:id", async (req, res) => {
     updatedItemsData.pinLocation,
     updatedItemsData.neighborhood,
     updatedItemsData.borough,
-    updatedItemsData.zipcode
+    updatedItemsData.zipcode,
+		updatedItemsData.status
   );
 
   if (updatedItems) {

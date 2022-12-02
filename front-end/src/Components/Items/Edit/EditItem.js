@@ -46,6 +46,7 @@ export default function EditItem({ user }){
   const handleSubmit = (event) => {
 		event.preventDefault();
 		if (item.userid === user){
+			console.log(itemId)
 			axios
       .put(`${API}/items/${itemId}`, item)
       .then((res) => {
@@ -61,6 +62,7 @@ export default function EditItem({ user }){
 		}
   };
 
+	console.log(item)
   return (
     <section id="editItemSection">
 			{model ? modelStructure : ''}

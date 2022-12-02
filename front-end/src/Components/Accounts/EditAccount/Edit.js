@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
+import { Button } from "react-bootstrap";
 import  "./Edit.scss"
 const API = process.env.REACT_APP_API_URL
 
@@ -102,10 +103,13 @@ const Edit = () => {
             />
           </label>
           <br></br>
-          <button id="save-changes-button" type="submit">
+					<Button variant='dark'onClick={() => {navigate(`/${userId}/viewsettings`)}}>
+						Back
+					</Button>
+					<Button variant='success' id="save-changes-button" type="submit">
             {" "}
             Save Changes{" "}
-          </button>
+					</Button>
         </form>
       </div>
     </section>

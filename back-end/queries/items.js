@@ -33,6 +33,7 @@ const createItems = async (
   zipcode,
 	status
 ) => {
+	console.log('this is the status', status)
   try {
     const newItems = await db.one(
       "INSERT INTO items (userId, itemName, itemImg, category, description, isFound, request, giveaway, pinLocation, neighborhood, borough, zipcode, status) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING *",
@@ -74,6 +75,7 @@ const updateItems = async (
   zipcode,
 	status
 ) => {
+	console.log('this is the status', status)
   try {
     const updateItem = await db.one(
       "UPDATE items SET userId = $1, itemName = $2, itemImg = $3, category = $4, description = $5, isFound = $6, request = $7, giveaway = $8, pinLocation = $9, neighborhood = $10, borough = $11, zipcode = $12, status = $13 where id=$14 RETURNING *",
