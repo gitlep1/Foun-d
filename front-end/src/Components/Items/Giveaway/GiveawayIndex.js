@@ -4,12 +4,12 @@ import { Link, useNavigate } from "react-router-dom";
 import { nanoid } from "nanoid";
 import axios from "axios";
 
-import RenderIndex from "./RenderIndex";
+import RenderGiveaway from "./RenderGiveaway";
 import windowDimensions from "../../../Hooks/GetWindowDimensions";
 
-import "./Index.scss";
+import "./Giveaway.scss";
 
-const IndexContainer = ({ user, users, authenticated }) => {
+const GiveawayIndex = ({ user, users, authenticated }) => {
   const { width, height } = windowDimensions();
   const navigate = useNavigate();
   const API = process.env.REACT_APP_API_URL;
@@ -21,17 +21,14 @@ const IndexContainer = ({ user, users, authenticated }) => {
   useEffect(() => {
     getItems();
 
-    // const ItemsInterval = setInterval(() => {
-    //   getItems();
-    // }, 3000);
+    const ItemsInterval = setInterval(() => {
+      getItems();
+    }, 3000);
 
-    // return () => clearInterval(ItemsInterval);
+    return () => clearInterval(ItemsInterval);
   }, []); // eslint-disable-line
 
   const getItems = async () => {
-    if (itemName !== "") {
-      return;
-    }
     await axios
       .get(`${API}/items`)
       .then((res) => {
@@ -45,46 +42,15 @@ const IndexContainer = ({ user, users, authenticated }) => {
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-    if (name === "itemName") {
+    if (name === itemName) {
       setItemName(value);
     }
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    // await axios
-    //   .get(`${API}/items`)
-    //   .then((res) => {
-    //     let filterItems = res.data.map((items) => {
-    //       if (items.itemname.includes(itemName)) {
-    //         console.log(items);
-    //       }
-    //     });
-    //     console.log(filterItems);
-    //     // setFoundItems(filterItems);
-    //   })
-    //   .catch((err) => {
-    //     setError(err);
-    //   });
-
-    let filterItems = foundItems.map((items) =>
-      items.itemname.includes(itemName)
-    );
-
-    console.log(filterItems);
-
-    setFoundItems(filterItems);
-  };
-
-  // const getFilteredItems = () => {
-
-  // }
-
   return (
     <section id="indexSection">
       <aside id="searchBarContainer">
-        <Form id="searchBar" onSubmit={handleSubmit}>
+        <Form id="searchBar">
           <section id="searchBarInnerContainer">
             <Dropdown id="filterListContainer">
               <Dropdown.Toggle variant="dark">Advanced Search</Dropdown.Toggle>
@@ -103,7 +69,7 @@ const IndexContainer = ({ user, users, authenticated }) => {
                 value={itemName}
               />
             </Form.Group>
-            <Button variant="success" id="searchBarButton" type="submit">
+            <Button variant="success" id="searchBarButton">
               Search
             </Button>
           </section>
@@ -113,10 +79,9 @@ const IndexContainer = ({ user, users, authenticated }) => {
       <section id="indexContainer">
         {error && <p>{error}</p>}
         {foundItems.length > 0
-          ? foundItems.map((itemFound) => {
-						console.log(foundItems)
+          ? foundItems.filter((itemFound) => itemFound.giveaway).map((itemFound) => {
               return (
-                <RenderIndex
+                <RenderGiveaway
                   key={nanoid()}
                   itemFound={itemFound}
                   user={user}
@@ -133,4 +98,4 @@ const IndexContainer = ({ user, users, authenticated }) => {
   );
 };
 
-export default IndexContainer;
+export default GiveawayIndex;
