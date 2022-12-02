@@ -21,7 +21,8 @@ const NewItemForm = ({ user }) => {
     pinlocation: "",
     neighborhood: "",
     borough: "",
-    zipcode: "",
+    zipcode: 0,
+		status: "Active"
   });
 
   const [selectStatus, setSelectStatus] = useState("");
@@ -57,6 +58,7 @@ const NewItemForm = ({ user }) => {
       neighborhood: item.neighborhood,
       borough: item.borough,
       zipcode: item.zipcode,
+			status: item.status
     };
 
     if (selectStatus === "found") {
@@ -86,8 +88,7 @@ const NewItemForm = ({ user }) => {
       .then((res) => {
         const newFoundItem = {
           foundUserId: res.data.userid,
-          itemsId: res.data.id,
-          status: "pending",
+          itemsId: res.data.id
         };
         axios.post(`${API}/found`, newFoundItem).then((response) => {
           notify(res.data);
@@ -131,6 +132,7 @@ const NewItemForm = ({ user }) => {
       neighborhood: "",
       borough: "",
       zipcode: "",
+			status: ""
     });
   };
 

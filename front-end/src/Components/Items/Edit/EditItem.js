@@ -1,5 +1,6 @@
 import { useState, useEffect} from "react";
 import { Link, useNavigate, useParams} from "react-router-dom";
+import { Button } from "react-bootstrap";
 import axios from "axios";
 import "./EditItem.scss";
 import useModel from "../../../Hooks/useModel"
@@ -24,6 +25,7 @@ export default function EditItem({ user }){
     neighborhood: "",
     borough: "",
     zipcode: "",
+		status: ""
   });
 
 	useEffect(() => {
@@ -44,12 +46,12 @@ export default function EditItem({ user }){
   const handleSubmit = (event) => {
 		event.preventDefault();
 		if (item.userid === user){
+			console.log(itemId)
 			axios
       .put(`${API}/items/${itemId}`, item)
       .then((res) => {
-				console.log(res)
         setItem(res.data);
-        navigate("/index");
+				navigate(`/show/${itemId}`);
       })
       .catch((err) => {
         console.warn(err);
@@ -60,6 +62,7 @@ export default function EditItem({ user }){
 		}
   };
 
+	console.log(item)
   return (
     <section id="editItemSection">
 			{model ? modelStructure : ''}
@@ -73,16 +76,18 @@ export default function EditItem({ user }){
           src={ item.itemimg ? item.itemimg : `https://image.shutterstock.com/image-vector/sample-label-green-band-sign-260nw-1512261407.jpg`}
         />
       <form onSubmit={handleSubmit} id="edit-form">
-        <div>
-          <Link to={"/index"}>
-            <button>Back</button>
-          </Link>
-          <input type="submit" />
+        <div id='button-edit-form'>
+          <Button variant="dark" onClick={() => {navigate('/index')}}>
+            Back
+          </Button>
+					<Button type='submit' variant="success">
+            Edit
+          </Button>
         </div>
         <div>
           <label htmlFor="name">Name:</label>
           <input
-            id="itemName"
+            id="itemname"
             value={item.itemname}
             type="text"
             onChange={handleTextChange}
@@ -90,10 +95,25 @@ export default function EditItem({ user }){
             className="input-style"
           />
         </div>
+				<div>
+            <label htmlFor="status">Status:</label>
+            <select
+							id='status'
+              value={item.status}
+              onChange={handleTextChange}
+              className="input-style"
+            >
+              <option value='Default'>--- Select Status  ---</option>
+              <option value="Active">Active (Item has no claims)</option>
+							<option value="Pending">Pending (Item has a claim request)</option>
+							<option value="Completed">Completed (Item returned to owner)</option>
+              <option value="Donated">Donated (Item has been disposed of or giving to charity)</option>
+            </select>
+          </div>
         <div>
           <label htmlFor="image">Image:</label>
           <input
-            id="itemImg"
+            id="itemimg"
             type="text"
             name="image"
             placeholder="http://"
@@ -113,19 +133,28 @@ export default function EditItem({ user }){
             className="input-style"
           />
         </div>
-        <div>
-          <label htmlFor="category">Category:</label>
-          <select
-            name="category"
-            id="category"
-            onChange={handleTextChange}
-            className="input-style"
-            value={item.category}
-          >
-						<option value="Other">{item.category}</option>
-            <option value="Other">Other</option>
-          </select>
-					</div>
+				<div>
+            <label htmlFor="category">Category:</label>
+            <select
+							id="category"
+              value={item.category}
+              onChange={handleTextChange}
+              className="input-style"
+            >
+              <option value="Default">--- Select A Category ---</option>
+              <option value="Pets">Pets</option>
+              <option value="Toys">Toys</option>
+              <option value="Health">Health</option>
+              <option value="Jewelry">Jewelry</option>
+              <option value="Personal">Personal</option>
+              <option value="Clothing">Clothing</option>
+              <option value="Furniture">Furniture</option>
+              <option value="Electronic">Electronic</option>
+              <option value="Accessories">Accessories</option>
+              <option value="Botany">Botany (Plants)</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
 					<div>
           <label htmlFor="neighborhood">Neighborhood:</label>
           <input
