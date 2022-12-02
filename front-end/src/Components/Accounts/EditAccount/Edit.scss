@@ -1,8 +1,9 @@
 #userSettingsSection {
-  display: block;
-  background-color: #e4deae;
-  // height: 100vh;
-  // width: 100vw;
+	display: block;
+	background-color: #e4deae;
+	width: 100vw;
+	height: 100vh;
+	text-align: center;
 }
 
 .edit-settings-heading {
@@ -10,7 +11,6 @@
 }
 
 #user-info-section {
-  border: 5px solid cyan;
   background-color: #e4deae;
   text-align: center;
 }

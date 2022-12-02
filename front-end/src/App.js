@@ -40,6 +40,7 @@ export default function App() {
   const [deleteItem, setDeleteItem] = useState({});
   const [authenticated, setAuthenticated] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+	const [claimItem, setClaimItem] = useState({user: {}, item: ''})
   const [show, setShow] = useState(false);
 
   const handleShow = () => setShow(true);
@@ -102,6 +103,11 @@ export default function App() {
     setIsOpen(false);
   };
 
+	function handleClaim(userId, itemName){
+		let getUser = users.find((user) => user.id === userId)
+		setClaimItem({user: getUser, item: itemName})
+	}
+
   return (
     <section id="outer-container">
       {/* {model ? modelStructure : ""} */}
@@ -137,6 +143,8 @@ export default function App() {
         />
         <SideBar /* model={model} */ />
         <Chatbox
+					claimItem={claimItem}
+					setClaimItem={setClaimItem}
           // model={model}
           user={user}
           users={users}
@@ -174,9 +182,11 @@ export default function App() {
               element={
                 <ShowItem
                   users={users}
+									user={user}
                   deleteItem={deleteItem}
                   show={show}
-                  handleClose={handleClose}
+									handleClaim={handleClaim}
+									handleClose={handleClose}
                 />
               }
             />

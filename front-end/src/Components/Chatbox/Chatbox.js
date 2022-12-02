@@ -5,12 +5,28 @@ import { Button, Card, Dropdown } from "react-bootstrap";
 import { nanoid } from "nanoid";
 import socket from "./Socket.IO/socket";
 
-const Chatbox = ({ model, user, users, authenticated }) => {
+const Chatbox = ({ setClaimItem, claimItem, model, user, users, authenticated }) => {
 const [connected, setConnected] = useState([])
 const [connectedData, setConnectedData] = useState([])
 const [messageHover, setMessageHover] = useState(false);
 const [openConvo, setOpenConvo] = useState([])
 const [allMessages, setAllMessages] = useState([])
+
+if(claimItem.user.id){
+	setClaimItem({user: {}, item: ''});
+	let isUserConnected = connectedData.find((data) => data.username === claimItem.user.username)
+	isAlreadyAnOpenConversation(claimItem.user)	
+
+	if(isUserConnected){
+		let sendThis = `Hi ${isUserConnected.username} 👋, I would like to claim my ${claimItem.item}. When is a good time to talk? 😁`
+			socket.emit("private message", {
+				sendThis,
+				to: isUserConnected.userID,
+			});
+
+			setTimeout(() => {setAllMessages([...allMessages, {id: 'self', to: claimItem.user.username, message: sendThis}])
+		}, 1000) }
+}
 
 	socket.on("connect", () => {
 		console.log('Socket is connected')
@@ -129,15 +145,14 @@ function handleMessage(to, content){
 	let receiver  = searchTo(to)
 	// let searchFrom = (senderUserName) => { return connectedData.find((data) => senderUserName === data.username)}
 	// let sender = searchFrom(user.username)
-
+	console.log('this is to ', to)
+	setAllMessages([...allMessages, {id: 'self', to: to, message: sendThis}])
 	console.log('requested to send', sendThis, receiver)
 	if(sendThis){
     socket.emit("private message", {
       sendThis,
       to: receiver.userID,
     });
-		setAllMessages([...allMessages, {id: 'self', to: to, message: sendThis}])
-		console.log('send code block ran')
 	}
 }
 
