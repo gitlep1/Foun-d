@@ -102,9 +102,9 @@ user.delete("/:id", async (req, res) => {
   const { id } = req.params;
 
   const deletedUser = await deleteUser(id);
-  console.log("=== DELETE user", deletedUser, "===");
 
   if (deletedUser.id) {
+    console.log("=== DELETE user", deletedUser, "===");
     res.status(200).json(deletedUser);
   } else {
     res.status(404).send("user not found");

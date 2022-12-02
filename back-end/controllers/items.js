@@ -45,36 +45,36 @@ items.post("/", async (req, res) => {
     pinLocation: req.body.pinLocation,
     neighborhood: req.body.neighborhood,
     borough: req.body.borough,
-    zipcode: req.body.zipcode
+    zipcode: req.body.zipcode,
+		status: req.body.status
   };
 
-    const createdItems = await createItems(
-      newItems.userId,
-      newItems.itemName,
-      newItems.itemImg,
-      newItems.category,
-      newItems.description,
-      newItems.isFound,
-      newItems.request,
-      newItems.giveaway,
-      newItems.pinLocation,
-      newItems.neighborhood,
-      newItems.borough,
-      newItems.zipcode
-    );
+  const createdItems = await createItems(
+    newItems.userId,
+    newItems.itemName,
+    newItems.itemImg,
+    newItems.category,
+    newItems.description,
+    newItems.isFound,
+    newItems.request,
+    newItems.giveaway,
+    newItems.pinLocation,
+    newItems.neighborhood,
+    newItems.borough,
+    newItems.zipcode,
+		newItems.status
+  );
 
-    if (createdItems) {
-      console.log("=== POST items", createdItems, "===");
-      res.status(201).json(createdItems);
-    } else {
-      res.status(404).send("items not created");
-    }
-  });
+  if (createdItems) {
+    console.log("=== POST item", createdItems, "===");
+    res.status(201).json(createdItems);
+  } else {
+    res.status(404).send("item was not created");
+  }
+});
 
 items.put("/:id", async (req, res) => {
   const { id } = req.params;
-
-	console.log(req.body.userid)
 
   const updatedItemsData = {
     userId: req.body.userid,
@@ -88,9 +88,10 @@ items.put("/:id", async (req, res) => {
     pinLocation: req.body.pinlocation,
     neighborhood: req.body.neighborhood,
     borough: req.body.borough,
-    zipcode: req.body.zipcode
+    zipcode: req.body.zipcode,
+		status: req.body.status
   };
-	console.log(updatedItemsData)
+  console.log(updatedItemsData);
 
   const updatedItems = await updateItems(
     id,
@@ -105,7 +106,8 @@ items.put("/:id", async (req, res) => {
     updatedItemsData.pinLocation,
     updatedItemsData.neighborhood,
     updatedItemsData.borough,
-    updatedItemsData.zipcode
+    updatedItemsData.zipcode,
+		updatedItemsData.status
   );
 
   if (updatedItems) {

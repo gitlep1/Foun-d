@@ -1,7 +1,7 @@
-import Index from "../../../Components/Items/Index/Index";
+import GiveawayIndex from "../../../Components/Items/Giveaway/GiveawayIndex"
 
 const GiveawayPage = ({ user, users, authenticated }) => {
-  return <Index user={user} users={users} authenticated={authenticated} />;
+  return <GiveawayIndex user={user} users={users} authenticated={authenticated} />;
 };
 
 export default GiveawayPage;

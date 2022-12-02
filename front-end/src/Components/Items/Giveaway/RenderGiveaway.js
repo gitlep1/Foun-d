@@ -3,9 +3,9 @@ import { Button, Form, Card } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { nanoid } from "nanoid";
 
-import "./RenderIndex.scss";
+import "./RenderGiveaway.scss";
 
-const RenderIndex = ({
+const RenderGiveaway = ({
   itemFound,
   user,
   users,
@@ -71,7 +71,18 @@ const RenderIndex = ({
     <>
       <section className="cardInfoContainer">
         <Card key={nanoid()} className="itemsCard">
-          <img src={itemFound.itemimg} alt="item" className="itemImg" />
+				{/* {width >= 1000 ? (
+        <img src={itemFound.itemimg} alt="item" className="itemImg" />
+      ) : null} */}
+          {/* {width >= 1000 ? null : (
+            <Card.Img
+              src={itemFound.itemimg}
+              alt="item"
+              id="itemImgBelowWidth"
+              variant="top"
+            />
+          )} */}
+					<img src={itemFound.itemimg} alt="item" className="itemImg" />
           <Card.Body className="itemInfo">
             <Card.Title>
               <span>{itemFound.itemname}</span>
@@ -82,14 +93,15 @@ const RenderIndex = ({
             <Card.Text>
               Neighborhood: <span>{itemFound.neighborhood}</span>
             </Card.Text>
-            <Card.Title id="foundby-tag">
-              Found By: <span>{getFinder()}</span>
+						<Card.Title id='foundby-tag'>
+							Found By:{" "}
+							<span>{getFinder()}</span> 
               <span>{getFinderName()}</span>
             </Card.Title>
             <Card.Text>
               Rating: <span>{getFinderRating()}</span>
             </Card.Text>
-            <Button
+						<Button
               variant="success"
               onClick={() => {
                 navigate(`/show/${itemFound.id}`);
@@ -99,10 +111,21 @@ const RenderIndex = ({
             </Button>
             {/* <Button variant="dark">Message</Button> */}
           </Card.Body>
+          {/* <Card.Body className="finderInfo">
+            <Card.Title>
+              <span>{getFinder()}</span> 
+							Found By:{" "}
+              <span>{getFinderName()}</span>
+            </Card.Title>
+            <Card.Text>
+              Rating: <span>{getFinderRating()}</span>
+            </Card.Text>
+            <Button variant="dark">Message</Button>
+          </Card.Body> */}
         </Card>
       </section>
     </>
   );
 };
 
-export default RenderIndex;
+export default RenderGiveaway;

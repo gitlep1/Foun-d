@@ -2,11 +2,13 @@ import "./Edit.scss";
 import "./ViewUserSettings.scss";
 import { useEffect, useState, React } from "react";
 import axios from "axios";
+import { Button } from "react-bootstrap";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import Edit from "./Edit";
 import FourOFour from "../../404/FourOFour";
 
 const API = "http://localhost:4000";
+
 
 const ViewUserSettings = ({ user }) => {
   const navigate = useNavigate();
@@ -41,22 +43,24 @@ const ViewUserSettings = ({ user }) => {
     }
   });
 
-  const currentUser = () => {};
-  return (
-    <div id="user-settings-div">
-      <h1 className="edit-settings-heading"> Edit User settings</h1>
-      <section id="user-info-section">
-        <h3>Personal Info</h3>
-        <ul id="user-data-li">
-          {userData}
-          <Link to="/:userId/edit">
-            <button>Edit</button>
-          </Link>
-        </ul>
-      </section>
-      <button>Save Changes</button>
-      <button>Deactivate Account</button>
-    </div>
-  );
+return (
+<div id='user-settings-div'>
+	<h1 className="edit-settings-heading"> Edit User settings</h1>
+	<section id='user-info-section'>
+	<h3>Personal Info</h3>
+	<ul id='user-data-li'>
+	{userData}
+
+		<Button variant='dark'onClick={() => {navigate(`/index`)}}>
+			Back
+		</Button>
+		<Button variant='success'onClick={() => {navigate(`/${userId}/edit`)}}>
+			Edit
+		</Button>
+	</ul>
+	</section>
+</div>
+	)
 };
 export default ViewUserSettings;
+
