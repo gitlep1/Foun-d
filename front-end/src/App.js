@@ -14,6 +14,7 @@ import ViewUserSettings from "./Components/Accounts/EditAccount/ViewUserSettings
 import Edit from "./Components/Accounts/EditAccount/Edit";
 import NewItemForm from "./Components/Items/Create/NewItemForm";
 import ShowItem from "./Components/Items/Show/ShowItem";
+import MapTest from "./Components/MapTest/MapTest";
 
 // Page Imports
 import Homepage from "./Pages/Home/Home";
@@ -40,7 +41,7 @@ export default function App() {
   const [deleteItem, setDeleteItem] = useState({});
   const [authenticated, setAuthenticated] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-	const [claimItem, setClaimItem] = useState({user: {}, item: ''})
+  const [claimItem, setClaimItem] = useState({ user: {}, item: "" });
   const [show, setShow] = useState(false);
 
   const handleShow = () => setShow(true);
@@ -103,10 +104,10 @@ export default function App() {
     setIsOpen(false);
   };
 
-	function handleClaim(userId, itemName){
-		let getUser = users.find((user) => user.id === userId)
-		setClaimItem({user: getUser, item: itemName})
-	}
+  function handleClaim(userId, itemName) {
+    let getUser = users.find((user) => user.id === userId);
+    setClaimItem({ user: getUser, item: itemName });
+  }
 
   return (
     <section id="outer-container">
@@ -143,8 +144,8 @@ export default function App() {
         />
         <SideBar /* model={model} */ />
         <Chatbox
-					claimItem={claimItem}
-					setClaimItem={setClaimItem}
+          claimItem={claimItem}
+          setClaimItem={setClaimItem}
           // model={model}
           user={user}
           users={users}
@@ -182,11 +183,11 @@ export default function App() {
               element={
                 <ShowItem
                   users={users}
-									user={user}
+                  user={user}
                   deleteItem={deleteItem}
                   show={show}
-									handleClaim={handleClaim}
-									handleClose={handleClose}
+                  handleClaim={handleClaim}
+                  handleClose={handleClose}
                 />
               }
             />
@@ -196,6 +197,7 @@ export default function App() {
               path="/:userId/viewsettings"
               element={<ViewUserSettings user={user} />}
             />
+            <Route path="/map" element={<MapTest />} />
             <Route path="/:userId/edit" element={<Edit user={user} />} />
           </Routes>
         </main>

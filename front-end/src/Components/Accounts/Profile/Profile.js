@@ -46,20 +46,6 @@ const Profile = ({
     }
   };
 
-<<<<<<< HEAD
-  const handleMouseOver = () => {
-    setIsHovering(true);
-  };
-
-  const handleMouseOut = () => {
-    setIsHovering(false);
-  };
-
-  const image_input = document.querySelector("#image_input");
-  var uploaded_image = "";
-
-=======
->>>>>>> 553d72a4a460d81963adb91a83a3f0001ade250a
   return (
     <section className={`profileSection ${model ? "model-0n" : ""}`}>
       <Dropdown>
