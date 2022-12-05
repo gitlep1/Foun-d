@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { Button, Form, Card } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { nanoid } from "nanoid";
+import RenderFilteredSearches from "./FilteredSearch/RenderFilteredSearches";
 
 import "./RenderIndex.scss";
 
@@ -14,12 +15,12 @@ const RenderIndex = ({
   height,
   itemName,
   filteredSearchOptions,
+  filterSearches,
 }) => {
   const navigate = useNavigate();
 
   const getFinder = () => {
     let foundUser = {};
-    let foundByLoggedInUser = false;
 
     users.map((finder) => {
       if (finder.id === itemFound.userid) {
@@ -28,10 +29,6 @@ const RenderIndex = ({
 
       return foundUser;
     });
-
-    if (foundUser.id === user.id) {
-      foundByLoggedInUser = true;
-    }
 
     return (
       <>
@@ -74,37 +71,61 @@ const RenderIndex = ({
       <section className="cardInfoContainer">
         {itemName !== "" ? (
           itemFound.itemname.includes(itemName) ? (
-            <Card key={nanoid()} className="itemsCard">
-              <img src={itemFound.itemimg} alt="item" className="itemImg" />
-              <Card.Body className="itemInfo">
-                <Card.Title>
-                  <span>{itemFound.itemname}</span>
-                </Card.Title>
-                <Card.Text>
-                  Category: <span>{itemFound.category}</span>
-                </Card.Text>
-                <Card.Text>
-                  Neighborhood: <span>{itemFound.neighborhood}</span>
-                </Card.Text>
-                <Card.Title id="foundby-tag">
-                  Found By: <span>{getFinder()}</span>
-                  <span>{getFinderName()}</span>
-                </Card.Title>
-                <Card.Text>
-                  Rating: <span>{getFinderRating()}</span>
-                </Card.Text>
-                <Button
-                  variant="success"
-                  onClick={() => {
-                    navigate(`/show/${itemFound.id}`);
-                  }}
-                >
-                  More Info
-                </Button>
-                {/* <Button variant="dark">Message</Button> */}
-              </Card.Body>
-            </Card>
+            filterSearches ? (
+              <>
+                <RenderFilteredSearches
+                  itemFound={itemFound}
+                  getFinder={getFinder}
+                  getFinderName={getFinderName}
+                  getFinderRating={getFinderRating}
+                  filteredSearchOptions={filteredSearchOptions}
+                  users={users}
+                />
+              </>
+            ) : (
+              <Card key={nanoid()} className="itemsCard">
+                <img src={itemFound.itemimg} alt="item" className="itemImg" />
+                <Card.Body className="itemInfo">
+                  <Card.Title>
+                    <span>{itemFound.itemname}</span>
+                  </Card.Title>
+                  <Card.Text>
+                    Category: <span>{itemFound.category}</span>
+                  </Card.Text>
+                  <Card.Text>
+                    Neighborhood: <span>{itemFound.neighborhood}</span>
+                  </Card.Text>
+                  <Card.Title id="foundby-tag">
+                    Found By: <span>{getFinder()}</span>
+                    <span>{getFinderName()}</span>
+                  </Card.Title>
+                  <Card.Text>
+                    Rating: <span>{getFinderRating()}</span>
+                  </Card.Text>
+                  <Button
+                    variant="success"
+                    onClick={() => {
+                      navigate(`/show/${itemFound.id}`);
+                    }}
+                  >
+                    More Info
+                  </Button>
+                  {/* <Button variant="dark">Message</Button> */}
+                </Card.Body>
+              </Card>
+            )
           ) : null
+        ) : filterSearches ? (
+          <>
+            <RenderFilteredSearches
+              itemFound={itemFound}
+              getFinder={getFinder}
+              getFinderName={getFinderName}
+              getFinderRating={getFinderRating}
+              filteredSearchOptions={filteredSearchOptions}
+              users={users}
+            />
+          </>
         ) : (
           <Card key={nanoid()} className="itemsCard">
             <img src={itemFound.itemimg} alt="item" className="itemImg" />

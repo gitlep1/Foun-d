@@ -4,7 +4,7 @@ import { Button, Dropdown, Image } from "react-bootstrap";
 import { ToastContainer } from "react-toastify";
 import { useNavigate, Link } from "react-router-dom";
 import ReactTooltip from "react-tooltip";
-import EditUserSettings from "../EditAccount/ViewUserSettings";
+// import EditUserSettings from "../EditAccount/ViewUserSettings";
 
 import Signin from "./Signin";
 import Signup from "./Signup";
@@ -32,30 +32,29 @@ const Profile = ({
   const [updatedUser, setUpdatedUser] = useState({});
 
   useEffect(() => {
-    // getUpdatedUser();
+    getUpdatedUser();
 
     const updateUserInterval = setInterval(() => {
       getUpdatedUser();
-    }, 1000);
+    }, 3000);
 
     return () => clearInterval(updateUserInterval);
   });
 
   const getUpdatedUser = async () => {
     await axios.get(`${API}/users/${user.id}`).then((res) => {
-      // console.log("updated", res.data[0]);
       setUpdatedUser(res.data[0]);
     });
 
     const data = window.localStorage.getItem("Current_User");
     const authenticated = window.localStorage.getItem("Authenticated");
 
-    if (data !== null && authenticated !== null) {
-      window.localStorage.setItem(
-        "Current_User",
-        JSON.stringify({ updatedUser })
-      );
+    if (data !== null && authenticated !== null && updatedUser !== undefined) {
+      window.localStorage.setItem("Current_User", JSON.stringify(updatedUser));
       window.localStorage.setItem("Authenticated", JSON.stringify(true));
+    } else {
+      window.localStorage.setItem("Current_User", JSON.stringify());
+      window.localStorage.setItem("Authenticated", JSON.stringify(false));
     }
   };
 
@@ -106,7 +105,7 @@ const Profile = ({
           {authenticated && user.id ? (
             <section className={`authenticatedUser`}>
               <div className="accountSettingsImgContainer">
-                <img
+                <Image
                   src={gearIcon}
                   alt="settings"
                   id="accountSettingsImg"
@@ -117,11 +116,10 @@ const Profile = ({
                 />
                 <ReactTooltip place="left" type="dark" effect="float">
                   <h3>User Settings</h3>
-                  {/* <Image src={`${user.profileimg}`} alt="wolf" /> */}
                 </ReactTooltip>
               </div>
               <section className="profileStats">
-                <img
+                <Image
                   src={updatedUser ? updatedUser.profileimg : user.profileimg}
                   className="profileImgBig"
                   alt="profile"

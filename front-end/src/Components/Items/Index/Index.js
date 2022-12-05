@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { nanoid } from "nanoid";
 import axios from "axios";
 
+import { useNavigate } from "react-router-dom";
+
 import RenderIndex from "./RenderIndex";
 import FilteredSearch from "./FilteredSearch/FilteredSearch";
 
@@ -9,6 +11,7 @@ import windowDimensions from "../../../Hooks/GetWindowDimensions";
 import "./Index.scss";
 
 const IndexContainer = ({ user, users, authenticated }) => {
+  const navigate = useNavigate();
   const { width, height } = windowDimensions();
   const API = process.env.REACT_APP_API_URL;
 
@@ -19,12 +22,24 @@ const IndexContainer = ({ user, users, authenticated }) => {
     borough: "",
     neighborhood: "",
     zipcode: "",
+    userRating: "",
   });
+  const [filterSearches, setFilterSearches] = useState(false);
 
   const [error, setError] = useState("");
 
   useEffect(() => {
     getItems();
+    // make index auto navigate to homepage if user is not authenticated \\
+
+    // const localAuthenticated = window.localStorage.getItem("Authenticated");
+    // const authenticatedInterval = setInterval(() => {
+    //   if (!localAuthenticated) {
+    //     navigate("/");
+    //   }
+    // }, 3000);
+
+    // return () => clearInterval(authenticatedInterval);
   }, []); // eslint-disable-line
 
   const getItems = async () => {
@@ -49,6 +64,7 @@ const IndexContainer = ({ user, users, authenticated }) => {
           setItemName={setItemName}
           filteredSearchOptions={filteredSearchOptions}
           setFilteredSearchOptions={setFilteredSearchOptions}
+          setFilterSearches={setFilterSearches}
         />
       </aside>
       <br />
@@ -56,7 +72,6 @@ const IndexContainer = ({ user, users, authenticated }) => {
         {error && <p>{error}</p>}
         {foundItems.length > 0
           ? foundItems.map((itemFound) => {
-						console.log(foundItems)
               return (
                 <RenderIndex
                   key={nanoid()}
@@ -68,6 +83,7 @@ const IndexContainer = ({ user, users, authenticated }) => {
                   height={height}
                   itemName={itemName}
                   filteredSearchOptions={filteredSearchOptions}
+                  filterSearches={filterSearches}
                 />
               );
             })
