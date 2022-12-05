@@ -8,7 +8,7 @@ export default function useModel() {
     <div className="model-style">
       <div className="box-model">
         <h1 className="text-model">
-          Are you sure you want to delete this item?
+          Are you sure you want to delete?
         </h1>
         <button onClick={() => setModel(false)} className="model-stop-button">
           Don't delete
