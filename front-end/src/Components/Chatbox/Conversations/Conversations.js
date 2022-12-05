@@ -1,21 +1,31 @@
 import { useState } from "react";
 import { Button, Card, Dropdown } from "react-bootstrap";
-import './Conversations.scss'
+import "./Conversations.scss";
 
-const Conversation = ({allMessages, handleMessage, openConvo, setOpenConvo, conversation, index, currentRight}) => {
-	const [message, setMessage] = useState({id: conversation.id, text: ''})
-	// const [receivedMessage, setReceivedMessages] = useState([...allMessages])
+const Conversation = ({
+  allMessages,
+  handleMessage,
+  openConvo,
+  setOpenConvo,
+  conversation,
+  index,
+  currentRight,
+}) => {
+  const [message, setMessage] = useState({ id: conversation.id, text: "" });
+  // const [receivedMessage, setReceivedMessages] = useState([...allMessages])
 
-	// console.log(receivedMessage)
-	const handleTextChange = (event) => {
-		setMessage({id: conversation.id, text: event.target.value})
-	}
-	
-	const handleDelete = (conversation) => {
-		let findConversation = openConvo.filter((convo) => conversation.id !== convo.id)
-		setOpenConvo([...findConversation])
-		// console.log(findConversation, conversation.id, openConvo)
-	}
+  // console.log(receivedMessage)
+  const handleTextChange = (event) => {
+    setMessage({ id: conversation.id, text: event.target.value });
+  };
+
+  const handleDelete = (conversation) => {
+    let findConversation = openConvo.filter(
+      (convo) => conversation.id !== convo.id
+    );
+    setOpenConvo([...findConversation]);
+    // console.log(findConversation, conversation.id, openConvo)
+  };
 
   return (
 		<Dropdown drop="up" id='user2-conversation' style={{right: `${currentRight * (index + 1)}em`}}align='end'>

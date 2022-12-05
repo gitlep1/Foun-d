@@ -256,7 +256,12 @@ function handleMessage(to, content){
   const renderUsersOnMessages = (user2) => {
     return (
       <section key={nanoid()} className="messageProfiles">
-        <Card className="messageCards" onClick={() => {isAlreadyAnOpenConversation(user2)}}>
+        <Card
+          className="messageCards"
+          onClick={() => {
+            isAlreadyAnOpenConversation(user2);
+          }}
+        >
           <Card.Img
             variant="top"
             className="cardProfileImg"

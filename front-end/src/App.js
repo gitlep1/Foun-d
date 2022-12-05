@@ -29,10 +29,12 @@ import useMessages from "./Hooks/useMessages";
 
 // Styling Imports
 import "./App.scss";
+import FourOFour from "./Components/404/FourOFour";
 
 export default function App() {
   const navigate = useNavigate();
   const API = process.env.REACT_APP_API_URL;
+
 
   // const [model, setModel, modelStructure] = useModel({ handleDelete });
 
@@ -41,7 +43,7 @@ export default function App() {
   const [deleteItem, setDeleteItem] = useState({});
   const [authenticated, setAuthenticated] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-	const [claimItem, setClaimItem] = useState({user: {}, item: ''})
+  const [claimItem, setClaimItem] = useState({ user: {}, item: "" });
   const [show, setShow] = useState(false);
 	const [messages, setMessages, reFetch] = useMessages()
 
@@ -58,14 +60,12 @@ export default function App() {
     }
 
     getUsers();
-    // getItems();
 
-    // const UsersInterval = setInterval(() => {
-    //   getUsers();
-    //   // getItems();
-    // }, 5000);
+    const UsersInterval = setInterval(() => {
+      getUsers();
+    }, 5000);
 
-    // return () => clearInterval(UsersInterval);
+    return () => clearInterval(UsersInterval);
   }, []); // eslint-disable-line
 
   const getUsers = async () => {
@@ -80,7 +80,7 @@ export default function App() {
   //   });
   // };
 
-  const handleUser = (user) => {
+  const handleUser = async (user) => {
     setUser(user);
     setAuthenticated(true);
     window.localStorage.setItem("Current_User", JSON.stringify(user));
@@ -105,10 +105,10 @@ export default function App() {
     setIsOpen(false);
   };
 
-	function handleClaim(userId, itemName){
-		let getUser = users.find((user) => user.id === userId)
-		setClaimItem({user: getUser, item: itemName})
-	}
+  function handleClaim(userId, itemName) {
+    let getUser = users.find((user) => user.id === userId);
+    setClaimItem({ user: getUser, item: itemName });
+  }
 
   return (
     <section id="outer-container">
@@ -145,8 +145,8 @@ export default function App() {
         />
         <SideBar /* model={model} */ />
         <Chatbox
-					claimItem={claimItem}
-					setClaimItem={setClaimItem}
+          claimItem={claimItem}
+          setClaimItem={setClaimItem}
           // model={model}
           user={user}
           users={users}
@@ -186,11 +186,11 @@ export default function App() {
               element={
                 <ShowItem
                   users={users}
-									user={user}
+                  user={user}
                   deleteItem={deleteItem}
                   show={show}
-									handleClaim={handleClaim}
-									handleClose={handleClose}
+                  handleClaim={handleClaim}
+                  handleClose={handleClose}
                 />
               }
             />
@@ -201,6 +201,8 @@ export default function App() {
               element={<ViewUserSettings user={user} />}
             />
             <Route path="/:userId/edit" element={<Edit user={user} />} />
+            <Route path="/404" element={<FourOFour />} />
+            <Route path="/*" element={<FourOFour />} />
           </Routes>
         </main>
       </section>
