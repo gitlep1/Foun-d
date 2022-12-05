@@ -24,7 +24,6 @@ import Editpage from "./Pages/Items/Edit/Edit";
 import GiveawayPage from "./Pages/Items/Giveaway/Giveaway";
 
 // Hook imports
-import useModel from "./Hooks/useModel";
 import useMessages from "./Hooks/useMessages";
 
 // Styling Imports
