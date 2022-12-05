@@ -25,6 +25,7 @@ import GiveawayPage from "./Pages/Items/Giveaway/Giveaway";
 
 // Hook imports
 import useModel from "./Hooks/useModel";
+import useMessages from "./Hooks/useMessages";
 
 // Styling Imports
 import "./App.scss";
@@ -44,6 +45,7 @@ export default function App() {
   const [isOpen, setIsOpen] = useState(false);
   const [claimItem, setClaimItem] = useState({ user: {}, item: "" });
   const [show, setShow] = useState(false);
+	const [messages, setMessages, reFetch] = useMessages()
 
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
@@ -149,6 +151,8 @@ export default function App() {
           user={user}
           users={users}
           authenticated={authenticated}
+					messages={messages}
+					setMessages={setMessages}
         />
         <main className="mainSection">
           <Routes>

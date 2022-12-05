@@ -42,3 +42,13 @@ CREATE TABLE found_items (
     foundUserId INT REFERENCES users(id) NOT NULL,
     itemsId INT REFERENCES items(id) NOT NULL
 );
+
+DROP TABLE IF EXISTS messages;
+CREATE TABLE messages (
+    id SERIAL UNIQUE NOT NULL PRIMARY KEY,
+    receiver TEXT,
+		sender TEXT,
+		itemName TEXT,
+		content TEXT,
+		isRead BOOLEAN DEFAULT false
+);
