@@ -1,0 +1,51 @@
+#searhSection-form {
+  #searhSection-innerSection {
+    display: flex;
+    grid-template-columns: 1fr 1.5fr;
+  }
+
+  #formBasicSearchbar {
+    border-radius: 0;
+  }
+
+  #filterListContainer {
+    text-align: center;
+    color: rgb(16, 200, 111);
+
+    #filterList {
+      width: 80vw;
+      height: 15em;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1%;
+
+      #filterCategory {
+        display: flex;
+        align-items: center;
+      }
+
+      #filterLocation {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      #filterUserRatings {
+        display: flex;
+        align-items: center;
+
+        #innerUserRatings {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          width: 50%;
+        }
+      }
+    }
+
+    #filteredSearchButton {
+      margin-top: 1em;
+    }
+  }
+}

@@ -1,40 +1,102 @@
 import "./Chatbox.scss";
 import Conversation from "./Conversations/Conversations";
-import { useState } from "react";
+import { useState, useEffect} from "react";
 import { Button, Card, Dropdown } from "react-bootstrap";
 import { nanoid } from "nanoid";
 import socket from "./Socket.IO/socket";
+import axios from "axios";
 
-const Chatbox = ({ setClaimItem, claimItem, model, user, users, authenticated }) => {
+const Chatbox = ({ setClaimItem, claimItem, model, user, users, authenticated, messages, setMessages }) => {
+const API = process.env.REACT_APP_API_URL;
 const [connected, setConnected] = useState([])
 const [connectedData, setConnectedData] = useState([])
 const [messageHover, setMessageHover] = useState(false);
 const [openConvo, setOpenConvo] = useState([])
 const [allMessages, setAllMessages] = useState([])
+const [unReadMessageFromDatabase, setUnReadMessageFromDatabase] = useState([])
 
-if(claimItem.user.id){
-	setClaimItem({user: {}, item: ''});
-	let isUserConnected = connectedData.find((data) => data.username === claimItem.user.username)
-	isAlreadyAnOpenConversation(claimItem.user)	
+// if(messages[0]){
+// 	setUnReadMessageFromDatabase([...messages])
+// 	getmessagesForUser()
+// }
+
+useEffect(() => {
+	// setClaim({...claimItem})
+	getClaim(claimItem)
+	
+}, [claimItem] )
+	// const reFetch = () => setReload(prev => prev + 1)
+// if(messages[0]){
+// 	setUnReadMessageFromDatabase([...messages])
+// 	getmessagesForUser()
+// }
+
+function getmessagesForUser(){
+	unReadMessageFromDatabase.filter((message) => 
+	!message.isread && message.receiver === user.username).map((unreadMessage) => {
+			let senderData = users.find((user) => user.username === unreadMessage.sender)
+			if(senderData){
+				isAlreadyAnOpenConversation(senderData)
+				setAllMessages([...allMessages, {id: senderData.id, to: user.username, message: unreadMessage.content}])
+				let newStatus = {isread: true}
+				axios.put(`${API}/messages/${unreadMessage.id}`, newStatus)
+				.then((res) => {
+						console.log(res)
+					})
+					.catch((err) => {
+						console.warn(err);
+					});
+			}
+		})
+}
+
+
+
+function getClaim(incommingClaim){
+	let {	user, item} = incommingClaim
+	let isUserConnected = connectedData.find((data) => data.username === user.username)
+	isAlreadyAnOpenConversation(user)	
 
 	if(isUserConnected){
-		let sendThis = `Hi ${isUserConnected.username} 👋, I would like to claim my ${claimItem.item}. When is a good time to talk? 😁`
+		let sendThis = `Hi ${isUserConnected.username} 👋, I would like to claim my ${item}. When is a good time to talk? 😁`
 			socket.emit("private message", {
 				sendThis,
 				to: isUserConnected.userID,
 			});
 
-			setTimeout(() => {setAllMessages([...allMessages, {id: 'self', to: claimItem.user.username, message: sendThis}])
-		}, 1000) }
-}
+			setTimeout(() => {setAllMessages([...allMessages, {id: 'self', to: user.username, message: sendThis}])
+		}, 1000) 
+	} else {
+			let sendThisToClaimer = `Hi 👋 Foun'd team here. Seems like ${user.username} is not connected. We sent your claim and they will see this when they're online.`
+			isAlreadyAnOpenConversation(user)	
+			setAllMessages([...allMessages, {id: 'self', to: user.username, message: sendThisToClaimer}])	
+			
+			// let sendThisToFounder = `Hi ${claimItem.user.username} 👋, I would like to claim my ${claimItem.item}. When is a good time to talk? 😁`
+			// let sendThisMessage =  {
+			// 	receiver: claimItem.user.username,
+			// 	sender: user.username, 
+			// 	itemname: claimItem.item, 
+			// 	content: sendThisToFounder, 
+			// 	isread: false,
+			// 	};
+			// axios
+			// .post(`${API}/messages`, sendThisMessage)
+			// .then((res) => {
+			// 	console.log(res)
+			// })
+			// .catch((err) => {
+			// 	console.warn(err);
+			// });
+		}
+	}
 
 	socket.on("connect", () => {
-		console.log('Socket is connected')
-		console.log("ID:", socket.id);
+		// console.log('Socket is connected')
+		// console.log("ID:", socket.id);
 	});
 	
 	socket.onAny((event, ...args) => {
-		console.log(event, args);
+		// console.log(event, args);
 	});
 	
 	socket.on("connect_error", (err) => {
@@ -91,7 +153,7 @@ if(claimItem.user.id){
 			user['active'] = true
 			return user
 		})
-		console.log('current', users)
+		// console.log('current', users)
 		setConnectedData([...connectedData, ...addActiveKey])
 		users.forEach((user) => {
 			user.self = user.userID === socket.id;
@@ -145,10 +207,27 @@ function handleMessage(to, content){
 	let receiver  = searchTo(to)
 	// let searchFrom = (senderUserName) => { return connectedData.find((data) => senderUserName === data.username)}
 	// let sender = searchFrom(user.username)
+
 	console.log('this is to ', to)
 	setAllMessages([...allMessages, {id: 'self', to: to, message: sendThis}])
 	console.log('requested to send', sendThis, receiver)
 	if(sendThis){
+		let sendThisMessage =  {
+			receiver: to,
+			sender: user.username, 
+			itemname: '', 
+			content: sendThis, 
+			isread: false,
+		};
+		axios
+		.post(`${API}/messages`, sendThisMessage)
+		.then((res) => {
+			console.log(res)
+		})
+		.catch((err) => {
+			console.warn(err);
+		});
+
     socket.emit("private message", {
       sendThis,
       to: receiver.userID,
@@ -162,7 +241,7 @@ function handleMessage(to, content){
 		<section>
 			{openConvo.map((conversation, index) => {
 			return (
-				<Conversation allMessages={allMessages} handleMessage={handleMessage} key={index} openConvo={openConvo} setOpenConvo={setOpenConvo} conversation={conversation} index={index} currentRight={currentRight}/>
+				<Conversation allMessages={allMessages} handleMessage={handleMessage} key={index} openConvo={openConvo} setOpenConvo={setOpenConvo} conversation={conversation} index={index} currentRight={currentRight} />
 				)})}
 		</section>
 	)}
@@ -177,7 +256,12 @@ function handleMessage(to, content){
   const renderUsersOnMessages = (user2) => {
     return (
       <section key={nanoid()} className="messageProfiles">
-        <Card className="messageCards" onClick={() => {isAlreadyAnOpenConversation(user2)}}>
+        <Card
+          className="messageCards"
+          onClick={() => {
+            isAlreadyAnOpenConversation(user2);
+          }}
+        >
           <Card.Img
             variant="top"
             className="cardProfileImg"

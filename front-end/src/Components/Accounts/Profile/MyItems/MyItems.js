@@ -55,7 +55,6 @@ const MyItems = ({
   const renderUserItems = (user) => {
     if (userItems.length > 0) {
       return userItems.map((item) => {
-				console.log(item)
         if (Object.values(item).includes(user.id)) {
           return (
             <section key={nanoid()}>
@@ -65,7 +64,7 @@ const MyItems = ({
                   <Card.Title>
                     Name: <span>{item.itemname}</span>
                   </Card.Title>
-									<Card.Text>
+                  <Card.Text>
                     Status: <span>{item.status}</span>
                   </Card.Text>
                   <Card.Text>

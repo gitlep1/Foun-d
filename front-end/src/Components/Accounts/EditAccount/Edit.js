@@ -1,10 +1,8 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import axios from "axios";
 import { Button } from "react-bootstrap";
-import  "./Edit.scss"
-const API = process.env.REACT_APP_API_URL
-
+import axios from "axios";
+import "./Edit.scss";
 
 const Edit = () => {
   const API = process.env.REACT_APP_API_URL;
@@ -15,9 +13,10 @@ const Edit = () => {
     username: "",
     password: "",
     email: "",
-    profileImg: "",
+    profileimg: "",
     address: "",
     zipcode: 0,
+    rating: 0,
   });
 
   const handleTextChange = (event) => {
@@ -34,18 +33,43 @@ const Edit = () => {
         setUser(...res.data);
       })
       .catch();
-  }, [userId]);
+  }, [userId]); // eslint-disable-line
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    axios
-      .put(`${API}/users/${userId}`, user)
-      .then(() => {
-        navigate(`/users/${userId}`);
-      })
-      .catch((err) => {
-        console.warn(err);
-      });
+
+    const updatedUser = {
+      username: user.username,
+      password: user.password,
+      email: user.email,
+      profileImg: user.profileimg,
+      address: user.address,
+      zipcode: user.zipcode,
+      rating: user.rating,
+      finder: user.finder,
+    };
+
+    if (updatedUser.profileImg.includes("https://")) {
+      await axios
+        .put(`${API}/users/${userId}`, updatedUser)
+        .then(() => {
+          navigate(`/${user.id}/viewsettings`);
+        })
+        .catch((err) => {
+          console.warn(err);
+        });
+    } else {
+      updatedUser.profileImg = `https://${updatedUser.profileImg}`;
+
+      await axios
+        .put(`${API}/users/${userId}`, updatedUser)
+        .then(() => {
+          navigate(`/${user.id}/viewsettings`);
+        })
+        .catch((err) => {
+          console.warn(err);
+        });
+    }
   };
 
   return (
@@ -57,9 +81,10 @@ const Edit = () => {
             Username
             <input
               type="text"
+              id="username"
               className="edit-info-input1"
-              onChange={handleTextChange}
               value={user.username}
+              onChange={handleTextChange}
             />
           </label>
           <br></br>
@@ -67,9 +92,10 @@ const Edit = () => {
             Password
             <input
               type="text"
+              id="password"
               className="edit-info-input"
-              onChange={handleTextChange}
               value={user.password}
+              onChange={handleTextChange}
             />
           </label>
           <br></br>
@@ -77,9 +103,21 @@ const Edit = () => {
             Email
             <input
               type="email"
+              id="email"
               className="edit-info-input"
-              onChange={handleTextChange}
               value={user.email}
+              onChange={handleTextChange}
+            />
+          </label>
+          <br></br>
+          <label htmlFor="profileImg">
+            Profile Image
+            <input
+              type="text"
+              id="profileimg"
+              className="edit-info-input"
+              value={user.profileimg}
+              onChange={handleTextChange}
             />
           </label>
           <br></br>
@@ -87,9 +125,10 @@ const Edit = () => {
             Address
             <input
               type="text"
+              id="address"
               className="edit-info-input"
-              onChange={handleTextChange}
               value={user.address}
+              onChange={handleTextChange}
             />
           </label>
           <br></br>
@@ -97,19 +136,24 @@ const Edit = () => {
             ZipCode
             <input
               type="text"
+              id="zipcode"
               className="edit-info-input"
               value={user.zipcode}
               onChange={handleTextChange}
             />
           </label>
           <br></br>
-					<Button variant='dark'onClick={() => {navigate(`/${userId}/viewsettings`)}}>
-						Back
-					</Button>
-					<Button variant='success' id="save-changes-button" type="submit">
-            {" "}
-            Save Changes{" "}
-					</Button>
+          <Button
+            variant="dark"
+            onClick={() => {
+              navigate(`/${userId}/viewsettings`);
+            }}
+          >
+            Back
+          </Button>{" "}
+          <Button variant="success" id="save-changes-button" type="submit">
+            Save Changes
+          </Button>
         </form>
       </div>
     </section>

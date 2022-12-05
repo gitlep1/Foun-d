@@ -1,0 +1,47 @@
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.skeloton-title{
+	box-shadow: 3px 3px 8px 5px rgba(0, 0, 0, 0.7);
+	border-radius: 20px;
+	width: 100px;
+	height: 25px;
+  background-color: #e4deae;
+	animation: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.skeloton-description{
+	animation: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+	width: 200px;
+	height: 25px;
+	border-radius: 20px;
+  background-color: #e4deae;
+	box-shadow: 3px 3px 8px 5px rgba(0, 0, 0, 0.7);
+}
+
+.skeloton-button{
+	margin-top: 20px;
+	animation: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+	margin-left: 5px;
+	border-radius: 10px;
+	width: 80px;
+	height: 40px;
+  background-color: #e4deae;
+	box-shadow: 3px 3px 8px 5px rgba(0, 0, 0, 0.7);
+}
+
+.itemsCard-skeloton{
+	width: 200px;
+  height: 200px;
+	box-shadow: 3px 3px 8px 5px rgba(0, 0, 0, 0.7);
+	border-radius: 100%;
+  background-color: #e4deae;
+	animation: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
