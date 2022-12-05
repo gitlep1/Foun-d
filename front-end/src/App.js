@@ -28,10 +28,12 @@ import useModel from "./Hooks/useModel";
 
 // Styling Imports
 import "./App.scss";
+import FourOFour from "./Components/404/FourOFour";
 
 export default function App() {
   const navigate = useNavigate();
   const API = process.env.REACT_APP_API_URL;
+
 
   // const [model, setModel, modelStructure] = useModel({ handleDelete });
 
@@ -195,6 +197,8 @@ export default function App() {
               element={<ViewUserSettings user={user} />}
             />
             <Route path="/:userId/edit" element={<Edit user={user} />} />
+            <Route path="/404" element={<FourOFour />} />
+            <Route path="/*" element={<FourOFour />} />
           </Routes>
         </main>
       </section>
