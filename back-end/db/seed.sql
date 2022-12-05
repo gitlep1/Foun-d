@@ -17,6 +17,11 @@ INSERT INTO found_items (foundUserId, itemsId) VALUES
 (3, 3),
 (1, 4);
 
+INSERT INTO messages ( receiver, sender, itemName, content, isRead) VALUES 
+('test1', 'test2', 'itemname1', 'Hey, how are you today?', false),
+('test2', 'test3', 'itemname1', 'Hey, how are you today?', true),
+('test3', 'test1', 'itemname1', 'Hey, how are you today?', false);
+
 -- Testing FAQ backend data *Delete if needed*
 -- -isaac
 -- INSERT INTO faq (userQuestion, questionId ) VALUES

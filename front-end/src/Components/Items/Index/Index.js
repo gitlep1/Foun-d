@@ -5,9 +5,10 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 import RenderIndex from "./RenderIndex";
+import windowDimensions from "../../../Hooks/GetWindowDimensions";
+import IndexSkeloton from "./IndexSkeloton"
 import FilteredSearch from "./FilteredSearch/FilteredSearch";
 
-import windowDimensions from "../../../Hooks/GetWindowDimensions";
 import "./Index.scss";
 
 const IndexContainer = ({ user, users, authenticated }) => {
@@ -87,7 +88,7 @@ const IndexContainer = ({ user, users, authenticated }) => {
                 />
               );
             })
-          : null}
+          : <IndexSkeloton />}
       </section>
     </section>
   );

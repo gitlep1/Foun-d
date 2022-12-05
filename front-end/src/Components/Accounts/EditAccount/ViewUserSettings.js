@@ -5,7 +5,6 @@ import { Button } from "react-bootstrap";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Edit from "./Edit";
-import FourOFour from "../../404/FourOFour";
 
 const ViewUserSettings = ({ user }) => {
   const API = process.env.REACT_APP_API_URL;
@@ -40,6 +39,7 @@ const ViewUserSettings = ({ user }) => {
     } else {
       navigate("/404");
     }
+    return null;
   });
 
   return (
@@ -49,7 +49,6 @@ const ViewUserSettings = ({ user }) => {
         <h3>Personal Info</h3>
         <ul id="user-data-li">
           {userData}
-
           <Button
             variant="dark"
             onClick={() => {
