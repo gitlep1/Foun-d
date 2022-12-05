@@ -47,6 +47,7 @@ messages.post("/", async (req, res) => {
 
 	messages.put("/:id", async (req, res) => {
 		const { id } = req.params;
+		console.log(req.params)
 		console.log(req.body.isread)
 	
 		const updatedMessageData = {

@@ -67,7 +67,6 @@ const ShowItem = ({ users, deleteItem, show, handleClose, handleClaim, user}) =>
         <>
           {users.map((foundUser) => {
             if (foundUser.id === item[0].userid) {
-							console.log(foundUser.id, user.id)
               return (
                 <div id="show-item-div" key={nanoid()}>
                   <img id="show-image" src={item[0].itemimg} alt="item" />

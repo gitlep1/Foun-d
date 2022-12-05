@@ -6,7 +6,6 @@ const API = process.env.REACT_APP_API_URL
 export default function useMessages(){ 
     const [messages, setMessages] = useState([])
     const [reload, setReload] = useState(0)
-console.log(reload)
     const reFetch = () => setReload(prev => prev + 1)
 
     useEffect(() => {
@@ -21,5 +20,5 @@ console.log(reload)
         
     , [reload])
 
-    return [messages, reFetch]
+    return [messages, setMessages, reFetch]
 }

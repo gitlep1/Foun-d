@@ -22,6 +22,7 @@ const postNewMessage = async ( receiver, sender, itemName, content, isRead) => {
 };
 
 const updateMessageStatus = async (id, isRead) => {
+	console.log(id, isRead)
   try {
     const updateFound = await db.one(
       "UPDATE messages SET isRead = $1 WHERE id = $2 RETURNING *",
@@ -36,5 +37,5 @@ const updateMessageStatus = async (id, isRead) => {
 module.exports = {
   getAllMessages,
   postNewMessage,
-  updateMessageStatus,
+  updateMessageStatus
 };

@@ -43,7 +43,7 @@ export default function App() {
   const [isOpen, setIsOpen] = useState(false);
 	const [claimItem, setClaimItem] = useState({user: {}, item: ''})
   const [show, setShow] = useState(false);
-	const [messages, reFetch] = useMessages()
+	const [messages, setMessages, reFetch] = useMessages()
 
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
@@ -152,7 +152,7 @@ export default function App() {
           users={users}
           authenticated={authenticated}
 					messages={messages}
-					reFetch={reFetch}
+					setMessages={setMessages}
         />
         <main className="mainSection">
           <Routes>
