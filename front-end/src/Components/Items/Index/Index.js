@@ -9,7 +9,6 @@ import windowDimensions from "../../../Hooks/GetWindowDimensions";
 import IndexSkeloton from "./IndexSkeloton"
 import FilteredSearch from "./FilteredSearch/FilteredSearch";
 
-import windowDimensions from "../../../Hooks/GetWindowDimensions";
 import "./Index.scss";
 
 const IndexContainer = ({ user, users, authenticated }) => {
