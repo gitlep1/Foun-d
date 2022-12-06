@@ -16,5 +16,10 @@
   "bugs": {
     "url": "https://github.com/capstone4-TheFinderz/Foun-d/issues"
   },
-  "homepage": "https://github.com/capstone4-TheFinderz/Foun-d#readme"
+  "homepage": "https://github.com/capstone4-TheFinderz/Foun-d#readme",
+  "dependencies": {
+    "@react-google-maps/api": "^2.17.0",
+    "dotenv": "^16.0.3",
+    "react-google-maps": "^9.4.5"
+  }
 }
