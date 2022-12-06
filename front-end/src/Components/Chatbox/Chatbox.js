@@ -15,6 +15,8 @@ const [openConvo, setOpenConvo] = useState([])
 const [allMessages, setAllMessages] = useState([])
 const [unReadMessageFromDatabase, setUnReadMessageFromDatabase] = useState([])
 
+// console.log('connectedData variable ', connectedData)
+// console.log('connected variable ', connected)
 // if(messages[0]){
 // 	setUnReadMessageFromDatabase([...messages])
 // 	getmessagesForUser()
@@ -91,12 +93,18 @@ function getClaim(incommingClaim){
 	}
 
 	socket.on("connect", () => {
-		// console.log('Socket is connected')
-		// console.log("ID:", socket.id);
+		console.log('Socket is connected')
+		console.log("ID:", socket.id);
 	});
 	
 	socket.onAny((event, ...args) => {
-		// console.log(event, args);
+		if(event === 'user disconnected'){
+			let connectedUsers = connected.filter((user) => user !== args[0])
+			setConnected([...connectedUsers])
+			let connectedUsersData = connectedData.filter((user) => user.username !== args[0])
+			setConnectedData([...connectedUsersData])
+		}
+		console.log(event, args);
 	});
 	
 	socket.on("connect_error", (err) => {
@@ -105,16 +113,18 @@ function getClaim(incommingClaim){
 		}
 	});
 
-	socket.on("connect", () => {
-		users.forEach((user) => {
-			if (user.self) {
-				user.active = true;
-			}
-		});
-	});
+	// socket.on("connect", () => {
+	// 	users.forEach((user) => {
+	// 		console.log(user)
+	// 		if (user.self) {
+	// 			user.active = true;
+	// 		}
+	// 	});
+	// });
 	
 	socket.on("disconnect", () => {
 		users.forEach((user) => {
+			console.log('disconnected user', users)
 			if (user.self) {
 				user.active = false;
 			}
@@ -149,15 +159,18 @@ function getClaim(incommingClaim){
 	
 	// THIS GIVES US CURRENT USERS
 	socket.on("users", (users) => {
-		let addActiveKey = users.map((user) => {
-			user['active'] = true
-			return user
+		// let addActiveKey = users.map((user) => {
+		// 	user['active'] = true
+		// 	return user
+		// })
+		console.log('current', users)
+		setConnectedData([...users])
+		let usernames = users.map((user) => {
+			return user.username
 		})
-		// console.log('current', users)
-		setConnectedData([...connectedData, ...addActiveKey])
+		setConnected([...usernames ])
 		users.forEach((user) => {
 			user.self = user.userID === socket.id;
-			setConnected([...connected, user.username ])
 		});
 		// put the current user first, and then sort by username
 		socket.users = users.sort((a, b) => {
@@ -170,15 +183,14 @@ function getClaim(incommingClaim){
 		// THIS NOTIFIES US OF ANY NEW USERS CONNECTED
 		socket.on("user connected", (user) => {
 			user['active'] = true
-			console.log("new", user, 'old', connectedData)
+			console.log("new user connected", user)
 			let doesUserExist = (user) => connectedData.find((data) => data.username === user.username)
 			if(doesUserExist(user)){
 				console.log(user, ': will not be added.')
 			} else {
 				users.push(user);
-				setConnected([...connected, ...user.username])
+				setConnected([...connected, user.username])
 				setConnectedData([...connectedData, {...user}])
-				console.log('after', connectedData)
 			}
 		});
 
@@ -189,6 +201,12 @@ function getClaim(incommingClaim){
   const unhoverMouse = () => {
     setMessageHover(false);
   };
+
+	function isUserStillConnected(user, authenticated){
+		let disconnectedUser = connectedData.find((data) => data.username === user.username)
+		return user.id && authenticated ? true : socket.emit('disconnect', disconnectedUser)
+	}
+
 	if (authenticated && user.id){
 			// THIS LETS USERS PICK THEIR NAME AND CONNECT TO SOCKET
 			// WE ONLY WHAT TO CONNECT ONCE THEY SIGN IN
@@ -236,7 +254,7 @@ function handleMessage(to, content){
 }
 
  const displayOpenConversation = () => {
-	let currentRight = 10.5
+	let currentRight = 10.3
 	return ( 
 		<section>
 			{openConvo.map((conversation, index) => {
@@ -253,6 +271,8 @@ function handleMessage(to, content){
 			}
 	}
 
+	const blinkingDot = (<img width='35px' src="https://static.wixstatic.com/media/80ce07_26ee5595e6fe43359f1a002ee8b4609c~mv2.gif"/>)
+
   const renderUsersOnMessages = (user2) => {
     return (
       <section key={nanoid()} className="messageProfiles">
@@ -262,17 +282,17 @@ function handleMessage(to, content){
             isAlreadyAnOpenConversation(user2);
           }}
         >
-          <Card.Img
+          <Card.Body>
+            <Card.Title>
+							{/* Name:{" "} */}
+							<Card.Img
             variant="top"
             className="cardProfileImg"
             src={user2.profileimg}
           />
-          <Card.Body>
-            <Card.Title>
-              Name:{" "}
               <span>
-                {connected.includes(user2.username) ? "✅" : ""}
-                {user2.username}
+                {user2.username === user.username ? 'You' : user2.username}
+								{connected.includes(user2.username) ? blinkingDot : ""}
               </span>
             </Card.Title>
           </Card.Body>
@@ -304,11 +324,8 @@ function handleMessage(to, content){
     <section className="chatboxSection">
       <div className={messageHover ? "customArrow sticky" : null}></div>
       <section
-        className={`chatboxContainer sticky ${model ? "model-On" : ""}`}
-        onMouseOver={hoverMouse}
-        onMouseOut={unhoverMouse}
-      >
-        <Dropdown drop="up" className="messagesDropup">
+        className={`chatboxContainer sticky`}>
+        <Dropdown  onMouseOver={hoverMouse} onMouseOut={unhoverMouse} drop="up" className="messagesDropup">
           <img src={user.profileimg} alt="user" id="messagesIcon" />
           <Dropdown.Toggle id="messagesText" variant="light">
             Messages
