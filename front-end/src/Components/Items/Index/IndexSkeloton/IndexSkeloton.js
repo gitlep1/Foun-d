@@ -1,6 +1,6 @@
 import { Button, Card } from "react-bootstrap";
 
-import "./RenderIndex.scss";
+import "../RenderIndex/RenderIndex.scss";
 import "./IndexSkeloton.scss";
 
 export default function IndexSkeloton() {
