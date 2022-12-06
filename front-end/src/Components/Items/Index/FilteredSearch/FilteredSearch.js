@@ -187,7 +187,7 @@ const FilteredSearch = ({
                   <Button
                     variant="dark"
                     onClick={() => {
-                      console.log("test");
+                      selectedDate2 = "";
                     }}
                   >
                     Clear Dates
