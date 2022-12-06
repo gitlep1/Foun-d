@@ -14,7 +14,6 @@ import ViewUserSettings from "./Components/Accounts/EditAccount/ViewUserSettings
 import Edit from "./Components/Accounts/EditAccount/Edit";
 import NewItemForm from "./Components/Items/Create/NewItemForm";
 import ShowItem from "./Components/Items/Show/ShowItem";
-import MapTest from "./Components/MapTest/MapTest";
 
 // Page Imports
 import Homepage from "./Pages/Home/Home";
@@ -53,7 +52,7 @@ export default function App() {
     const data = window.localStorage.getItem("Current_User");
     const authenticated = window.localStorage.getItem("Authenticated");
 
-    if (!data && !authenticated) {
+    if (data !== null && authenticated !== null) {
       setUser(JSON.parse(data));
       setAuthenticated(JSON.parse(authenticated));
     } else {
@@ -197,7 +196,6 @@ export default function App() {
               path="/:userId/viewsettings"
               element={<ViewUserSettings user={user} />}
             />
-            <Route path="/map" element={<MapTest />} />
             <Route path="/:userId/edit" element={<Edit user={user} />} />
             <Route path="/404" element={<FourOFour />} />
             <Route path="/*" element={<FourOFour />} />
