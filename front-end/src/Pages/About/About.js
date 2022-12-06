@@ -46,7 +46,7 @@ export default function About() {
             </p>
           </div>
           <div id="dev-div">
-            <h4 id="name-headings">Jan Matais</h4>
+            <h4 id="name-headings">Jan Matias</h4>
             <img
               className="about-page-img"
               src="https://avatars.githubusercontent.com/u/96319078?v=4"
