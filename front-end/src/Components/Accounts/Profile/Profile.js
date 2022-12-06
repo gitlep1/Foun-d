@@ -49,13 +49,13 @@ const Profile = ({
     const data = window.localStorage.getItem("Current_User");
     const authenticated = window.localStorage.getItem("Authenticated");
 
-    if (data !== null && authenticated !== null && updatedUser !== undefined) {
-      window.localStorage.setItem("Current_User", JSON.stringify(updatedUser));
-      window.localStorage.setItem("Authenticated", JSON.stringify(true));
-    } else {
-      window.localStorage.setItem("Current_User", JSON.stringify());
-      window.localStorage.setItem("Authenticated", JSON.stringify(false));
-    }
+    // if (data !== null && authenticated !== null) {
+    //   window.localStorage.setItem("Current_User", JSON.stringify(updatedUser));
+    //   window.localStorage.setItem("Authenticated", JSON.stringify(true));
+    // } else {
+    //   window.localStorage.setItem("Current_User", JSON.stringify());
+    //   window.localStorage.setItem("Authenticated", JSON.stringify(false));
+    // }
   };
 
   const getUserRating = () => {
