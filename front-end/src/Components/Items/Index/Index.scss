@@ -36,6 +36,11 @@
         font-size: 20px;
       }
 
+			.active{
+				background-color: #212529;
+				color: white;
+			}
+
       #mapButton {
         border-top-right-radius: 50%;
         width: 30%;
@@ -44,6 +49,7 @@
     }
   }
 }
+
 
 // @media (max-width: 1400px) {
 //   #indexSection {

@@ -52,7 +52,7 @@ export default function App() {
     const data = window.localStorage.getItem("Current_User");
     const authenticated = window.localStorage.getItem("Authenticated");
 
-    if (data !== null && authenticated !== null && data !== undefined) {
+    if (!data && !authenticated) {
       setUser(JSON.parse(data));
       setAuthenticated(JSON.parse(authenticated));
     } else {
