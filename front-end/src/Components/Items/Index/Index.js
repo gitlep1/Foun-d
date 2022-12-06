@@ -6,12 +6,14 @@ import { useNavigate } from "react-router-dom";
 
 import RenderIndex from "./RenderIndex";
 import windowDimensions from "../../../Hooks/GetWindowDimensions";
-import IndexSkeloton from "./IndexSkeloton"
+import IndexSkeloton from "./IndexSkeloton";
 import FilteredSearch from "./FilteredSearch/FilteredSearch";
+import RenderMapIndex from "./RenderMapIndex/RenderMapIndex";
 
 import "./Index.scss";
+import { Button } from "react-bootstrap";
 
-const IndexContainer = ({ user, users, authenticated }) => {
+const IndexContainer = ({ user, users, authenticated, setUsers }) => {
   const navigate = useNavigate();
   const { width, height } = windowDimensions();
   const API = process.env.REACT_APP_API_URL;
@@ -22,10 +24,11 @@ const IndexContainer = ({ user, users, authenticated }) => {
     category: "",
     borough: "",
     neighborhood: "",
-    zipcode: "",
-    userRating: "",
+    date1: "",
+    date2: "",
   });
   const [filterSearches, setFilterSearches] = useState(false);
+  const [switchView, setSwitchView] = useState(false);
 
   const [error, setError] = useState("");
 
@@ -59,36 +62,67 @@ const IndexContainer = ({ user, users, authenticated }) => {
 
   return (
     <section id="indexContainer">
+      {/* {console.log(setUsers)} */}
       <aside id="searhSection-aside">
         <FilteredSearch
           itemName={itemName}
           setItemName={setItemName}
-          filteredSearchOptions={filteredSearchOptions}
           setFilteredSearchOptions={setFilteredSearchOptions}
           setFilterSearches={setFilterSearches}
         />
       </aside>
+      <div id="switchViewContainer">
+        <div id="switchViewButtons">
+          <Button
+            id="listButton"
+            variant="outline-success"
+            onClick={() => {
+              setSwitchView(false);
+            }}
+          >
+            List
+          </Button>
+          <Button
+            id="mapButton"
+            variant="outline-success"
+            onClick={() => {
+              setSwitchView(true);
+            }}
+          >
+            Map
+          </Button>
+        </div>
+      </div>
       <br />
       <section id="indexInnerSection">
         {error && <p>{error}</p>}
-        {foundItems.length > 0
-          ? foundItems.map((itemFound) => {
-              return (
-                <RenderIndex
-                  key={nanoid()}
-                  itemFound={itemFound}
-                  user={user}
-                  users={users}
-                  authenticated={authenticated}
-                  width={width}
-                  height={height}
-                  itemName={itemName}
-                  filteredSearchOptions={filteredSearchOptions}
-                  filterSearches={filterSearches}
-                />
-              );
-            })
-          : <IndexSkeloton />}
+        {switchView ? (
+          <RenderMapIndex
+            foundItems={foundItems}
+            user={user}
+            authenticated={authenticated}
+          />
+        ) : foundItems.length > 0 ? (
+          foundItems.map((itemFound) => {
+            return (
+              <RenderIndex
+                key={nanoid()}
+                itemFound={itemFound}
+                user={user}
+                users={users}
+                authenticated={authenticated}
+                width={width}
+                height={height}
+                itemName={itemName}
+                filteredSearchOptions={filteredSearchOptions}
+                filterSearches={filterSearches}
+                setUsers={setUsers}
+              />
+            );
+          })
+        ) : (
+          <IndexSkeloton />
+        )}
       </section>
     </section>
   );

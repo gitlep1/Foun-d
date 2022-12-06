@@ -16,6 +16,7 @@ const RenderIndex = ({
   itemName,
   filteredSearchOptions,
   filterSearches,
+  setUsers,
 }) => {
   const navigate = useNavigate();
 
@@ -69,6 +70,7 @@ const RenderIndex = ({
   return (
     <>
       <section className="cardInfoContainer">
+        {/* {console.log(itemFound.itemdate)} */}
         {itemName !== "" ? (
           itemFound.itemname.includes(itemName) ? (
             filterSearches ? (
@@ -80,6 +82,7 @@ const RenderIndex = ({
                   getFinderRating={getFinderRating}
                   filteredSearchOptions={filteredSearchOptions}
                   users={users}
+                  setUsers={setUsers}
                 />
               </>
             ) : (
@@ -124,6 +127,7 @@ const RenderIndex = ({
               getFinderRating={getFinderRating}
               filteredSearchOptions={filteredSearchOptions}
               users={users}
+              setUsers={setUsers}
             />
           </>
         ) : (

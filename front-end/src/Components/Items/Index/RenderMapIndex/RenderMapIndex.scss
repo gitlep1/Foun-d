@@ -1,0 +1,11 @@
+#mapIndexOuterContainer {
+  border: 5px solid red;
+  display: flex;
+  justify-content: center;
+  width: 90vw;
+
+  #mapIndexInnerContainer {
+    border: 5px solid cyan;
+    width: 100%;
+  }
+}
