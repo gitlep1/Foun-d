@@ -27,19 +27,20 @@
       #filterLocation {
         display: flex;
         align-items: center;
-        justify-content: center;
       }
 
-      #filterUserRatings {
+      #filterDateRange {
         display: flex;
         align-items: center;
 
-        #innerUserRatings {
+        #innerDateRange {
           display: flex;
+          margin-top: -11%;
           flex-direction: column;
           justify-content: center;
           align-items: center;
-          width: 50%;
+
+          width: 80%;
         }
       }
     }

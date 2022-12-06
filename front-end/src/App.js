@@ -34,7 +34,6 @@ export default function App() {
   const navigate = useNavigate();
   const API = process.env.REACT_APP_API_URL;
 
-
   // const [model, setModel, modelStructure] = useModel({ handleDelete });
 
   const [user, setUser] = useState({});
@@ -44,7 +43,7 @@ export default function App() {
   const [isOpen, setIsOpen] = useState(false);
   const [claimItem, setClaimItem] = useState({ user: {}, item: "" });
   const [show, setShow] = useState(false);
-	const [messages, setMessages, reFetch] = useMessages()
+  const [messages, setMessages, reFetch] = useMessages();
 
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
@@ -53,9 +52,12 @@ export default function App() {
     const data = window.localStorage.getItem("Current_User");
     const authenticated = window.localStorage.getItem("Authenticated");
 
-    if (data !== null && authenticated !== null) {
+    if (data !== null && authenticated !== null && data !== undefined) {
       setUser(JSON.parse(data));
       setAuthenticated(JSON.parse(authenticated));
+    } else {
+      setUser({});
+      setAuthenticated(false);
     }
 
     getUsers();
@@ -73,12 +75,6 @@ export default function App() {
     });
   };
 
-  // const getItems = async () => {
-  //   await axios.get(`${API}/items`).then((res) => {
-  //     setItems(res.data);
-  //   });
-  // };
-
   const handleUser = async (user) => {
     setUser(user);
     setAuthenticated(true);
@@ -93,7 +89,7 @@ export default function App() {
     const data = window.localStorage.getItem("Current_User");
     const authenticated = window.localStorage.getItem("Authenticated");
 
-    if (data !== null && authenticated !== null) {
+    if (data !== null && authenticated !== null && data !== undefined) {
       window.localStorage.setItem("Current_User", JSON.stringify({}));
       window.localStorage.setItem("Authenticated", JSON.stringify(false));
     }
@@ -150,8 +146,8 @@ export default function App() {
           user={user}
           users={users}
           authenticated={authenticated}
-					messages={messages}
-					setMessages={setMessages}
+          messages={messages}
+          setMessages={setMessages}
         />
         <main className="mainSection">
           <Routes>
@@ -163,6 +159,7 @@ export default function App() {
                   user={user}
                   users={users}
                   authenticated={authenticated}
+                  setUsers={setUsers}
                 />
               }
             />

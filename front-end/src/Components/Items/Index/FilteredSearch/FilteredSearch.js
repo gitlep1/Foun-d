@@ -1,20 +1,29 @@
 import { useState } from "react";
 import { Form, Button, Dropdown, Card } from "react-bootstrap";
+import Calendar from "react-calendar";
+import moment from "moment";
 
 import "./FilteredSearch.scss";
 
 const FilteredSearch = ({
   itemName,
   setItemName,
-  filteredSearchOptions,
   setFilteredSearchOptions,
   setFilterSearches,
 }) => {
-  const [rating, setRating] = useState("");
+  const [date1, setDate1] = useState("");
+  const [date2, setDate2] = useState("");
   const [neighborhood, setNeighborhood] = useState("");
-  const [zipcode, setZipcode] = useState("");
   const [selectCategory, setSelectCategory] = useState("Default");
   const [selectBorough, setSelectBorough] = useState("Default");
+
+  const [calendarOpen1, setCalendarOpen1] = useState(false);
+  const [calendarOpen2, setCalendarOpen2] = useState(false);
+  const [calendarValue1, setCalendarValue1] = useState(new Date());
+  const [calendarValue2, setCalendarValue2] = useState(new Date());
+
+  const selectedDate1 = moment(calendarValue1).format("MMMM Do YYYY");
+  const selectedDate2 = moment(calendarValue2).format("MMMM Do YYYY");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -23,13 +32,11 @@ const FilteredSearch = ({
       setItemName(value);
     } else if (name === "neighborhood") {
       setNeighborhood(value);
-    } else if (name === "zipcode") {
-      setZipcode(value);
+    } else if (name === "date1") {
+      setDate1(value);
+    } else if (name === "date2") {
+      setDate2(value);
     }
-  };
-
-  const radioButtonCheck = (e) => {
-    setRating(e.target.value);
   };
 
   const handleCategoryChange = (e) => {
@@ -46,8 +53,8 @@ const FilteredSearch = ({
     if (
       selectCategory !== "Default" ||
       selectBorough !== "Default" ||
-      (rating !== "" && rating !== "0") ||
-      zipcode !== "" ||
+      selectedDate1 !== "" ||
+      selectedDate2 !== "" ||
       neighborhood !== ""
     ) {
       setFilterSearches(true);
@@ -55,8 +62,8 @@ const FilteredSearch = ({
         category: selectCategory,
         borough: selectBorough,
         neighborhood: neighborhood,
-        zipcode: zipcode,
-        rating: rating,
+        date1: date1,
+        date2: date2,
       });
     } else {
       setFilterSearches(false);
@@ -126,85 +133,65 @@ const FilteredSearch = ({
                 <Form.Group controlId="formBasicNeighborhood">
                   <Form.Label>Neighborhood</Form.Label>
                   <Form.Control
-                    type="neighborhood"
+                    type="text"
                     name="neighborhood"
                     placeholder="Neighborhood"
                     onChange={handleChange}
                     value={neighborhood}
                   />
                 </Form.Group>
-
-                <Form.Group controlId="formBasicNeighborhood">
-                  <Form.Label>Zipcode</Form.Label>
-                  <Form.Control
-                    type="number"
-                    name="zipcode"
-                    placeholder="Zipcode"
-                    onChange={handleChange}
-                    value={zipcode}
-                  />
-                </Form.Group>
               </Card>
 
-              <Card id="filterUserRatings">
-                <h2>User Rating</h2>
+              <Card id="filterDateRange">
+                <h2>Date Range</h2>
                 <br></br>
-                <div id="innerUserRatings">
-                  <Form.Check
-                    type="radio"
-                    id="notApplicable"
-                    name="ratingSelect"
-                    value="0"
-                    label="N/A"
-                    onChange={radioButtonCheck}
-                    checked={rating === "0"}
-                  />
+                <div id="innerDateRange">
+                  <Form.Group controlId="formBasicDate1">
+                    <Form.Label>Date 1</Form.Label>
+                    <Form.Control
+                      type="text"
+                      name="date1"
+                      onChange={setCalendarValue1}
+                      value={selectedDate1}
+                      onClick={() => {
+                        setCalendarOpen1(!calendarOpen1);
+                      }}
+                    />
+                    {calendarOpen1 ? (
+                      <Calendar
+                        onChange={setCalendarValue1}
+                        value={calendarValue1}
+                      />
+                    ) : null}
+                  </Form.Group>
 
-                  <Form.Check
-                    type="radio"
-                    id="oneStar"
-                    name="ratingSelect"
-                    value="1"
-                    label="1 star"
-                    onChange={radioButtonCheck}
-                    checked={rating === "1"}
-                  />
-                  <Form.Check
-                    type="radio"
-                    id="twoStar"
-                    name="ratingSelect"
-                    value="2"
-                    label="2 stars"
-                    onChange={radioButtonCheck}
-                    checked={rating === "2"}
-                  />
-                  <Form.Check
-                    type="radio"
-                    id="threeStar"
-                    name="ratingSelect"
-                    value="3"
-                    label="3 stars"
-                    onChange={radioButtonCheck}
-                    checked={rating === "3"}
-                  />
-                  <Form.Check
-                    type="radio"
-                    id="fourStar"
-                    name="ratingSelect"
-                    value="4"
-                    label="4 stars"
-                    onChange={radioButtonCheck}
-                    checked={rating === "4"}
-                  />
-                  <Form.Check
-                    type="radio"
-                    id="fiveStar"
-                    name="ratingSelect"
-                    value="5"
-                    label="5 stars"
-                    onChange={radioButtonCheck}
-                    checked={rating === "5"}
-                  />
+                  <Form.Group controlId="formBasicDate1">
+                    <Form.Label>Date 2</Form.Label>
+                    <Form.Control
+                      type="text"
+                      name="date2"
+                      onChange={setCalendarValue2}
+                      value={selectedDate2}
+                      onClick={() => {
+                        setCalendarOpen2(!calendarOpen2);
+                      }}
+                    />
+                    {calendarOpen2 ? (
+                      <Calendar
+                        onChange={setCalendarValue2}
+                        value={calendarValue2}
+                      />
+                    ) : null}
+                  </Form.Group>
+                  <br></br>
+                  <Button
+                    variant="dark"
+                    onClick={() => {
+                      console.log("test");
+                    }}
+                  >
+                    Clear Dates
+                  </Button>
                 </div>
               </Card>
             </section>

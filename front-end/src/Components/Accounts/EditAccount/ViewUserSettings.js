@@ -39,26 +39,35 @@ const ViewUserSettings = ({ user }) => {
     } else {
       navigate("/404");
     }
+    return null;
   });
 
-return (
-<div id='user-settings-div'>
-	<h1 className="edit-settings-heading"> Edit User settings</h1>
-	<section id='user-info-section'>
-	<h3>Personal Info</h3>
-	<ul id='user-data-li'>
-	{userData}
-
-		<Button variant='dark'onClick={() => {navigate(`/index`)}}>
-			Back
-		</Button>
-		<Button variant='success'onClick={() => {navigate(`/${userId}/edit`)}}>
-			Edit
-		</Button>
-	</ul>
-	</section>
-</div>
-	)
+  return (
+    <div id="user-settings-div">
+      <h1 className="edit-settings-heading"> Your personal settings</h1>
+      <section id="user-info-section">
+        <h3>Personal Info</h3>
+        <ul id="user-data-li">
+          {userData}
+          <Button
+            variant="dark"
+            onClick={() => {
+              navigate(`/index`);
+            }}
+          >
+            Back
+          </Button>
+          <Button
+            variant="success"
+            onClick={() => {
+              navigate(`/${userId}/edit`);
+            }}
+          >
+            Edit
+          </Button>
+        </ul>
+      </section>
+    </div>
+  );
 };
 export default ViewUserSettings;
-
