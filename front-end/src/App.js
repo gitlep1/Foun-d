@@ -187,6 +187,7 @@ export default function App() {
                   show={show}
                   handleClaim={handleClaim}
                   handleClose={handleClose}
+									authenticated={authenticated}
                 />
               }
             />
