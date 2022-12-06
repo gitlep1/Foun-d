@@ -1,7 +1,10 @@
 import { io } from "socket.io-client";
 
 const API = process.env.REACT_APP_API_URL;
-const socket = io(API, { autoConnect: false });
+const socket = io(API, { 
+	// withCredentials: true,
+	autoConnect: true
+});
 
 //THIS CONNECTS OUR SOCKET
 // socket.on("connect", () => {

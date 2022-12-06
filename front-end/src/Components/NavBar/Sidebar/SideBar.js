@@ -35,7 +35,7 @@ export default function SideBar({ model }) {
 
   return (
     <div className={`sidebar-container sticky ${model ? "model-On" : ""}`}>
-      <div>
+      <div className="icon-container">
         <Link to="/index" className={effect.index ? "pulse" : ""}>
           <img
             className={effect.index ? "pulse" : ""}

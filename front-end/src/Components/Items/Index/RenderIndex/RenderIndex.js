@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { Button, Form, Card } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { nanoid } from "nanoid";
-import RenderFilteredSearches from "./FilteredSearch/RenderFilteredSearches";
+import RenderFilteredSearches from "../FilteredSearch/RenderFilteredSearches";
 
 import "./RenderIndex.scss";
 
