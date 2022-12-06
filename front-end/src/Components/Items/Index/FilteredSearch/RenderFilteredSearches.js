@@ -9,24 +9,11 @@ const RenderFilteredSearches = ({
   getFinderRating,
   filteredSearchOptions,
   users,
+  setUsers,
 }) => {
   const navigate = useNavigate();
 
-  const filterRatings = (rating) => {
-    // console.log(rating);
-    return (
-      <>
-        {users.map((user) => {
-          if (user.rating === Number(rating)) {
-            return renderFilteredSearches(rating);
-          }
-        })}
-      </>
-    );
-  };
-
   const renderFilteredSearches = (rating) => {
-    // console.log(rating);
     return (
       <Card key={nanoid()} className="itemsCard">
         <img src={itemFound.itemimg} alt="item" className="itemImg" />
@@ -60,18 +47,35 @@ const RenderFilteredSearches = ({
     );
   };
 
+  const filterDateRange = (date1, date2) => {
+    console.log(date1, date2);
+  };
+
+  let filteredItems = [];
+
+  if (filteredSearchOptions.category === itemFound.category) {
+    filteredItems = renderFilteredSearches(filteredSearchOptions.rating);
+  } else if (
+    filteredSearchOptions.borough.toLowerCase() ===
+    itemFound.borough.toLowerCase()
+  ) {
+    filteredItems = renderFilteredSearches(filteredSearchOptions.rating);
+  } else if (
+    filteredSearchOptions.neighborhood.toLowerCase() ===
+    itemFound.neighborhood.toLowerCase()
+  ) {
+    filteredItems = renderFilteredSearches(filteredSearchOptions.rating);
+  } else if (filteredItems.date1 && filteredItems.date2) {
+    // filteredItems = filterDateRange(filteredItems.date1, filteredItems.date2);
+    filterDateRange(filteredItems.date1, filteredItems.date2);
+  }
+
+  // setFoundItems(filteredItems);
+
   return (
-    <>
-      {filteredSearchOptions.category === itemFound.category
-        ? renderFilteredSearches(filteredSearchOptions.rating)
-        : filteredSearchOptions.borough.toLowerCase() ===
-          itemFound.borough.toLowerCase()
-        ? renderFilteredSearches(filteredSearchOptions.rating)
-        : filteredSearchOptions.neighborhood.toLowerCase() ===
-          itemFound.neighborhood.toLowerCase()
-        ? renderFilteredSearches(filteredSearchOptions.rating)
-        : filterRatings(filteredSearchOptions.rating)}
-    </>
+    <section>
+      <span>{filteredItems}</span>
+    </section>
   );
 };
 
