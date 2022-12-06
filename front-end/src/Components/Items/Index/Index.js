@@ -29,6 +29,7 @@ const IndexContainer = ({ user, users, authenticated, setUsers }) => {
   });
   const [filterSearches, setFilterSearches] = useState(false);
   const [switchView, setSwitchView] = useState(false);
+  const [active, setActive] = useState(false);
 
   const [error, setError] = useState("");
 
@@ -75,18 +76,22 @@ const IndexContainer = ({ user, users, authenticated, setUsers }) => {
         <div id="switchViewButtons">
           <Button
             id="listButton"
-            variant="outline-success"
+            className={!active ? "active" : ""}
+            variant="outline-dark"
             onClick={() => {
               setSwitchView(false);
+              setActive(false);
             }}
           >
             List
           </Button>
           <Button
             id="mapButton"
-            variant="outline-success"
+            variant="outline-dark"
+            className={active ? "active" : ""}
             onClick={() => {
               setSwitchView(true);
+              setActive(true);
             }}
           >
             Map
