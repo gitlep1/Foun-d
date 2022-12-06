@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 import RenderIndex from "./RenderIndex/RenderIndex";
 import windowDimensions from "../../../Hooks/GetWindowDimensions";
-import IndexSkeloton from "./IndexSkeloton/IndexSkeloton";
+import IndexSkeloton from "./IndexSkeleton/IndexSkeloton";
 import FilteredSearch from "./FilteredSearch/FilteredSearch";
 import RenderMapIndex from "./RenderMapIndex/RenderMapIndex";
 
@@ -29,7 +29,7 @@ const IndexContainer = ({ user, users, authenticated, setUsers }) => {
   });
   const [filterSearches, setFilterSearches] = useState(false);
   const [switchView, setSwitchView] = useState(false);
-	const [active, setActive] = useState(false)
+  const [active, setActive] = useState(false);
 
   const [error, setError] = useState("");
 
@@ -76,11 +76,11 @@ const IndexContainer = ({ user, users, authenticated, setUsers }) => {
         <div id="switchViewButtons">
           <Button
             id="listButton"
-						className={ !active ? "active" : ''}
+            className={!active ? "active" : ""}
             variant="outline-dark"
             onClick={() => {
               setSwitchView(false);
-							setActive(false);
+              setActive(false);
             }}
           >
             List
@@ -88,10 +88,10 @@ const IndexContainer = ({ user, users, authenticated, setUsers }) => {
           <Button
             id="mapButton"
             variant="outline-dark"
-						className={ active ? "active" : ''}
+            className={active ? "active" : ""}
             onClick={() => {
               setSwitchView(true);
-							setActive(true);
+              setActive(true);
             }}
           >
             Map

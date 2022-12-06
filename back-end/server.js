@@ -8,10 +8,10 @@ const PORT = process.env.PORT;
 
 const io = new Server(httpServer, {
   cors: {
-		origin: `http://localhost:3000`,
-		// methods: ["GET", "POST"],
-		// credentials: true
-  }
+    origin: `http://localhost:3000`,
+    // methods: ["GET", "POST"],
+    // credentials: true
+  },
 });
 
 const crypto = require("crypto");
@@ -26,7 +26,7 @@ io.use((socket, next) => {
   next();
 });
 
-io.on('connection', (socket) => {
+io.on("connection", (socket) => {
   const users = [];
   for (let [id, socket] of io.of("/").sockets) {
     users.push({
@@ -45,27 +45,27 @@ io.on('connection', (socket) => {
     socket.to(to).emit("private message", {
       sendThis,
       from: socket.id,
-    })
+    });
   });
- 
+
   socket.on("disconnect", () => {
     socket.broadcast.emit("user disconnected", socket.username);
   });
 
-  socket.on('new message', (msg) => {
-		console.log(msg)
-      io.emit('send message', {message: msg, user: socket.username});
+  socket.on("new message", (msg) => {
+    console.log(msg);
+    io.emit("send message", { message: msg, user: socket.username });
   });
 
-  socket.on('new user', (usr) => {
-      socket.username = usr;
-      console.log('User connected - Username: ' + socket.username);
+  socket.on("new user", (usr) => {
+    socket.username = usr;
+    console.log("User connected - Username: " + socket.username);
   });
 });
 
 httpServer.listen(PORT, () => {
-  console.log(`Socket.io & App port at ${PORT}`)
-})
+  console.log(`Socket.io & App port at ${PORT}`);
+});
 // app.listen(PORT, () => {
 //   console.log(`Started on port ${PORT}`);
 // });
