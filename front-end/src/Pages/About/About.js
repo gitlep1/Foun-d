@@ -62,7 +62,13 @@ export default function About() {
               {" "}
               Jan's Github
             </a>
-            <p className="bioText"></p>
+            <p className="bioText">
+              {" "}
+              Hi there! I’m Jan, an aspiring Full Stack Web Developer based in
+              NYC. If I’m not battling self-spawned bugs, you can catch me binge
+              watching Anime, being forced to watch Gilmore Girls for the
+              millionth time, or planning a getaway trip with my lovely wife.
+            </p>
           </div>
           <div id="dev-div">
             <h4 id="name-headings">Antonio Shivers</h4>
@@ -96,7 +102,7 @@ export default function About() {
             <h4 id="name-headings">Isaac Gonzalez</h4>
             <img
               className="about-page-img"
-              src="https://avatars.githubusercontent.com/u/98069665?v=4"
+              src="https://media-exp1.licdn.com/dms/image/C4E03AQGrBfidATUo9w/profile-displayphoto-shrink_800_800/0/1643392200459?e=1675296000&v=beta&t=s64Vpx7mXMgAH4kRTW-IhRLR2gy9YrUevHsxReXc6nc"
               alt="Isaac"
             />
             <h5 id="title-headings">Title: Jr. Software Engineer</h5>
@@ -107,9 +113,14 @@ export default function About() {
               rel="nooppener noreferrer"
             >
               {" "}
-              Issac's Github
+              Isaac's Github
             </a>
-            <p className="bioText"></p>
+            <p className="bioText">
+              Every day I'm met with a new challenge, whether it’s in coding or
+              in my Brazilian Jujitsu journey. And while failing forward is a
+              part of the journey, my dedication and resourcefulness are what
+              help me overcome any obstacle.
+            </p>
           </div>
         </div>
       </section>

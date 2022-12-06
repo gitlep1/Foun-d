@@ -1,31 +1,49 @@
 import { useState, useEffect } from "react";
-import { Button, Form, Card, Dropdown } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
 import { nanoid } from "nanoid";
 import axios from "axios";
 
+import { useNavigate } from "react-router-dom";
+
 import RenderIndex from "./RenderIndex";
 import windowDimensions from "../../../Hooks/GetWindowDimensions";
+import IndexSkeloton from "./IndexSkeloton";
+import FilteredSearch from "./FilteredSearch/FilteredSearch";
+import RenderMapIndex from "./RenderMapIndex/RenderMapIndex";
 
 import "./Index.scss";
+import { Button } from "react-bootstrap";
 
-const IndexContainer = ({ user, users, authenticated }) => {
-  const { width, height } = windowDimensions();
+const IndexContainer = ({ user, users, authenticated, setUsers }) => {
   const navigate = useNavigate();
+  const { width, height } = windowDimensions();
   const API = process.env.REACT_APP_API_URL;
 
   const [foundItems, setFoundItems] = useState([]);
   const [itemName, setItemName] = useState("");
+  const [filteredSearchOptions, setFilteredSearchOptions] = useState({
+    category: "",
+    borough: "",
+    neighborhood: "",
+    date1: "",
+    date2: "",
+  });
+  const [filterSearches, setFilterSearches] = useState(false);
+  const [switchView, setSwitchView] = useState(false);
+
   const [error, setError] = useState("");
 
   useEffect(() => {
     getItems();
+    // make index auto navigate to homepage if user is not authenticated \\
 
-    // const ItemsInterval = setInterval(() => {
-    //   getItems();
+    // const localAuthenticated = window.localStorage.getItem("Authenticated");
+    // const authenticatedInterval = setInterval(() => {
+    //   if (!localAuthenticated) {
+    //     navigate("/");
+    //   }
     // }, 3000);
 
-    // return () => clearInterval(ItemsInterval);
+    // return () => clearInterval(authenticatedInterval);
   }, []); // eslint-disable-line
 
   const getItems = async () => {
@@ -42,92 +60,69 @@ const IndexContainer = ({ user, users, authenticated }) => {
       });
   };
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-
-    if (name === "itemName") {
-      setItemName(value);
-    }
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    // await axios
-    //   .get(`${API}/items`)
-    //   .then((res) => {
-    //     let filterItems = res.data.map((items) => {
-    //       if (items.itemname.includes(itemName)) {
-    //         console.log(items);
-    //       }
-    //     });
-    //     console.log(filterItems);
-    //     // setFoundItems(filterItems);
-    //   })
-    //   .catch((err) => {
-    //     setError(err);
-    //   });
-
-    let filterItems = foundItems.map((items) =>
-      items.itemname.includes(itemName)
-    );
-
-    console.log(filterItems);
-
-    setFoundItems(filterItems);
-  };
-
-  // const getFilteredItems = () => {
-
-  // }
-
   return (
-    <section id="indexSection">
-      <aside id="searchBarContainer">
-        <Form id="searchBar" onSubmit={handleSubmit}>
-          <section id="searchBarInnerContainer">
-            <Dropdown id="filterListContainer">
-              <Dropdown.Toggle variant="dark">Advanced Search</Dropdown.Toggle>
-
-              <Dropdown.Menu id="filterList">
-                <h1>Test</h1>
-                <Button variant="success">Filter Search</Button>
-              </Dropdown.Menu>
-            </Dropdown>
-            <Form.Group controlId="formBasicSearchbar">
-              <Form.Control
-                type="text"
-                name="itemName"
-                placeholder="Item Name"
-                onChange={handleChange}
-                value={itemName}
-              />
-            </Form.Group>
-            <Button variant="success" id="searchBarButton" type="submit">
-              Search
-            </Button>
-          </section>
-        </Form>
+    <section id="indexContainer">
+      {/* {console.log(setUsers)} */}
+      <aside id="searhSection-aside">
+        <FilteredSearch
+          itemName={itemName}
+          setItemName={setItemName}
+          setFilteredSearchOptions={setFilteredSearchOptions}
+          setFilterSearches={setFilterSearches}
+        />
       </aside>
+      <div id="switchViewContainer">
+        <div id="switchViewButtons">
+          <Button
+            id="listButton"
+            variant="outline-success"
+            onClick={() => {
+              setSwitchView(false);
+            }}
+          >
+            List
+          </Button>
+          <Button
+            id="mapButton"
+            variant="outline-success"
+            onClick={() => {
+              setSwitchView(true);
+            }}
+          >
+            Map
+          </Button>
+        </div>
+      </div>
       <br />
-      <section id="indexContainer">
+      <section id="indexInnerSection">
         {error && <p>{error}</p>}
-        {foundItems.length > 0
-          ? foundItems.map((itemFound) => {
-						console.log(foundItems)
-              return (
-                <RenderIndex
-                  key={nanoid()}
-                  itemFound={itemFound}
-                  user={user}
-                  users={users}
-                  authenticated={authenticated}
-                  width={width}
-                  height={height}
-                />
-              );
-            })
-          : null}
+        {switchView ? (
+          <RenderMapIndex
+            foundItems={foundItems}
+            user={user}
+            authenticated={authenticated}
+          />
+        ) : foundItems.length > 0 ? (
+          foundItems.map((itemFound) => {
+            return (
+              <RenderIndex
+                key={nanoid()}
+                itemFound={itemFound}
+                user={user}
+                users={users}
+                authenticated={authenticated}
+                width={width}
+                height={height}
+                itemName={itemName}
+                filteredSearchOptions={filteredSearchOptions}
+                filterSearches={filterSearches}
+                setUsers={setUsers}
+              />
+            );
+          })
+        ) : (
+          <IndexSkeloton />
+        )}
       </section>
     </section>
   );

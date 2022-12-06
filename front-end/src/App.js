@@ -25,10 +25,11 @@ import Editpage from "./Pages/Items/Edit/Edit";
 import GiveawayPage from "./Pages/Items/Giveaway/Giveaway";
 
 // Hook imports
-import useModel from "./Hooks/useModel";
+import useMessages from "./Hooks/useMessages";
 
 // Styling Imports
 import "./App.scss";
+import FourOFour from "./Components/404/FourOFour";
 
 export default function App() {
   const navigate = useNavigate();
@@ -43,6 +44,7 @@ export default function App() {
   const [isOpen, setIsOpen] = useState(false);
   const [claimItem, setClaimItem] = useState({ user: {}, item: "" });
   const [show, setShow] = useState(false);
+  const [messages, setMessages, reFetch] = useMessages();
 
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
@@ -51,17 +53,18 @@ export default function App() {
     const data = window.localStorage.getItem("Current_User");
     const authenticated = window.localStorage.getItem("Authenticated");
 
-    if (data !== null && authenticated !== null) {
+    if (data !== null && authenticated !== null && data !== undefined) {
       setUser(JSON.parse(data));
       setAuthenticated(JSON.parse(authenticated));
+    } else {
+      setUser({});
+      setAuthenticated(false);
     }
 
     getUsers();
-    // getItems();
 
     const UsersInterval = setInterval(() => {
       getUsers();
-      // getItems();
     }, 5000);
 
     return () => clearInterval(UsersInterval);
@@ -73,13 +76,7 @@ export default function App() {
     });
   };
 
-  // const getItems = async () => {
-  //   await axios.get(`${API}/items`).then((res) => {
-  //     setItems(res.data);
-  //   });
-  // };
-
-  const handleUser = (user) => {
+  const handleUser = async (user) => {
     setUser(user);
     setAuthenticated(true);
     window.localStorage.setItem("Current_User", JSON.stringify(user));
@@ -93,7 +90,7 @@ export default function App() {
     const data = window.localStorage.getItem("Current_User");
     const authenticated = window.localStorage.getItem("Authenticated");
 
-    if (data !== null && authenticated !== null) {
+    if (data !== null && authenticated !== null && data !== undefined) {
       window.localStorage.setItem("Current_User", JSON.stringify({}));
       window.localStorage.setItem("Authenticated", JSON.stringify(false));
     }
@@ -150,6 +147,8 @@ export default function App() {
           user={user}
           users={users}
           authenticated={authenticated}
+          messages={messages}
+          setMessages={setMessages}
         />
         <main className="mainSection">
           <Routes>
@@ -161,6 +160,7 @@ export default function App() {
                   user={user}
                   users={users}
                   authenticated={authenticated}
+                  setUsers={setUsers}
                 />
               }
             />
@@ -199,6 +199,8 @@ export default function App() {
             />
             <Route path="/map" element={<MapTest />} />
             <Route path="/:userId/edit" element={<Edit user={user} />} />
+            <Route path="/404" element={<FourOFour />} />
+            <Route path="/*" element={<FourOFour />} />
           </Routes>
         </main>
       </section>

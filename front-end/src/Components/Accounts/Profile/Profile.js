@@ -1,15 +1,16 @@
 import "./Profile.scss";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button, Dropdown, Image } from "react-bootstrap";
 import { ToastContainer } from "react-toastify";
 import { useNavigate, Link } from "react-router-dom";
 import ReactTooltip from "react-tooltip";
-import EditUserSettings from "../EditAccount/ViewUserSettings";
+// import EditUserSettings from "../EditAccount/ViewUserSettings";
 
 import Signin from "./Signin";
 import Signup from "./Signup";
 
 import gearIcon from "../../../Images/gearIcon.png";
+import axios from "axios";
 
 // import fiveStars from "../../Images/5stars.png";
 
@@ -23,12 +24,46 @@ const Profile = ({
   setIsOpen,
   model,
 }) => {
+  const API = process.env.REACT_APP_API_URL;
+
   const navigate = useNavigate();
   const [clickHere, setClickHere] = useState(false);
-  const [isHovering, setIsHovering] = useState(false);
+
+  const [updatedUser, setUpdatedUser] = useState({});
+
+  useEffect(() => {
+    getUpdatedUser();
+
+    const updateUserInterval = setInterval(() => {
+      getUpdatedUser();
+    }, 3000);
+
+    return () => clearInterval(updateUserInterval);
+  });
+
+  const getUpdatedUser = async () => {
+    await axios.get(`${API}/users/${user.id}`).then((res) => {
+      setUpdatedUser(res.data[0]);
+    });
+
+    const data = window.localStorage.getItem("Current_User");
+    const authenticated = window.localStorage.getItem("Authenticated");
+
+    // if (data !== null && authenticated !== null) {
+    //   window.localStorage.setItem("Current_User", JSON.stringify(updatedUser));
+    //   window.localStorage.setItem("Authenticated", JSON.stringify(true));
+    // } else {
+    //   window.localStorage.setItem("Current_User", JSON.stringify());
+    //   window.localStorage.setItem("Authenticated", JSON.stringify(false));
+    // }
+  };
 
   const getUserRating = () => {
-    const ur = user.rating;
+    let ur = user.rating;
+
+    if (updatedUser) {
+      ur = updatedUser.rating;
+    }
 
     if (ur === 1) {
       // return <img src={fiveStars} alt="star" />;
@@ -54,10 +89,10 @@ const Profile = ({
             <>
               <img
                 className="profileImgSmall"
-                src={user.profileimg}
+                src={updatedUser ? updatedUser.profileimg : user.profileimg}
                 alt="profile"
               />
-              {user.username}
+              {updatedUser ? updatedUser.username : user.username}
             </>
           ) : clickHere ? (
             <>LOG IN</>
@@ -70,7 +105,7 @@ const Profile = ({
           {authenticated && user.id ? (
             <section className={`authenticatedUser`}>
               <div className="accountSettingsImgContainer">
-                <img
+                <Image
                   src={gearIcon}
                   alt="settings"
                   id="accountSettingsImg"
@@ -81,12 +116,11 @@ const Profile = ({
                 />
                 <ReactTooltip place="left" type="dark" effect="float">
                   <h3>User Settings</h3>
-                  {/* <Image src={`${user.profileimg}`} alt="wolf" /> */}
                 </ReactTooltip>
               </div>
               <section className="profileStats">
-                <img
-                  src={user.profileimg}
+                <Image
+                  src={updatedUser ? updatedUser.profileimg : user.profileimg}
                   className="profileImgBig"
                   alt="profile"
                 />
