@@ -4,9 +4,9 @@ import axios from "axios";
 
 import { useNavigate } from "react-router-dom";
 
-import RenderIndex from "./RenderIndex";
+import RenderIndex from "./RenderIndex/RenderIndex";
 import windowDimensions from "../../../Hooks/GetWindowDimensions";
-import IndexSkeloton from "./IndexSkeloton";
+import IndexSkeloton from "./IndexSkeleton/IndexSkeloton";
 import FilteredSearch from "./FilteredSearch/FilteredSearch";
 import RenderMapIndex from "./RenderMapIndex/RenderMapIndex";
 
