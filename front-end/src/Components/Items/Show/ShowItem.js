@@ -14,6 +14,7 @@ const ShowItem = ({
   handleClose,
   handleClaim,
   user,
+	authenticated
 }) => {
   const API = process.env.REACT_APP_API_URL;
   const navigate = useNavigate();
@@ -88,7 +89,7 @@ const ShowItem = ({
                     <h3>Neighborhood: {item[0].neighborhood}</h3>{" "}
                     <h3>Borough: {item[0].borough}</h3>{" "}
                     <h3>Zipcode: {item[0].zipcode}</h3>{" "}
-                    {item[0] && foundUser.id !== user.id ? (
+                    {item[0] && foundUser.id !== user.id && authenticated ? (
                       <Button
                         onClick={() => {
                           handleClaim(item[0].userid, item[0].itemname);
