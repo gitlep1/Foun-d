@@ -47,7 +47,7 @@
 
     .dropdownMenu {
       border: 1px solid black;
-      height: 30em;
+      height: fit-content;
       overflow: auto;
     }
 
@@ -131,7 +131,7 @@
 }
 
 .messageCards:hover{
-	background-color: darkslategrey;
+	background-color: #198754;
 	cursor: pointer;
 }
 

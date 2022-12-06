@@ -39,7 +39,7 @@ const Profile = ({
     }, 3000);
 
     return () => clearInterval(updateUserInterval);
-  });
+  }, []);
 
   const getUpdatedUser = async () => {
     await axios.get(`${API}/users/${user.id}`).then((res) => {

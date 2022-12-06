@@ -45,12 +45,15 @@ const Conversation = ({
 			</div>
 			<div id="chat-box-area">
 				{allMessages.map((newMessage) => {
+					console.log(newMessage)
 					let everyMessageSame = allMessages.every((message) => message.message[0] === 'H')
 						if(newMessage.id === conversation.id){
 							return <p id='message-received'><strong>{conversation.username}</strong>: {newMessage.message}</p>
 						} else if (newMessage.id === 'self' && newMessage.to === conversation.username){
 							return <div id='message-sent-container'><p id='message-sent'><strong>Self</strong>:{newMessage.message}</p></div>
-						} console.log('could not get message', newMessage)
+						} else {
+							return;
+						}
 					}
 				)}
 			</div>
