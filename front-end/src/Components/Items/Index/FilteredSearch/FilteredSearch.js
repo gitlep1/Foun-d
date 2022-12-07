@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { Form, Button, Dropdown, Card } from "react-bootstrap";
+import { Form, Button, Dropdown, Card, Image } from "react-bootstrap";
 import Calendar from "react-calendar";
 import moment from "moment";
 
 import "./FilteredSearch.scss";
+import calendarIcon from "../../../../Images/calendar.png";
 
 const FilteredSearch = ({
   itemName,
@@ -11,19 +12,24 @@ const FilteredSearch = ({
   setFilteredSearchOptions,
   setFilterSearches,
 }) => {
-  const [date1, setDate1] = useState("");
-  const [date2, setDate2] = useState("");
   const [neighborhood, setNeighborhood] = useState("");
   const [selectCategory, setSelectCategory] = useState("Default");
   const [selectBorough, setSelectBorough] = useState("Default");
 
   const [calendarOpen1, setCalendarOpen1] = useState(false);
   const [calendarOpen2, setCalendarOpen2] = useState(false);
-  const [calendarValue1, setCalendarValue1] = useState(new Date());
-  const [calendarValue2, setCalendarValue2] = useState(new Date());
 
-  const selectedDate1 = moment(calendarValue1).format("MMMM Do YYYY");
-  const selectedDate2 = moment(calendarValue2).format("MMMM Do YYYY");
+  // const [calendarValue1, setCalendarValue1] = useState("");
+  // const [calendarValue2, setCalendarValue2] = useState("");
+
+  const [calendarDate1, setCalendarDate1] = useState(new Date());
+  const [calendarDate2, setCalendarDate2] = useState(new Date());
+
+  const selectedDate1 = moment(calendarDate1).format("MMMM Do, YYYY");
+  const selectedDate2 = moment(calendarDate2).format("MMMM Do, YYYY");
+
+  let calendarValue1 = selectedDate1;
+  let calendarValue2 = selectedDate2;
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -32,11 +38,12 @@ const FilteredSearch = ({
       setItemName(value);
     } else if (name === "neighborhood") {
       setNeighborhood(value);
-    } else if (name === "date1") {
-      setDate1(value);
-    } else if (name === "date2") {
-      setDate2(value);
     }
+    // else if (name === "date1") {
+    //   setCalendarValue1(value);
+    // } else if (name === "date2") {
+    //   setCalendarValue2(value);
+    // }
   };
 
   const handleCategoryChange = (e) => {
@@ -62,13 +69,25 @@ const FilteredSearch = ({
         category: selectCategory,
         borough: selectBorough,
         neighborhood: neighborhood,
-        date1: date1,
-        date2: date2,
+        date1: calendarDate1,
+        date2: calendarDate2,
       });
     } else {
       setFilterSearches(false);
     }
   };
+
+  const clearDatesFunction = () => {
+    // setCalendarValue1("");
+    // setCalendarValue2("");
+    calendarValue1 = "";
+  };
+
+  // const handleDateChange = () => {
+  //   console.log("inside");
+  //   setCalendarDate1(new Date());
+  //   setCalendarValue1(selectedDate1);
+  // };
 
   return (
     <Form id="searhSection-form" onSubmit={handleSubmit}>
@@ -148,38 +167,52 @@ const FilteredSearch = ({
                 <div id="innerDateRange">
                   <Form.Group controlId="formBasicDate1">
                     <Form.Label>Date 1</Form.Label>
-                    <Form.Control
-                      type="text"
-                      name="date1"
-                      onChange={setCalendarValue1}
-                      value={selectedDate1}
-                      onClick={() => {
-                        setCalendarOpen1(!calendarOpen1);
-                      }}
-                    />
+                    <div id="calendar1">
+                      <Image
+                        src={calendarIcon}
+                        alt="calendar icon"
+                        id="calendarIcon"
+                        onClick={() => {
+                          setCalendarOpen1(!calendarOpen1);
+                        }}
+                      />
+                      <Form.Control
+                        type="text"
+                        name="date1"
+                        value={calendarValue1}
+                        disabled
+                      />
+                    </div>
                     {calendarOpen1 ? (
                       <Calendar
-                        onChange={setCalendarValue1}
-                        value={calendarValue1}
+                        onChange={setCalendarDate1}
+                        value={calendarDate1}
                       />
                     ) : null}
                   </Form.Group>
 
                   <Form.Group controlId="formBasicDate1">
                     <Form.Label>Date 2</Form.Label>
-                    <Form.Control
-                      type="text"
-                      name="date2"
-                      onChange={setCalendarValue2}
-                      value={selectedDate2}
-                      onClick={() => {
-                        setCalendarOpen2(!calendarOpen2);
-                      }}
-                    />
+                    <div id="calendar2">
+                      <Image
+                        src={calendarIcon}
+                        alt="calendar icon"
+                        id="calendarIcon"
+                        onClick={() => {
+                          setCalendarOpen2(!calendarOpen2);
+                        }}
+                      />
+                      <Form.Control
+                        type="text"
+                        name="date2"
+                        value={calendarValue2}
+                        disabled
+                      />
+                    </div>
                     {calendarOpen2 ? (
                       <Calendar
-                        onChange={setCalendarValue2}
-                        value={calendarValue2}
+                        onChange={setCalendarDate2}
+                        value={calendarDate2}
                       />
                     ) : null}
                   </Form.Group>
@@ -187,7 +220,7 @@ const FilteredSearch = ({
                   <Button
                     variant="dark"
                     onClick={() => {
-                      console.log("test");
+                      clearDatesFunction();
                     }}
                   >
                     Clear Dates

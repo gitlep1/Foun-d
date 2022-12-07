@@ -75,6 +75,6 @@ function Map({foundItems}) {
       </section>
     </section>
   );
-}
+};
 
 export default RenderMapIndex;
