@@ -15,8 +15,7 @@ const [openConvo, setOpenConvo] = useState([])
 const [allMessages, setAllMessages] = useState([])
 const [unReadMessageFromDatabase, setUnReadMessageFromDatabase] = useState([])
 
-// console.log('connectedData variable ', connectedData)
-// console.log('connected variable ', connected)
+console.log(connected, connectedData, socket)
 // if(messages[0]){
 // 	setUnReadMessageFromDatabase([...messages])
 // 	getmessagesForUser()
@@ -124,7 +123,6 @@ function getClaim(incommingClaim){
 	
 	socket.on("disconnect", () => {
 		users.forEach((user) => {
-			console.log('disconnected user', users)
 			if (user.self) {
 				user.active = false;
 			}
@@ -215,8 +213,17 @@ function getClaim(incommingClaim){
 		socket.emit('new user', username)
 		socket.auth = { username }
 	} else {
-			socket.off("connect_error");
+			console.log('off ran')
+			// socket.disconnect();
+			getDefaultConnectedInfo()
 	}
+
+function getDefaultConnectedInfo(){
+	if(connected[0] && connectedData[0]){
+		setConnected([])
+		setConnectedData([])
+	}
+}
 
 // THIS SENDS THE MESSAGE
 function handleMessage(to, content){

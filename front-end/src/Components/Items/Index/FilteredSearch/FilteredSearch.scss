@@ -32,10 +32,11 @@
       #filterDateRange {
         display: flex;
         align-items: center;
+				justify-content: space-evenly;
 
         #innerDateRange {
           display: flex;
-          margin-top: -11%;
+          margin-top: -10%;
           flex-direction: column;
           justify-content: center;
           align-items: center;
