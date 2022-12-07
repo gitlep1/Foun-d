@@ -6,14 +6,12 @@ const RenderMapIndex = ({ foundItems, user, authenticated }) => {
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_API_KEY,
   });
-  console.log(isLoaded.googleMapsApiKey);
-  console.log("Process:", process.env.REACT_APP_API_KEY);
-  console.log("FOO", process.env.REACT_APP_FOO);
-  console.log("URL", process.env.REACT_APP_API_URL);
+
   if (!isLoaded) return <div>Loading...</div>;
   return <Map />;
 };
-function Map() {
+
+const Map = () => {
   const center = useMemo(() => ({ lat: 44, lng: -80 }), []);
 
   return (
@@ -29,6 +27,6 @@ function Map() {
       </section>
     </section>
   );
-}
+};
 
 export default RenderMapIndex;

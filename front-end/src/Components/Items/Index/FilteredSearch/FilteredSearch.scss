@@ -39,8 +39,23 @@
           flex-direction: column;
           justify-content: center;
           align-items: center;
-
           width: 80%;
+
+          #calendar1 {
+            display: flex;
+          }
+
+          #calendar2 {
+            display: flex;
+          }
+
+          #calendarIcon {
+            width: 2em;
+
+            &:hover {
+              cursor: pointer;
+            }
+          }
         }
       }
     }

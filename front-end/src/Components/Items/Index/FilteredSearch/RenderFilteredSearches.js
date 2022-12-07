@@ -1,6 +1,7 @@
 import { nanoid } from "nanoid";
 import { Card, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import moment from "moment";
 
 const RenderFilteredSearches = ({
   itemFound,
@@ -13,7 +14,7 @@ const RenderFilteredSearches = ({
 }) => {
   const navigate = useNavigate();
 
-  const renderFilteredSearches = (rating) => {
+  const renderFilteredSearches = () => {
     return (
       <Card key={nanoid()} className="itemsCard">
         <img src={itemFound.itemimg} alt="item" className="itemImg" />
@@ -48,29 +49,40 @@ const RenderFilteredSearches = ({
   };
 
   const filterDateRange = (date1, date2) => {
-    console.log(date1, date2);
+    const itemDate = new Date(itemFound.itemdate);
+
+    if (
+      (itemDate.getTime() >= date1.getTime() &&
+        itemDate.getTime() <= date2.getTime()) ||
+      itemDate.getTime() === date1.getTime() ||
+      itemDate.getTime() === date2.getTime() ||
+      (itemDate.getTime() <= date1.getTime() &&
+        itemDate.getTime() >= date2.getTime())
+    ) {
+      return renderFilteredSearches();
+    }
   };
 
   let filteredItems = [];
 
   if (filteredSearchOptions.category === itemFound.category) {
-    filteredItems = renderFilteredSearches(filteredSearchOptions.rating);
+    filteredItems = renderFilteredSearches();
   } else if (
     filteredSearchOptions.borough.toLowerCase() ===
     itemFound.borough.toLowerCase()
   ) {
-    filteredItems = renderFilteredSearches(filteredSearchOptions.rating);
+    filteredItems = renderFilteredSearches();
   } else if (
     filteredSearchOptions.neighborhood.toLowerCase() ===
     itemFound.neighborhood.toLowerCase()
   ) {
-    filteredItems = renderFilteredSearches(filteredSearchOptions.rating);
-  } else if (filteredItems.date1 && filteredItems.date2) {
-    // filteredItems = filterDateRange(filteredItems.date1, filteredItems.date2);
-    filterDateRange(filteredItems.date1, filteredItems.date2);
+    filteredItems = renderFilteredSearches();
+  } else if (filteredSearchOptions.date1 && filteredSearchOptions.date2) {
+    filteredItems = filterDateRange(
+      filteredSearchOptions.date1,
+      filteredSearchOptions.date2
+    );
   }
-
-  // setFoundItems(filteredItems);
 
   return (
     <section>
