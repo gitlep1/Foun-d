@@ -63,7 +63,6 @@ const IndexContainer = ({ user, users, authenticated, setUsers }) => {
 
   return (
     <section id="indexContainer">
-      {/* {console.log(setUsers)} */}
       <aside id="searhSection-aside">
         <FilteredSearch
           itemName={itemName}

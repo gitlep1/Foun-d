@@ -79,19 +79,21 @@ const GiveawayIndex = ({ user, users, authenticated }) => {
       <section id="indexContainer">
         {error && <p>{error}</p>}
         {foundItems.length > 0
-          ? foundItems.filter((itemFound) => itemFound.giveaway).map((itemFound) => {
-              return (
-                <RenderGiveaway
-                  key={nanoid()}
-                  itemFound={itemFound}
-                  user={user}
-                  users={users}
-                  authenticated={authenticated}
-                  width={width}
-                  height={height}
-                />
-              );
-            })
+          ? foundItems
+              .filter((itemFound) => itemFound.giveaway)
+              .map((itemFound) => {
+                return (
+                  <RenderGiveaway
+                    key={nanoid()}
+                    itemFound={itemFound}
+                    user={user}
+                    users={users}
+                    authenticated={authenticated}
+                    width={width}
+                    height={height}
+                  />
+                );
+              })
           : null}
       </section>
     </section>
