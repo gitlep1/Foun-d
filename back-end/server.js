@@ -8,7 +8,7 @@ const PORT = process.env.PORT;
 
 const io = new Server(httpServer, {
   cors: {
-    origin: `*`,
+    origin: `https://foun-d.netlify.app/`,
     methods: ["GET", "POST"],
     credentials: true
   },
