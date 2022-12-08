@@ -214,8 +214,7 @@ function getClaim(incommingClaim){
 		socket.auth = { username }
 	} else {
 			console.log('off ran')
-			// socket.disconnect();
-			getDefaultConnectedInfo()
+			socket.off("connect_error");
 	}
 
 function getDefaultConnectedInfo(){
