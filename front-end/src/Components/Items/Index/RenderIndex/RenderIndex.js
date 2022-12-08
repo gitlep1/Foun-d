@@ -70,7 +70,6 @@ const RenderIndex = ({
   return (
     <>
       <section className="cardInfoContainer">
-        {/* {console.log(itemFound.itemdate)} */}
         {itemName !== "" ? (
           itemFound.itemname.includes(itemName) ? (
             filterSearches ? (
