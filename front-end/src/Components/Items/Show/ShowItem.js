@@ -14,7 +14,7 @@ const ShowItem = ({
   handleClose,
   handleClaim,
   user,
-	authenticated
+  authenticated,
 }) => {
   const API = process.env.REACT_APP_API_URL;
   const navigate = useNavigate();
@@ -34,21 +34,21 @@ const ShowItem = ({
   }, [API, itemId]);
 
   const handleItemDelete = async () => {
-    // await axios
-    //   .delete(`${API}/found/${deleteItem.id}`)
-    //   .then((res) => {
-    axios
-      .delete(`${API}/items/${deleteItem.id}`)
+    await axios
+      .delete(`${API}/found/${deleteItem.id}`)
       .then((res) => {
-        notify(res.data);
+        axios
+          .delete(`${API}/items/${deleteItem.id}`)
+          .then((res) => {
+            notify(res.data);
+          })
+          .catch((err) => {
+            setError(err);
+          });
       })
       .catch((err) => {
         setError(err);
       });
-    // })
-    // .catch((err) => {
-    //   setError(err);
-    // });
   };
 
   const notify = (deletedItem) => {

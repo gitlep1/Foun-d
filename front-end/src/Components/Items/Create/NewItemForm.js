@@ -20,13 +20,13 @@ const NewItemForm = ({ user }) => {
     request: false,
     giveaway: false,
     latitude: 0,
-		longitude: 0,
+    longitude: 0,
     neighborhood: "",
     borough: "",
     zipcode: 0,
-		status: "Active"
+    status: "Active",
   });
-	console.log(item)
+  console.log(item);
 
   const [selectStatus, setSelectStatus] = useState("");
   const [selectCategory, setSelectCategory] = useState("Default");
@@ -45,9 +45,9 @@ const NewItemForm = ({ user }) => {
     setSelectCategory(e.target.value);
   };
 
-	const getCoordinate = (lat, lng) => {
-		setItem({...item, latitude: lat, longitude: lng})
-	}
+  const getCoordinate = (lat, lng) => {
+    setItem({ ...item, latitude: lat, longitude: lng });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -61,12 +61,12 @@ const NewItemForm = ({ user }) => {
       isFound: item.isfound,
       request: item.request,
       giveaway: item.giveaway,
-			latitude: item.latitude,
-			longitude: item.longitude,
+      latitude: item.latitude,
+      longitude: item.longitude,
       neighborhood: item.neighborhood,
       borough: item.borough,
       zipcode: item.zipcode,
-			status: item.status
+      status: item.status,
     };
 
     if (selectStatus === "found") {
@@ -96,7 +96,7 @@ const NewItemForm = ({ user }) => {
       .then((res) => {
         const newFoundItem = {
           foundUserId: res.data.userid,
-          itemsId: res.data.id
+          itemsId: res.data.id,
         };
         axios.post(`${API}/found`, newFoundItem).then((response) => {
           notify(res.data);
@@ -136,23 +136,22 @@ const NewItemForm = ({ user }) => {
       isfound: false,
       request: false,
       giveaway: false,
-			latitude: 0,
-			longitude: 0,
+      latitude: 0,
+      longitude: 0,
       neighborhood: "",
       borough: "",
       zipcode: "",
-			status: ""
+      status: "",
     });
   };
 
   return (
     <section id="newItemSection">
-			<h2 id="report-h2">Report an item your found</h2>
-			{error && <p>{error}</p>}
+      <h2 id="report-h2">Report an item your found</h2>
+      {error && <p>{error}</p>}
       <div id="innerNewItemDiv">
-		<NewItemMap getCoordinate={getCoordinate}/>
-        <Form id='form' onSubmit={handleSubmit}>
-				{/* <h2>Report an item your found</h2> */}
+        <NewItemMap getCoordinate={getCoordinate} />
+        <Form id="form" onSubmit={handleSubmit}>
           <Image
             roundedCircle
             id="lostItemImg"

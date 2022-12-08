@@ -1,7 +1,6 @@
 import { nanoid } from "nanoid";
 import { Card, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import moment from "moment";
 
 const RenderFilteredSearches = ({
   itemFound,

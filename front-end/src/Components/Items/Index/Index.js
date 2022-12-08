@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
+import { Button } from "react-bootstrap";
 import { nanoid } from "nanoid";
 import axios from "axios";
-
-import { useNavigate } from "react-router-dom";
 
 import RenderIndex from "./RenderIndex/RenderIndex";
 import windowDimensions from "../../../Hooks/GetWindowDimensions";
@@ -11,10 +10,8 @@ import FilteredSearch from "./FilteredSearch/FilteredSearch";
 import RenderMapIndex from "./RenderMapIndex/RenderMapIndex";
 
 import "./Index.scss";
-import { Button } from "react-bootstrap";
 
 const IndexContainer = ({ user, users, authenticated, setUsers }) => {
-  const navigate = useNavigate();
   const { width, height } = windowDimensions();
   const API = process.env.REACT_APP_API_URL;
 
