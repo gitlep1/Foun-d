@@ -10,7 +10,7 @@ const io = new Server(httpServer, {
   cors: {
     origin: `https://foun-d.netlify.app/`,
     methods: ["GET", "POST"],
-    credentials: true
+    credentials: true,
   },
 });
 
@@ -28,25 +28,25 @@ io.use((socket, next) => {
 
 io.on("connection", (socket) => {
   const users = [];
-	console.log('new connection')
+  console.log("new connection");
   for (let [id, socket] of io.of("/").sockets) {
-		if(users[0]){
-			for(let user of users){
-				if(user.username !== socket.username){
-					users.push({
-						userID: id,
-						username: socket.username,
-					});
-				} 
-			} 
-		}	else {
-				users.push({
-					userID: id,
-					username: socket.username,
-				});
-			}
-		}
-		
+    if (users[0]) {
+      for (let user of users) {
+        if (user.username !== socket.username) {
+          users.push({
+            userID: id,
+            username: socket.username,
+          });
+        }
+      }
+    } else {
+      users.push({
+        userID: id,
+        username: socket.username,
+      });
+    }
+  }
+
   socket.emit("users", users);
 
   socket.broadcast.emit("user connected", {
