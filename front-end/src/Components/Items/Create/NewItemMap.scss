@@ -1,0 +1,15 @@
+#mapIndexOuterContainer {
+  display: flex;
+  justify-content: center;
+	padding: 25px;
+	margin-left: 30px;
+
+  #mapIndexInnerContainer {
+    width: 10%;
+
+		.map-container {
+			width: 5%;
+			height: 50vh;
+		}
+  }
+}
