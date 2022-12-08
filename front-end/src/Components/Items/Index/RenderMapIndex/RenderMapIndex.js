@@ -19,17 +19,7 @@ function Map({foundItems}) {
 	}), []);
 
 	const [selected, setSelected] = useState(null)
-	const test = [
-		{ lat: 40.6729662, lng: -73.9761605 },
-		{ lat: 40.828549, lng: -73.904656 },
-		{ lat: 40.7402996, lng: -73.9357344 },
-		{ lat: 40.8619216, lng: -73.8982491 },
-		{ lat: 40.6899545, lng: -73.9928505 },
-		{ lat: 40.7346527, lng: -74.0081074 },
-		{ lat: 40.792018,  lng: -73.969915 },
-		{ lat: 40.711571, lng: -73.9619263 },
-	]
-
+	console.log(selected)
 
   return (
     <section id="mapIndexOuterContainer">
@@ -39,26 +29,24 @@ function Map({foundItems}) {
           center={center}
           mapContainerClassName="map-container"
         >
-					{foundItems.map((marker, idx) => {
-						marker['lat'] = test[idx].lat
-						marker['lng'] = test[idx].lng
+					{foundItems.map((item, idx) => {
 						return (
 							<MarkerF 
 								key={idx}
-								position={{lat: marker.lat, lng: marker.lng }}
-								onClick={() => {setSelected(marker)}}
-								title={'Marker Test'}
+								position={{lat: Number(item.latitude), lng: Number(item.longitude) }}
+								onClick={() => {setSelected(item)}}
+								title={`${item.itemname}`}
 								icon={{ url: favicon }}
 							/>
 						)
 					})}
 					{selected !== null ? (<InfoWindow 
 					onCloseClick={() => {setSelected(null)}} 
-					position={{lat: selected.lat, lng: selected.lng}}>
+					position={{lat: Number(selected.latitude), lng: Number(selected.longitude)}}>
 						<div>
 							<h2>{selected.itemname}</h2>
 							<h6>Status: {selected.status}</h6>
-							<img alt='item-onMap' width='100px' height='100px' src={`${selected.itemimg}`}/>
+							<img alt='item-onMap' width='80px' height='80px' src={`${selected.itemimg}`}/>
 							<p>Category: {selected.category}</p>
 							<p>{selected.description ? `Description: ${selected.description}` : ''}</p>
 							<Button
