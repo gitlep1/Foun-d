@@ -5,6 +5,7 @@ import { toast, ToastContainer } from "react-toastify";
 import axios from "axios";
 import DefaultImg from "../../../Images/DefaultImg.png";
 import "./NewItemForm.scss";
+import NewItemMap from "./NewItemMap";
 
 const NewItemForm = ({ user }) => {
   const API = process.env.REACT_APP_API_URL;
@@ -18,12 +19,14 @@ const NewItemForm = ({ user }) => {
     isfound: false,
     request: false,
     giveaway: false,
-    pinlocation: "",
+    latitude: 0,
+		longitude: 0,
     neighborhood: "",
     borough: "",
     zipcode: 0,
 		status: "Active"
   });
+	console.log(item)
 
   const [selectStatus, setSelectStatus] = useState("");
   const [selectCategory, setSelectCategory] = useState("Default");
@@ -42,6 +45,10 @@ const NewItemForm = ({ user }) => {
     setSelectCategory(e.target.value);
   };
 
+	const getCoordinate = (lat, lng) => {
+		setItem({...item, latitude: lat, longitude: lng})
+	}
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -54,7 +61,8 @@ const NewItemForm = ({ user }) => {
       isFound: item.isfound,
       request: item.request,
       giveaway: item.giveaway,
-      pinLocation: item.pinlocation,
+			latitude: item.latitude,
+			longitude: item.longitude,
       neighborhood: item.neighborhood,
       borough: item.borough,
       zipcode: item.zipcode,
@@ -128,7 +136,8 @@ const NewItemForm = ({ user }) => {
       isfound: false,
       request: false,
       giveaway: false,
-      pinlocation: "",
+			latitude: 0,
+			longitude: 0,
       neighborhood: "",
       borough: "",
       zipcode: "",
@@ -138,10 +147,12 @@ const NewItemForm = ({ user }) => {
 
   return (
     <section id="newItemSection">
+			<h2 id="report-h2">Report an item your found</h2>
+			{error && <p>{error}</p>}
       <div id="innerNewItemDiv">
-        {error && <p>{error}</p>}
-        <h2>Report an item your found</h2>
-        <Form onSubmit={handleSubmit}>
+		<NewItemMap getCoordinate={getCoordinate}/>
+        <Form id='form' onSubmit={handleSubmit}>
+				{/* <h2>Report an item your found</h2> */}
           <Image
             roundedCircle
             id="lostItemImg"
@@ -182,7 +193,7 @@ const NewItemForm = ({ user }) => {
             />
           </div>
           <div>
-            <label htmlFor="neighborhood">neighborhood:</label>
+            <label htmlFor="neighborhood">Neighborhood:</label>
             <input
               id="neighborhood"
               value={item.neighborhood}
@@ -193,7 +204,7 @@ const NewItemForm = ({ user }) => {
             />
           </div>
           <div>
-            <label htmlFor="borough">borough:</label>
+            <label htmlFor="borough">Borough:</label>
             <input
               id="borough"
               value={item.borough}
@@ -204,7 +215,7 @@ const NewItemForm = ({ user }) => {
             />
           </div>
           <div>
-            <label htmlFor="zipcode">zipcode:</label>
+            <label htmlFor="zipcode">Zipcode:</label>
             <input
               id="zipcode"
               value={item.zipcode}
