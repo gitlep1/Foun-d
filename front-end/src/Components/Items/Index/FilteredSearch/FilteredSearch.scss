@@ -32,7 +32,7 @@
       #filterDateRange {
         display: flex;
         align-items: center;
-				justify-content: space-evenly;
+        justify-content: space-evenly;
 
         #innerDateRange {
           display: flex;
@@ -42,12 +42,24 @@
           align-items: center;
           width: 80%;
 
-          #calendar1 {
+          #calendar1Container {
             display: flex;
           }
 
-          #calendar2 {
+          .calendarOne {
+            position: fixed;
+            top: 7em;
+            right: 10px;
+          }
+
+          #calendar2Container {
             display: flex;
+          }
+
+          .calendarTwo {
+            position: fixed;
+            top: 11.5em;
+            right: 10px;
           }
 
           #calendarIcon {

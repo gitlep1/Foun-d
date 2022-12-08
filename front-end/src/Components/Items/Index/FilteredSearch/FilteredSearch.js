@@ -19,17 +19,14 @@ const FilteredSearch = ({
   const [calendarOpen1, setCalendarOpen1] = useState(false);
   const [calendarOpen2, setCalendarOpen2] = useState(false);
 
-  // const [calendarValue1, setCalendarValue1] = useState("");
-  // const [calendarValue2, setCalendarValue2] = useState("");
+  const [calendarValue1, setCalendarValue1] = useState("");
+  const [calendarValue2, setCalendarValue2] = useState("");
 
   const [calendarDate1, setCalendarDate1] = useState(new Date());
   const [calendarDate2, setCalendarDate2] = useState(new Date());
 
   const selectedDate1 = moment(calendarDate1).format("MMMM Do, YYYY");
   const selectedDate2 = moment(calendarDate2).format("MMMM Do, YYYY");
-
-  let calendarValue1 = selectedDate1;
-  let calendarValue2 = selectedDate2;
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -39,11 +36,6 @@ const FilteredSearch = ({
     } else if (name === "neighborhood") {
       setNeighborhood(value);
     }
-    // else if (name === "date1") {
-    //   setCalendarValue1(value);
-    // } else if (name === "date2") {
-    //   setCalendarValue2(value);
-    // }
   };
 
   const handleCategoryChange = (e) => {
@@ -54,14 +46,24 @@ const FilteredSearch = ({
     setSelectBorough(e.target.value);
   };
 
+  const handleDateChange1 = (date) => {
+    setCalendarDate1(date);
+    setCalendarValue1(selectedDate1);
+  };
+
+  const handleDateChange2 = (date) => {
+    setCalendarDate2(date);
+    setCalendarValue2(selectedDate2);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
     if (
       selectCategory !== "Default" ||
       selectBorough !== "Default" ||
-      selectedDate1 !== "" ||
-      selectedDate2 !== "" ||
+      calendarValue1 !== "" ||
+      calendarValue2 !== "" ||
       neighborhood !== ""
     ) {
       setFilterSearches(true);
@@ -78,16 +80,9 @@ const FilteredSearch = ({
   };
 
   const clearDatesFunction = () => {
-    // setCalendarValue1("");
-    // setCalendarValue2("");
-    calendarValue1 = "";
+    setCalendarValue1("");
+    setCalendarValue2("");
   };
-
-  // const handleDateChange = () => {
-  //   console.log("inside");
-  //   setCalendarDate1(new Date());
-  //   setCalendarValue1(selectedDate1);
-  // };
 
   return (
     <Form id="searhSection-form" onSubmit={handleSubmit}>
@@ -167,7 +162,7 @@ const FilteredSearch = ({
                 <div id="innerDateRange">
                   <Form.Group controlId="formBasicDate1">
                     <Form.Label>Date 1</Form.Label>
-                    <div id="calendar1">
+                    <div id="calendar1Container">
                       <Image
                         src={calendarIcon}
                         alt="calendar icon"
@@ -185,7 +180,8 @@ const FilteredSearch = ({
                     </div>
                     {calendarOpen1 ? (
                       <Calendar
-                        onChange={setCalendarDate1}
+                        className="calendarOne"
+                        onChange={handleDateChange1}
                         value={calendarDate1}
                       />
                     ) : null}
@@ -193,7 +189,7 @@ const FilteredSearch = ({
 
                   <Form.Group controlId="formBasicDate1">
                     <Form.Label>Date 2</Form.Label>
-                    <div id="calendar2">
+                    <div id="calendar2Container">
                       <Image
                         src={calendarIcon}
                         alt="calendar icon"
@@ -211,7 +207,8 @@ const FilteredSearch = ({
                     </div>
                     {calendarOpen2 ? (
                       <Calendar
-                        onChange={setCalendarDate2}
+                        className="calendarTwo"
+                        onChange={handleDateChange2}
                         value={calendarDate2}
                       />
                     ) : null}
