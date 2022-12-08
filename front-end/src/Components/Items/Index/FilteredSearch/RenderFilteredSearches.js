@@ -71,13 +71,11 @@ const RenderFilteredSearches = ({
     itemFound.borough.toLowerCase()
   ) {
     filteredItems = renderFilteredSearches();
-  } else if (itemFound.neighborhood.toLowerCase() !== "") {
-    if (
-      filteredSearchOptions.neighborhood.toLowerCase() ===
-      itemFound.neighborhood.toLowerCase()
-    ) {
-      filteredItems = renderFilteredSearches();
-    }
+  } else if (
+    filteredSearchOptions.neighborhood.toLowerCase() ===
+    itemFound.neighborhood.toLowerCase()
+  ) {
+    filteredItems = renderFilteredSearches();
   } else if (filteredSearchOptions.date1 && filteredSearchOptions.date2) {
     filteredItems = filterDateRange(
       filteredSearchOptions.date1,

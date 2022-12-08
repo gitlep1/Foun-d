@@ -41,13 +41,13 @@ items.post("/", async (req, res) => {
     description: req.body.description,
     isFound: req.body.isFound,
     request: req.body.request,
-    giveaway: req.body.giveaway,		
-		latitude: req.body.latitude,
-		longitude: req.body.longitude,
+    giveaway: req.body.giveaway,
+    latitude: req.body.latitude,
+    longitude: req.body.longitude,
     neighborhood: req.body.neighborhood,
     borough: req.body.borough,
     zipcode: req.body.zipcode,
-		status: req.body.status
+    status: req.body.status,
   };
 
   const createdItems = await createItems(
@@ -59,12 +59,12 @@ items.post("/", async (req, res) => {
     newItems.isFound,
     newItems.request,
     newItems.giveaway,
-		newItems.latitude,
-		newItems.longitude,
+    newItems.latitude,
+    newItems.longitude,
     newItems.neighborhood,
     newItems.borough,
     newItems.zipcode,
-		newItems.status
+    newItems.status
   );
 
   if (createdItems) {
@@ -87,12 +87,12 @@ items.put("/:id", async (req, res) => {
     isFound: req.body.isfound,
     request: req.body.request,
     giveaway: req.body.giveaway,
-		latitude: req.body.latitude,
-		longitude: req.body.longitude,
+    latitude: req.body.latitude,
+    longitude: req.body.longitude,
     neighborhood: req.body.neighborhood,
     borough: req.body.borough,
     zipcode: req.body.zipcode,
-		status: req.body.status
+    status: req.body.status,
   };
   console.log(updatedItemsData);
 
@@ -106,12 +106,12 @@ items.put("/:id", async (req, res) => {
     updatedItemsData.isFound,
     updatedItemsData.request,
     updatedItemsData.giveaway,
-		updatedItemsData.latitude,
-		updatedItemsData.longitude,
+    updatedItemsData.latitude,
+    updatedItemsData.longitude,
     updatedItemsData.neighborhood,
     updatedItemsData.borough,
     updatedItemsData.zipcode,
-		updatedItemsData.status
+    updatedItemsData.status
   );
 
   if (updatedItems) {
@@ -125,6 +125,7 @@ items.put("/:id", async (req, res) => {
 items.delete("/:id", async (req, res) => {
   const { id } = req.params;
 
+  console.log("delete ID: ", id);
   const deletedItems = await deleteItems(id);
   console.log("=== DELETE items", deletedItems, "===");
 
