@@ -23,7 +23,7 @@ const NewItemForm = ({ user }) => {
     longitude: 0,
     neighborhood: "",
     borough: "",
-    zipcode: 0,
+    zipcode: '',
     status: "Active",
   });
   console.log(item);
@@ -65,7 +65,7 @@ const NewItemForm = ({ user }) => {
       longitude: item.longitude,
       neighborhood: item.neighborhood,
       borough: item.borough,
-      zipcode: item.zipcode,
+      zipcode: Number(item.zipcode),
       status: item.status,
     };
 
