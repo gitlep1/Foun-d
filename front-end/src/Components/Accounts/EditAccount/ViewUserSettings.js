@@ -13,6 +13,7 @@ const ViewUserSettings = ({ user }) => {
   const { userId } = useParams();
   const [userInfo, setUserInfo] = useState([]);
   const [editUser, setEditUser] = useState([]);
+	console.log(userInfo)
 
   useEffect(() => {
     axios
@@ -25,6 +26,7 @@ const ViewUserSettings = ({ user }) => {
     if (info.id && user.id === info.id) {
       return (
         <li className="userinfo-li" key={index}>
+					<h3>Personal Info</h3>
           <p>Username: {info.username}</p>
           <p>Password: {info.password}</p>
           <p> Email: {info.email}</p>
@@ -34,6 +36,22 @@ const ViewUserSettings = ({ user }) => {
           <p>User Rating: {info.rating}</p>
           <p>{info.finder}</p>
           <p>Date Joined: {info.joineddate}</p>
+					<Button
+            variant="dark"
+            onClick={() => {
+              navigate(`/index`);
+            }}
+          >
+            Back
+          </Button>{" "}
+          <Button
+            variant="success"
+            onClick={() => {
+              navigate(`/${userId}/edit`);
+            }}
+          >
+            Edit
+          </Button>
         </li>
       );
     } else {
@@ -46,10 +64,12 @@ const ViewUserSettings = ({ user }) => {
     <div id="user-settings-div">
       <h1 className="edit-settings-heading"> Your personal settings</h1>
       <section id="user-info-section">
-        <h3>Personal Info</h3>
         <ul id="user-data-li">
-          {userData}
-          <Button
+					<div id="userInfo-Picture">
+						{userData}
+						<img height={'200px'} width={'200px'} src={ userData[0] ? `${userInfo[0].profileimg}` : ''}/>
+					</div>
+          {/* <Button
             variant="dark"
             onClick={() => {
               navigate(`/index`);
@@ -64,7 +84,7 @@ const ViewUserSettings = ({ user }) => {
             }}
           >
             Edit
-          </Button>
+          </Button> */}
         </ul>
       </section>
     </div>
