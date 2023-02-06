@@ -74,7 +74,7 @@ export default function About() {
             <h4 id="name-headings">Antonio Shivers</h4>
             <img
               className="about-page-img"
-              src="https://media-exp1.licdn.com/dms/image/C4D03AQHX4yDmG5XwkA/profile-displayphoto-shrink_400_400/0/1643389553985?e=1675296000&v=beta&t=Los5_dl_h_Okf8-j6Wag7ARydd0dRqyh_dJpc-5o86c"
+              src="https://avatars.githubusercontent.com/u/55455906?v=4"
               alt="Antonio"
             />
             <h5 id="title-headings">Title: Jr. Software Engineer</h5>
@@ -102,7 +102,7 @@ export default function About() {
             <h4 id="name-headings">Isaac Gonzalez</h4>
             <img
               className="about-page-img"
-              src="https://media-exp1.licdn.com/dms/image/C4E03AQGrBfidATUo9w/profile-displayphoto-shrink_800_800/0/1643392200459?e=1675296000&v=beta&t=s64Vpx7mXMgAH4kRTW-IhRLR2gy9YrUevHsxReXc6nc"
+              src="https://avatars.githubusercontent.com/u/90275620?v=4"
               alt="Isaac"
             />
             <h5 id="title-headings">Title: Jr. Software Engineer</h5>

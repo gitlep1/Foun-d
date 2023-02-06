@@ -4,11 +4,11 @@ const { createServer } = require("http");
 const { Server } = require("socket.io");
 const httpServer = createServer(app);
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 4000;
 
 const io = new Server(httpServer, {
   cors: {
-    origin: `https://foun-d.netlify.app/`,
+    origin: `https://found-app.netlify.app`,
     methods: ["GET", "POST"],
     credentials: true,
   },

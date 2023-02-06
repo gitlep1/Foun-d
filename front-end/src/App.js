@@ -139,7 +139,7 @@ export default function App() {
           // model={model}
         />
         <SideBar /* model={model} */ />
-        <Chatbox
+        {/* <Chatbox
           claimItem={claimItem}
           setClaimItem={setClaimItem}
           // model={model}
@@ -148,7 +148,7 @@ export default function App() {
           authenticated={authenticated}
           messages={messages}
           setMessages={setMessages}
-        />
+        /> */}
         <main className="mainSection">
           <Routes>
             <Route path="/" element={<Homepage />} />
@@ -187,7 +187,7 @@ export default function App() {
                   show={show}
                   handleClaim={handleClaim}
                   handleClose={handleClose}
-									authenticated={authenticated}
+                  authenticated={authenticated}
                 />
               }
             />
